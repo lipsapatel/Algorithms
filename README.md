@@ -1,2 +1,3 @@
 # Algorithms
-Algorithms
+
+Contains the Algorithms challenges.
