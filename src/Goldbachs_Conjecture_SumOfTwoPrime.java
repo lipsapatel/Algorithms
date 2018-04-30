@@ -53,15 +53,28 @@ public class Goldbachs_Conjecture_SumOfTwoPrime {
         }
     }
 
-    private static boolean isPrime(int number) {
+    //checks whether an int is prime or not.
+    //You have to go till the square root of n, because if you list all the factors
+    //of n then square root will always be in the middle. (if it happens that square root
+    //is not integer, we are still ok)
+    private static boolean isPrime(int n) {
 
-        for (int i = 2; i <= number/2; i++) {
+        //Number 2 is prime
+        if (n == 2) {
+            return true;
+        }
 
-            if (number % i == 0) {
+        //check if n is a multiple of 2, then it's not prime
+        if (n == 1 || n%2==0) {
+            return false;
+        }
+
+        //if not, then just check the odds
+        for(int i=3;i*i<=n;i+=2) {
+            if(n%i==0) {
                 return false;
             }
         }
-
         return true;
     }
 
