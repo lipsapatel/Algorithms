@@ -36,6 +36,10 @@ public class ArrayBasedStackImplementation {
             stack = new int[n];
         }
 
+        /**
+         *
+         * @return the current stack size
+         */
         public int size() {
 
             return top + 1;
@@ -45,6 +49,7 @@ public class ArrayBasedStackImplementation {
 
             return top<0;
         }
+
 
         public boolean push(int x) {
 
