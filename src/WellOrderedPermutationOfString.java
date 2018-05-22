@@ -7,7 +7,7 @@ import java.util.Arrays;
  *
  * Example:
  *
- * "Lipsa" - Now well formed
+ * "Lipsa" - Not well formed
  * "Now" - Well formed
  *
  * Approach:

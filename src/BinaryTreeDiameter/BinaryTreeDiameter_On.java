@@ -5,6 +5,10 @@ import Node.BinaryTreeNode;
  * If you notice every node we are calling height function. We can calculate height in the same
  * iteration.
  * Calculate height and diameter at every iteration of that node.
+ *
+ * Height = 1 + Math.max(leftHeight + rightHeight)
+ * Diameter = Max(leftDiameter, rightDiameter, rootDiameter)
+ *
  * Time Complexity: O(n)
  * Space Complexity: O(1)
  */
