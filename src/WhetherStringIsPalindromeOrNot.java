@@ -31,6 +31,10 @@ public class WhetherStringIsPalindromeOrNot {
 
     private static Boolean isStringPalindrome(String inputString) {
 
+        if (inputString == null) {
+            return false;
+        }
+
         if (inputString.length() < 2) {
             return true;
         }
