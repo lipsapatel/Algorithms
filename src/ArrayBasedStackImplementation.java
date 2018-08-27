@@ -1,4 +1,9 @@
 /**
+ * Stack is an abstract data type (ADT)
+ * Majorly all the operations are done at only one end of the stack which is top of the stack.
+ * The order in which elements in stack are stored is with LIFO (Last-in-First-Out) manner. Means the element
+ * inserted last will be removed first.
+ *
  * resources/ArrayBasedStackImplementation.png
  *
  * Time Complexity: O(1) for push, pop, peek and isEmpty operation.

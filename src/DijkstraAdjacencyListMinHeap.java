@@ -182,7 +182,7 @@ public class DijkstraAdjacencyListMinHeap {
 
         private static void displayMinHeap() {
 
-            for (int i = 0; i <= size; i++) {
+            for (int i = 0; i <= position; i++) {
                 System.out.println("Vertex: " + minHeap[i].vertex + " Distance: " + minHeap[i].distance);
             }
             System.out.println("------------");
