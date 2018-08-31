@@ -24,7 +24,7 @@ import java.util.LinkedList;
  *
  * Time Complexity:
  *
- * O(logV) - to extract each vertex from heal. So for V vertices - O(Vlogv)
+ * O(logV) - to extract each vertex from heap. So for V vertices - O(Vlogv)
  * O(logV) - each time decrease the distance of a vertex. Decrease distance will be called for
  * at most once for each edge. So for total E edge - O(ElogV)
  * So overall time complexity:  O(VlogV) + O(ElogV) = O((E + V)logV) = O(ElogV)
