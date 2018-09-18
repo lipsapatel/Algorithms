@@ -136,7 +136,7 @@ public class FindReversePairs {
 
         //Find the start index of part two sorted array
         int m = 0;
-        for (int i = 0; i < length; i++) {
+        for (int i = 0; i < length - 1; i++) {
 
             if (A[i] > A[i + 1]) {
 
@@ -161,7 +161,7 @@ public class FindReversePairs {
         int i = start_partOne;
         int j = start_partTwo;
 
-        while (i < end_partOne && j <= end_partTwo) {
+        while (i <= end_partOne && j <= end_partTwo) {
 
             if (A[i] <= A[j]) {
                 i++;
