@@ -102,7 +102,9 @@ public class FindCycleInUndirectGraphUsingDisjointSet {
             if (x_set == y_set) {
                 return true;
             } else {
-                union(parent, x_set, y_set);
+                //union(parent, x_set, y_set);
+                //Make x as parent of y
+                parent[y_set] = x_set;
             }
 
         }
