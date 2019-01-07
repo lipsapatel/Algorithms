@@ -15,6 +15,9 @@ Approach:
 1) Create a signature for a word.
 2) Store the signature and all the anagrams in the map
 3) Print the anagrams
+
+Time Complexity: nlogn to sort
+For M words with N chars = MNlog(N) + M(to iterate words)
  */
 public class GroupAnagrams {
 
