@@ -34,11 +34,11 @@ public class CalculatePower_Ologn {
         double halfResult = calculatePower(k, n/2);
 
         if (n%2 == 0) { //If n is even
-            return halfResult * halfResult;
+            return halfResult * halfResult; //Second step 1/4 * 1/4 = 1/16
         } else if (n > 0) { //If n is odd
             return halfResult * halfResult * k;
         } else { //If n is negative
-            return halfResult * halfResult/k;
+            return halfResult * halfResult/k; //1*1/4
         }
     }
 

@@ -34,7 +34,10 @@ public class TowerOfHanoi {
 
     public static void main(String[] args) {
 
-        int n = 4;
+        int n = 62;
+        long startTime = System.currentTimeMillis();
         towerOfHanoi(n, "S", "A", "D");
+        long endTime = System.currentTimeMillis();
+        System.out.println((endTime - startTime)/1000);
     }
 }

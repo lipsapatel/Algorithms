@@ -1,4 +1,5 @@
 /**
+ * Binary Search
  * The array has to be sorted array
  * Divide and Conquer
  * Recursive Approach

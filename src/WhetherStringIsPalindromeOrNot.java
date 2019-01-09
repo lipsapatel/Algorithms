@@ -55,6 +55,7 @@ public class WhetherStringIsPalindromeOrNot {
         String S4 = "Jain niaJ";
         String S5 = "JasasddfwfcsJ";
         String S6 = "liaail";
+        String S7 = "";
 
         System.out.println("The given string " + inputString + " is Palindrome " + isStringPalindrome(inputString));
         System.out.println("The given string " + S1 + " is Palindrome " + isStringPalindrome(S1));
@@ -63,6 +64,7 @@ public class WhetherStringIsPalindromeOrNot {
         System.out.println("The given string " + S4 + " is Palindrome " + isStringPalindrome(S4));
         System.out.println("The given string " + S5 + " is Palindrome " + isStringPalindrome(S5));
         System.out.println("The given string " + S6 + " is Palindrome " + isStringPalindrome(S6));
+        System.out.println("The given string " + S7 + " is Palindrome " + isStringPalindrome(S7));
 
     }
 }

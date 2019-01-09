@@ -38,9 +38,9 @@ public class WellOrderedPermutationOfString {
 
         //Find all the permutations
         for (int i = left; i < A.length; i++) {
-            swap(i, left, A);
-            findAllPermutations(A, left + 1);
-            swap(i, left, A); //backtrack
+            swap(i, left, A); //Fix the letter at left position
+            findAllPermutations(A, left + 1); //Left position 0, 1, 2 fixed
+            swap(i, left, A); //This is for backtrack
         }
 
     }
