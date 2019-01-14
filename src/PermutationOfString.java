@@ -35,9 +35,24 @@ public class PermutationOfString {
         A[left] = temp;
     }
 
+    private static void printStringPermutation(String soFar, String rest) {
+
+        if (rest.isEmpty()) {
+            System.out.println(soFar);
+        } else {
+
+            for (int i = 0; i < rest.length(); i++) { //A, B, C for i = 0, 1, 2 rest length
+                String next = soFar + rest.charAt(i); //A rem BC, i = 1 AC rem B
+                String remaining = rest.substring(0, i) + rest.substring(i + 1); //subtracting
+                printStringPermutation(next, remaining);
+            }
+        }
+    }
+
     public static void main(String[] args) {
-        String input = "ABA";
+        String input = "ABC";
 
         printStringPermutation(input.toCharArray(), 0);
+        printStringPermutation("", input);
     }
 }
