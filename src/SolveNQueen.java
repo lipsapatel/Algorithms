@@ -18,10 +18,13 @@
  */
 public class SolveNQueen {
 
-    private static boolean solveNQueen(int[][] board, int col) {
+    private static boolean solveNQueen(int[][] board, int col) { //n = 3 means print 3 solutions
 
         //Base Case: If all queens are placed return true
-        if (col >= board[0].length) {
+        if (col >= board[0].length) { //&& n > 0) {
+            //System.out.println();
+            //printBoard(board);
+            //System.out.println();
             return true;
         }
 
@@ -35,6 +38,7 @@ public class SolveNQueen {
                 board[rowToTry][col] = 1;
 
                 //Recur to place rest of the queens
+                //if (solveNQueen(board, col + 1, n--) && n == 0) { - if print n solutions
                 if (solveNQueen(board, col + 1)) {
                     return true;
                 }

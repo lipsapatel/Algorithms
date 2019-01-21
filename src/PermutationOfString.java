@@ -52,7 +52,8 @@ public class PermutationOfString {
     public static void main(String[] args) {
         String input = "ABC";
 
-        printStringPermutation(input.toCharArray(), 0);
+        printStringPermutation(input.toCharArray(), 0); //Swap
         printStringPermutation("", input);
+        printStringPermutation("", "lipsa");
     }
 }

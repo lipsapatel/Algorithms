@@ -35,6 +35,8 @@ public class WhetherStringIsPalindromeOrNot {
             return false;
         }
 
+        inputString = inputString.toLowerCase();
+
         if (inputString.length() < 2) {
             return true;
         }
@@ -50,7 +52,7 @@ public class WhetherStringIsPalindromeOrNot {
 
         String inputString = "LipsaPatel";
         String S1 = "Sumit";
-        String S2 = "SumuS";
+        String S2 = "Sumus";
         String S3 = "ABCDEFGHGFEDCBA";
         String S4 = "Jain niaJ";
         String S5 = "JasasddfwfcsJ";
