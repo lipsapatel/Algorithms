@@ -1,5 +1,6 @@
 import com.sun.xml.internal.fastinfoset.util.CharArray;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 
 /**
@@ -35,6 +36,26 @@ public class PermutationOfString {
         A[left] = temp;
     }
 
+    private static void printArrayListPermutation(ArrayList<String> list, ArrayList<String> chosen) {
+
+        //Base Case
+        if (list.isEmpty()) {
+            System.out.println(chosen);
+        } else {
+            //For each choice
+            for (int i = 0; i < list.size(); i++) {
+                String s = list.get(i);
+                chosen.add(s);                           //Choose
+                list.remove(i);
+
+                printArrayListPermutation(list, chosen); //Explore
+
+                chosen.remove(chosen.size() - 1);   //Unchoose
+                list.add(i, s);
+            }
+        }
+    }
+
     private static void printStringPermutation(String soFar, String rest) {
 
         if (rest.isEmpty()) {
@@ -51,9 +72,17 @@ public class PermutationOfString {
 
     public static void main(String[] args) {
         String input = "ABC";
-
         printStringPermutation(input.toCharArray(), 0); //Swap
+
         printStringPermutation("", input);
         printStringPermutation("", "lipsa");
+
+        ArrayList<String> list = new ArrayList<>();
+        list.add("L");
+        list.add("I");
+        list.add("P");
+        list.add("S");
+        list.add("A");
+        printArrayListPermutation(list, new ArrayList<String>());
     }
 }

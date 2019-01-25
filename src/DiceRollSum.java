@@ -23,7 +23,7 @@ import java.util.ArrayList;
  */
 public class DiceRollSum {
 
-    private static void diceSumHelper (int dice, int desiredSum, int sumSoFar, ArrayList<Integer> chosen, int j){
+    private static void diceSumHelper (int dice, int desiredSum, int sumSoFar, ArrayList<Integer> chosen) { // int j){
 
         //Base Case
         if (dice == 0) {
@@ -37,7 +37,7 @@ public class DiceRollSum {
                     sumSoFar + i + 6 * (dice - 1) >= desiredSum) {
 
                     chosen.add(i);
-                    diceSumHelper(dice - 1, desiredSum, sumSoFar + i, chosen, i);
+                    diceSumHelper(dice - 1, desiredSum, sumSoFar + i, chosen);// i);
                     chosen.remove(chosen.size() - 1); //Backtrack
                 }
             }
@@ -45,7 +45,7 @@ public class DiceRollSum {
     }
 
     public static void main(String[] args) {
-        diceSumHelper(2, 7, 0, new ArrayList<Integer>(), 1);
-        diceSumHelper(3, 7, 0, new ArrayList<Integer>(), 1);
+        diceSumHelper(2, 7, 0, new ArrayList<Integer>()); // 1);
+        diceSumHelper(3, 7, 0, new ArrayList<Integer>()); //, 1);
     }
 }

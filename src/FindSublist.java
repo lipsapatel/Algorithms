@@ -31,8 +31,10 @@ public class FindSublist {
             //explore
             findSubList(list, chosen);
 
+            //Exclude
             chosen.remove(chosen.size() - 1);
 
+            //Explore
             findSubList(list, chosen);
 
             //un-choose, backtrack

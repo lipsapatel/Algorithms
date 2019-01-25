@@ -38,7 +38,7 @@ public class KnapsackProblem {
 
             //If nth item is included and not included
             return Math.max(values[restItems - 1] + getMaxKnapsackRecursive(values, weight, restWeight - weight[restItems - 1], restItems - 1),
-                    getMaxKnapsackRecursive(values, weight, restWeight, restItems - 1));
+                                                    getMaxKnapsackRecursive(values, weight, restWeight, restItems - 1));
         }
     }
 
