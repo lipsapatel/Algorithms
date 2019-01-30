@@ -43,9 +43,11 @@ public class HeapSort {
 
     private static void heapSort(int[] array) {
 
+        //Given array is a heap
         int size = array.length;
 
-        //Build max heap
+        //Transforming it to max heap
+        // Build max heap
         for (int i = size/2 - 1; i >= 0; i--) {
 
             heapify(array, size, i);
@@ -54,9 +56,8 @@ public class HeapSort {
         //Extract the max and move it to the last location and call heapify (create max heap) on reduced heap
         for (int i = size - 1; i >= 0; i--) {
 
-            int temp = array[0];
-            array[0] = array[i];
-            array[i] = temp;
+            //Swap the first and last element
+            swap(array, 0, i);
 
             //Call heapify on the reduced heap (create max heap out of reduced heap)
             heapify(array, i, 0);
@@ -83,13 +84,17 @@ public class HeapSort {
         if (largestElementPosition != i) {
 
             //Swap both of them
-            int temp = array[i];
-            array[i] = array[largestElementPosition];
-            array[largestElementPosition] = temp;
+            swap(array, i, largestElementPosition);
 
             //Make Recursive call to heapify for the subtree
             heapify(array, heapSize, largestElementPosition);
         }
+    }
+
+    private static void swap(int[] array, int i, int j) {
+        int temp = array[i];
+        array[i] = array[j];
+        array[j] = temp;
     }
 
     public static void main(String[] args) {

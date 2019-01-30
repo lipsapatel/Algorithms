@@ -28,6 +28,8 @@ import java.util.Arrays;
  * logn for dividing
  * n for merging
  *
+ * Space Complexity: O(n)
+ *
  * Two approaches for merge:
  *
  * 1) Using Auxiliary array for copying data:
