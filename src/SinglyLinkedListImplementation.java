@@ -172,6 +172,29 @@ public class SinglyLinkedListImplementation {
         System.out.println();
     }
 
+    private static void deleteElementAtIndex(int index) {
+        //If it's the first element
+        if (index == 1) {
+            deleteAtBegin();
+        }
+
+        int length = size;
+        //If index is invalid
+        if (index > length && index < 1) {
+            System.out.println("Invalid position");
+        }
+
+        if (index > 1 && index <= length) {
+            SinglyLinkedListNode currentNode = head;
+            while (index - 2 > 0) {
+                currentNode = currentNode.next;
+                index--;
+            }
+            currentNode.next = currentNode.next.next;
+            size--;
+        }
+    }
+
     public static void main(String[] args) {
 
         addAtBegin(5);
@@ -187,5 +210,11 @@ public class SinglyLinkedListImplementation {
         System.out.println("\n Size of the list is: " + size);
         System.out.println(" Element at 2nd position : " + getElementAtIndex(2));
         System.out.println(" Searching element 15, location : " + findIndexOfElement(15));
+        deleteElementAtIndex(2);
+        displayLinkedList();
+        deleteElementAtIndex(1);
+        displayLinkedList();
+        deleteElementAtIndex(2);
+        displayLinkedList();
     }
 }

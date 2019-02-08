@@ -14,8 +14,15 @@ import java.util.Arrays;
  * 5) Bubble sort is also known as sinking sort (heavy or bigger elements settles down at the bottom of the list after each iteration)
  *
  * Time Complexity
- *
+ * Worst and Average Case:
  * O(n2)
+ *
+ * Best Case:
+ * O(n) when array is already sorted
+ *
+ * Space Complexity: O(1)
+ *
+ * In place sorting: yes
  *
  * resources/BubbleSort.png
  *
@@ -31,6 +38,8 @@ import java.util.Arrays;
  * or partially sorted. This is where we can do some improvements
  * 2) During any iteration, if there are no swaps then we can claim that our array is already sorted.
  *
+ * //Outer loops for pass
+ * //Inner loop swap the adjacent no
  */
 public class BubbleSort {
 

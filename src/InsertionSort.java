@@ -11,6 +11,10 @@ import java.util.Arrays;
  * Best Case: Elements are already sorted. O(n) - Linear time
  * Worst Case: Elements are sorted in decreasing order - O(n2) - Quadratic time
  * Average Case: j/2 so O(n2) - Quadratic time.
+ *
+ * In place sorting
+ *
+ * Little more better than selection sort and bubble sort
  */
 public class InsertionSort {
 
@@ -31,6 +35,7 @@ public class InsertionSort {
                 j = j - 1;
             }
 
+            //put key to correct position
             array[j + 1] = key;
         }
 

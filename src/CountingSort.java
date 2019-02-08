@@ -15,7 +15,12 @@ import java.util.Arrays;
  *
  * resources/CountingSort.png
  *
- * Time Complexity: O(n)
+ * Time Complexity: O(n + k) when the elements are in the range from 1 to k
+ * Space Complexity O(n)
+ *
+ * //count array stores the count of each element
+ * //Sum the count array  which gives you index
+ * //find the index of input element from count array and add to result array
  */
 public class CountingSort {
 

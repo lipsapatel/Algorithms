@@ -9,6 +9,8 @@ import java.util.Arrays;
  *
  * Time Complexity: For all cases O(nlogn)
  * Space Complexity: O(n)
+ * Stable - in case of duplicates, the relative order is preserved in case of same key
+ *
  *
  * Useful for sorting linked list.
  * In linked list random access is not possible like in array and moreover they are not stored
@@ -23,6 +25,9 @@ import java.util.Arrays;
  * 1) Recursive call to sort for left and right
  * 2) Merge left and right
  *    1) create third sorted array
+ *
+ *    Merge Sort is useful in sorting Linkedlist in O(nlogn) time. elements are not contiguous in linked list, and merge is done with out extra
+ *    space since we can insert items in middle.
  */
 public class MergeSortGeeks {
 

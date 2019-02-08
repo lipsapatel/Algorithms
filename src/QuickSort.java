@@ -15,6 +15,10 @@ import java.util.Arrays;
  *  Merge sort is better when data is huge and stored in external storage.
  *
  * Best Case and Average Case Time Complexity: O(nlogn)
+ *
+ * Space Complexity: Avg/Best case O(logn) because of stack frames from recursive call
+ * Worst case: O(n)
+ * In place sort
  */
 public class QuickSort {
 

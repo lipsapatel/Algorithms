@@ -37,7 +37,9 @@ import java.util.Arrays;
  * 4) Repeat the steps 2 and 3 till entire array is sorted
  *
  * Time Complexity: O(nlogn)
- *
+ * Space Complexity: O(1)
+ * In place algorithm
+ * Heap sort algorithm has limited uses because quick sort and mergesort are better in practice.
  */
 public class HeapSort {
 
@@ -47,13 +49,13 @@ public class HeapSort {
         int size = array.length;
 
         //Transforming it to max heap
-        // Build max heap
+        // Build max heap - O(n)
         for (int i = size/2 - 1; i >= 0; i--) {
 
             heapify(array, size, i);
         }
 
-        //Extract the max and move it to the last location and call heapify (create max heap) on reduced heap
+        //Extract the max and move it to the last location and call heapify (create max heap) on reduced heap - logn
         for (int i = size - 1; i >= 0; i--) {
 
             //Swap the first and last element
