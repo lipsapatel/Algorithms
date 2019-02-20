@@ -13,7 +13,8 @@ public class BinaryTreeHeight {
 
     private static int BinaryTreeHeight(BinaryTreeNode root) {
         if (root == null) {
-            return 0;
+            //return 0; //If counting number of nodes
+            return -1; //If counting number of edges
         } else {
             return Math.max(BinaryTreeHeight(root.left), BinaryTreeHeight(root.right)) + 1;
         }

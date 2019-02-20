@@ -23,12 +23,15 @@ public class ReverseLinkedList {
 
     private static SinglyLinkedListNode head = null;
 
-    private static void reverseLinkedListIterative(SinglyLinkedListNode head) {
+    //O(n) = TC
+    //SC = O(1)
+    private static void reverseLinkedListIterative() {
 
         SinglyLinkedListNode currentNode = head;
         SinglyLinkedListNode previousNode = null;
         SinglyLinkedListNode nextNode = null;
 
+        //3 variables
         while(currentNode != null) {
 
             nextNode = currentNode.next;
@@ -44,6 +47,42 @@ public class ReverseLinkedList {
         displayLinkedList(head);
     }
 
+    private static void reverseLinkedListUsingRecursion(SinglyLinkedListNode previousNode, SinglyLinkedListNode currentNode,
+                                                        SinglyLinkedListNode nextNode) {
+
+        //Base Case
+        if (currentNode == null) {
+            head = previousNode;
+            System.out.println("Reverse Linked list using recursion: ");
+            displayLinkedList(head);
+        } else { //Recursive Case
+            nextNode = currentNode.next;
+
+            currentNode.next = previousNode;
+
+            previousNode = currentNode;
+            currentNode = nextNode;
+            reverseLinkedListUsingRecursion(previousNode, currentNode, nextNode);
+        }
+    }
+
+    //Stack frame  - O(n) = SC
+    //TC = O(n)
+    private static void reverseLinkedListUsingRecursion1(SinglyLinkedListNode currentNode) {
+
+        //Base Case
+        if (currentNode.next == null) {
+            head = currentNode;
+            return;
+        } else { //Recursive Case
+            reverseLinkedListUsingRecursion1(currentNode.next);
+
+            SinglyLinkedListNode nextNode = currentNode.next;
+            nextNode.next = currentNode;
+            currentNode.next = null;
+        }
+    }
+
     private static void addAtBegin(int data) {
         SinglyLinkedListNode newNode = new SinglyLinkedListNode(data);
 
@@ -51,6 +90,7 @@ public class ReverseLinkedList {
         head = newNode;
     }
 
+    //Just one variable so better than recursive
     private static void displayLinkedList(SinglyLinkedListNode head) {
 
         SinglyLinkedListNode currentNode = head;
@@ -70,11 +110,16 @@ public class ReverseLinkedList {
         addAtBegin(25);
         addAtBegin(30);
 
-        System.out.print("Original Link List 1 : ");
+        System.out.print("Original Link List: ");
         displayLinkedList(head);
         System.out.println();
 
-        reverseLinkedListIterative(head);
+        reverseLinkedListIterative();
+        System.out.println();
+        reverseLinkedListUsingRecursion(null, head, null);
 
+        reverseLinkedListUsingRecursion1(head);
+        System.out.println();
+        displayLinkedList(head);
     }
 }

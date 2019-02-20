@@ -17,6 +17,7 @@ import java.util.Arrays;
  *
  * mod N for wrap around.
  *
+ * Time complexity: O(1)
  */
 public class QueueUsingCircularArray {
 

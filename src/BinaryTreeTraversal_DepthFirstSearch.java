@@ -19,6 +19,9 @@ import java.util.Stack;
  */
 public class BinaryTreeTraversal_DepthFirstSearch {
 
+    //PreOrder Traversal - root, left, right - This DFS is pre-order traversal
+    //InOrder Traversal - left, root, right
+    //PostOrder Traversal - left, right, root
     private static void depthFirstSearch(BinaryTreeNode root) {
 
         if (root == null) {

@@ -9,7 +9,7 @@ import Node.DoublyLinkedListNode;
  *
  * addAtStart(int data): O(1)
  * addAtEnd(int data): O(1)
- * addAfterNode(int data, DoublyLinkedListNode prevNode)
+ * addAfterNode(int data, DoublyLinkedListNode prevNode): O(1)
  * deleteFromStart(): O(1)
  * deleteFromEnd(): O(1)
  * getSize()
@@ -141,7 +141,7 @@ public class DoublyLinkedListImplementation {
         return size;
     }
 
-    public void print() {
+    public void print() { //O(n)
         DoublyLinkedListNode currentNode = head;
 
         System.out.println("Doubly Linked List: ");
@@ -151,6 +151,19 @@ public class DoublyLinkedListImplementation {
             currentNode = currentNode.next;
         }
 
+        System.out.println();
+    }
+
+    private void printReverse() { //O(n)
+
+        DoublyLinkedListNode currentNode = tail;
+
+        System.out.println("Doubly linked list in reverse: ");
+
+        while (currentNode != null) {
+            System.out.print(currentNode.data + "-->");
+            currentNode = currentNode.prev;
+        }
         System.out.println();
     }
 
@@ -183,6 +196,7 @@ public class DoublyLinkedListImplementation {
         doublyLinkedListImplementation.deleteFromEnd();
 
         doublyLinkedListImplementation.print();
+        doublyLinkedListImplementation.printReverse();
 
         System.out.println("Size of the Linked List " + doublyLinkedListImplementation.getSize());
     }

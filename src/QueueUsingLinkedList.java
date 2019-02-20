@@ -7,6 +7,7 @@ import Node.SinglyLinkedListNode;
  2)	The head of the Linked List is the front of the queue and the tail of the Linked List is the rear of the queue.
  3)	We cannot make tail as the front because for removing we will have to traverse the Linked List.
 
+ Time Complexity: O(1)
  */
 public class QueueUsingLinkedList {
 
@@ -18,7 +19,6 @@ public class QueueUsingLinkedList {
      * @param x - Add x at the rear of queue
      */
     private static void enqueue(int x) {
-
         SinglyLinkedListNode newNode = new SinglyLinkedListNode(x);
 
         //If queue is empty then the new node is head and tail
@@ -48,14 +48,13 @@ public class QueueUsingLinkedList {
 
         head = head.next;
 
-        if (head == null) {
+        if (head == null) { //only one element
             tail = null;
         }
         return removedNode;
     }
 
     private static void displayLinkedList() {
-
         SinglyLinkedListNode currentNode = head;
 
         while (currentNode != null) {

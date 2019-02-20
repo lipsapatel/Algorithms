@@ -17,6 +17,9 @@ import java.util.Stack;
  * 3) Traverse through String, one character at a time and keep adding it to Stack
  * 4) While stack is not empty, keep popping out the characters from stack and add it to the output StringBuffer
  * 5) Print the output
+ *
+ * Time Complexity: O(n)
+ * Space Complexity: O(n)
  */
 public class ReverseStringUsingStack {
 

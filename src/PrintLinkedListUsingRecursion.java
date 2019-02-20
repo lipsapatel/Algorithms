@@ -15,6 +15,7 @@ public class PrintLinkedListUsingRecursion {
         head = newNode;
     }
 
+    //Stack frame for recursion
     private static void printLinkedListUsingRecursion(SinglyLinkedListNode currentNode) {
 
         //Base Case
@@ -26,11 +27,25 @@ public class PrintLinkedListUsingRecursion {
         }
     }
 
+    //stack frame
+    private static void printReverseLinkedListUsingRecursion(SinglyLinkedListNode currentNode) {
+
+        //Base Case
+        if (currentNode == null) {
+            return;
+        } else { //Recursive Case
+            printReverseLinkedListUsingRecursion(currentNode.next);
+            System.out.print(currentNode.data + "-->");
+        }
+    }
+
     public static void main(String[] args) {
         insertAtStart(12);
         insertAtStart(7);
         insertAtStart(5);
         insertAtStart(2);
         printLinkedListUsingRecursion(head);
+        System.out.println();
+        printReverseLinkedListUsingRecursion(head);
     }
 }

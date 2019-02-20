@@ -58,7 +58,7 @@ public class ArrayBasedStackImplementation {
 
         public boolean push(int x) {
 
-            if (top >= n) {
+            if (top >= n - 1) {
 
                 System.out.println("Stack Overflow");
                 return false;

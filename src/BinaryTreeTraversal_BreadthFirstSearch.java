@@ -24,6 +24,10 @@ import java.util.Queue;
  * remove the node
  * print it
  * and insert left and right children
+ *
+ * Time Complexity: O(n)
+ * Space Complexity: O(n) for worst case/Average Case
+ * O(1) in best case
  */
 public class BinaryTreeTraversal_BreadthFirstSearch {
 
