@@ -23,6 +23,9 @@
  * problem  in tutorial
  * horizon
  *
+ * Greedy approach
+ * Not very optimal
+ *
  * Approach: Recursion
  *
  * 1) Maintain an index which tracks the number of words already justified.

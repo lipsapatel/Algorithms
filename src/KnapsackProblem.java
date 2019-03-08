@@ -42,6 +42,9 @@ public class KnapsackProblem {
         }
     }
 
+    //TC = O(iw)
+    //SC = O(iw)
+    // Pseudo Polynomial
     private static int getMaxKnapsackDP(int[] values, int[] weight, int restWeight, int restItems) {
 
         int[][] k = new int[restItems + 1][restWeight + 1];

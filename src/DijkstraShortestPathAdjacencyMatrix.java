@@ -15,7 +15,7 @@
  * except the source vertex. This will be used to keep track of distances of vertices from source vertex.
  * Distance of source vertex to source vertex is 0.
  * 4) Repeat the following steps until all the vertices are processed.
- *      1) Pick vertex u which is not in SPT[ and has minimum distance. Here we will loop through the vertices and find the vertex
+ *      1) Pick vertex u which is not in SPT[] and has minimum distance. Here we will loop through the vertices and find the vertex
  *      with minimum distance.
  *      2) Add vertex u to SPT[]
  *      3) Loop over all the adjacent vertices of vertex u

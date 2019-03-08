@@ -18,6 +18,10 @@
  * 1) matrix[i][j] = 1 if there is edge between vertex i and j or else 0
  * 2) Easy to implement because removing and adding edge take O(1) time
  * 3) Drawback - Takes O(v2) space even though there are less edges.
+ *
+ * Find all adjacent nodes - O(V) because we need to scan v columns.
+ * Find if two nodes are connected - O(1)
+ *
  */
 public class GraphImplementataionAdjacenyMatrix {
 

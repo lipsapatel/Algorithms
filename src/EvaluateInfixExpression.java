@@ -14,8 +14,8 @@ public class EvaluateInfixExpression {
 
     private static int evaluateInfixExpression(String exp) {
 
-        Stack<Character> stack1 = new Stack<>();
-        Stack<Integer> stack2 = new Stack<>();
+        Stack<Character> stack1 = new Stack<>(); //Operators, brackets
+        Stack<Integer> stack2 = new Stack<>(); //Operand
 
         for (int i = 0; i < exp.length(); i++) {
             //If it's a delimiter continue

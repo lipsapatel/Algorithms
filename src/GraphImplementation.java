@@ -26,6 +26,15 @@ import java.util.LinkedList;
  * The weights can also be stored in linked list node.
  *
  * resources/UndirectedGraph.png
+ *
+ * Space Complexity: O(|E| + |V|)
+ *
+ * Find if two nodes are connected - O(V) for linear search
+ * O(logV) - Binary search
+ *
+ * Find adjacent nodes - O(V) for linear search
+ * O(logV) - Binary search
+ *
  */
 public class GraphImplementation {
 

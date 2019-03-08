@@ -11,7 +11,7 @@ import java.util.LinkedList;
  * Adjacency List and Min Heap
  *
  * 1) Create min Heap of size = no of vertices
- * 2) Create a headNode for each vertex which will store two information
+ * 2) Create a heapNode for each vertex which will store two information
  *      1) vertex 2) Distance for vertex from source vertex
  * 3) Use SPT[] to keep track of the vertices which are currently in min heap
  * 4) For each heapNode, initialize distance as infinity except the heapNode for the source vertex

@@ -27,7 +27,7 @@ import java.util.Queue;
  *
  * Time Complexity: O(n)
  * Space Complexity: O(n) for worst case/Average Case
- * O(1) in best case
+ * O(1) in best case - Tree is like linked list
  */
 public class BinaryTreeTraversal_BreadthFirstSearch {
 

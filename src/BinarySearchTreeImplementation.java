@@ -11,6 +11,9 @@ import java.util.ArrayList;
  * display() - prints entire tree in increasing order - O(n) -
  * Inorder traversal left, root, right
  *
+ * Height of balanced tree is = logn
+ * Time complexity is O(h) for all the operations in BST.
+ *
  * Find - Either go to search in left or right by comparing n with root.data
  * insert - Either go the left or right and when current == null, insert your node.
  * delete - Node to be deleted is leaf node
@@ -156,7 +159,7 @@ public class BinarySearchTreeImplementation {
         //Case 3 If current has both left and right child, calculate the successor
         // from right subtree
         else if (current.left != null && current.right != null) {
-            BinaryTreeNode successor = getSuccessor(current);
+            BinaryTreeNode successor = getInOrderSuccessor(current);
 
             if (current == root) {
                 root = successor;
@@ -173,15 +176,15 @@ public class BinarySearchTreeImplementation {
         return true;
     }
 
-    private static BinaryTreeNode getSuccessor(BinaryTreeNode deleteNode) {
+    private static BinaryTreeNode getInOrderSuccessor(BinaryTreeNode deleteNode) {
         BinaryTreeNode successor = null;
         BinaryTreeNode successorParent = null;
-        BinaryTreeNode current = deleteNode.right;
+        BinaryTreeNode current = deleteNode.right; //To get inorder predecessor, this becomes left
 
         while (current != null) {
             successorParent = successor;
             successor = current;
-            current = current.left;
+            current = current.left; //This becomes right for inorder predecessor.
         }
 
         //Check if the successor has right child, it cannot have left child for sure

@@ -43,13 +43,13 @@ public class ReverseLinkedListUsingStack {
 
         //Pop
         currentNode = stack.pop();
-        head = currentNode;
+        head = currentNode; //head
         while (!stack.isEmpty()) {
             currentNode.next = stack.pop();
             currentNode = currentNode.next;
         }
 
-        currentNode.next = null;
+        currentNode.next = null; //last node to null
     }
 
     public static void main(String[] args) {

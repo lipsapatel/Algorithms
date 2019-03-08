@@ -1,3 +1,5 @@
+import java.util.Arrays;
+
 /**
  * Dynamic Programming - Longest Increasing Subsequence
  *
@@ -9,6 +11,8 @@
  *
  * Given an array A[1, 2...n], calculate B[1, 2...m] with B[i] < B[i + 1] where i = 1, 2, 3...m
  * such that m is the maximum.
+ *
+ * Construct LIS which is the longest increasing sequence length till ith location
  *
  * Example:
  *
