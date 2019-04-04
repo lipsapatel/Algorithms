@@ -18,6 +18,7 @@ import java.util.Stack;
  *
  * resources/TrackMaximumElementInStack.png
  *
+ * The same problem can be changed to track minimum in stack.
  */
 public class TrackMaximumInStack {
 

@@ -12,6 +12,12 @@ package ElementWhichAppearOnceInArray;
  * So if you XOR all elements in an array then all duplicate elements will become
  * 0 and the one which is left is appearing once.
  *
+ * XOR Table
+ * 0 0 = 0
+ * 1 1 = 0
+ * 0 1 = 1
+ * 1 0 = 1
+ *
  * Time Complexity: O(n)
  * Space Complexity: O(1)
  */

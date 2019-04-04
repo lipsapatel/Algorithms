@@ -31,6 +31,8 @@
  *       half of the array)
  *    4) Solve all the three and return maximum among them
  *    5) Left half and right half of the array will be solved recursively
+ *
+ *    TC = O(nlogn)
  */
 public class MaximumSubArrayUsingDivideAndConquer {
 

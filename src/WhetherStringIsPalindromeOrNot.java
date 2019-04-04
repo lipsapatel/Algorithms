@@ -29,7 +29,7 @@
  */
 public class WhetherStringIsPalindromeOrNot {
 
-    private static Boolean isStringPalindrome(String inputString) {
+    /*private static Boolean isStringPalindrome(String inputString) {
 
         if (inputString == null) {
             return false;
@@ -40,14 +40,41 @@ public class WhetherStringIsPalindromeOrNot {
         if (inputString.length() < 2) {
             return true;
         }
-
         if (inputString.charAt(0) == inputString.charAt(inputString.length() - 1)) {
             return isStringPalindrome(inputString.substring(1, inputString.length() - 1));
         } else {
             return false;
         }
-    }
+    }*/
 
+    private static boolean isStringPalindrome(String inputString) {
+
+        if (inputString == null) {
+            return false;
+        }
+
+        int length = inputString.length() - 1;
+
+        for (int i = 0, j = length; i < j; i++, j--) {
+
+            while (i <= length && !Character.isLetterOrDigit(inputString.charAt(i))) {
+                i++;
+            }
+
+            while (j >= 0 && !Character.isLetterOrDigit(inputString.charAt(j))) {
+                j--;
+            }
+
+            if (i > length || j < 0) {
+                break;
+            }
+
+            if (Character.toLowerCase(inputString.charAt(i)) != Character.toLowerCase(inputString.charAt(j))) {
+                return false;
+            }
+        }
+        return true;
+    }
     public static void main(String[] args) {
 
         String inputString = "LipsaPatel";
@@ -57,7 +84,7 @@ public class WhetherStringIsPalindromeOrNot {
         String S4 = "Jain niaJ";
         String S5 = "JasasddfwfcsJ";
         String S6 = "liaail";
-        String S7 = "";
+        String S7 = "A man, a plan, a canal: Panama";
 
         System.out.println("The given string " + inputString + " is Palindrome " + isStringPalindrome(inputString));
         System.out.println("The given string " + S1 + " is Palindrome " + isStringPalindrome(S1));

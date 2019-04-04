@@ -54,13 +54,35 @@
  * We will solve it using Top-Down approach
  * We need to store the solutions for sub problems in an array.
  *
- * Time Complexity: O(logn)
+ *
+ * As we can see this problem can be broken into subproblems, and it contains the optimal substructure property i.e. its optimal solution can be constructed efficiently from optimal solutions of its subproblems, we can use dynamic programming to solve this problem.
+
+ One can reach i th
+ step in one of the two ways:
+
+ Taking a single step from (i−1) th
+ step.
+
+ Taking a step of 2 from (i−2) th
+ step.
+
+ So, the total number of ways to reach i th
+ is equal to sum of ways of reaching (i−1) th
+ step and ways of reaching (i−2) th
+ step.
+
+ Let dp[i] denotes the number of ways to reach on i th
+ step:
+
+ dp[i]=dp[i-1]+dp[i-2]
+ * Time Complexity: O(n)
+ * SC: O(n)
  */
 public class PossibleWaysToClimbStairs {
 
     private static int possibleWaysToClimbStairs(int n, int[] subProblemArray) {
 
-        if (n < 1) {
+       /* if (n < 1) {
             return 0;
         }
 
@@ -69,10 +91,43 @@ public class PossibleWaysToClimbStairs {
         }
 
         subProblemArray[n]  = 1 + possibleWaysToClimbStairs(n - 1, subProblemArray) +
+
                                 possibleWaysToClimbStairs(n - 2, subProblemArray) +
                                 possibleWaysToClimbStairs(n - 3, subProblemArray);
 
-        return subProblemArray[n];
+        return subProblemArray[n];*/
+
+        if (n == 1) {
+            return 1;
+        }
+        int[] dp = new int[n + 1];
+        dp[1] = 1; //1
+        dp[2] = 2; //1,1  2
+        dp[3] = 4; // 1,1,1  2,1   3   1,2
+
+        for (int i = 4; i <= n; i++) {
+            dp[i] = dp[i - 1] + dp[i - 2] + dp[i - 3];
+        }
+        return dp[n];
+    }
+
+    //TC = O(n)
+    //SC = O(1)
+    private static int possibleWaystoClimbFibonacciNumber(int n) {
+        if (n == 1) {
+            return 1;
+        }
+
+        int first = 1;
+        int second = 2;
+
+        for (int i = 3; i <= n; i++) {
+            int third = first + second;
+            first = second;
+            second = third;
+        }
+
+        return second;
     }
 
     public static void main(String[] args) {
@@ -91,5 +146,18 @@ public class PossibleWaysToClimbStairs {
         int[] subProblemArray2 = new int[n2 + 1];
 
         System.out.println("The possbile ways to climb 5 steps " + possibleWaysToClimbStairs(n2, subProblemArray2));
+
+        n = 3;
+        System.out.println("Possible ways to climb 3 steps using fibonacci number: " + possibleWaystoClimbFibonacciNumber(n));
+
+        n = 4;
+        System.out.println("Possible ways to climb 4 steps using fibonacci number: " + possibleWaystoClimbFibonacciNumber(n));
+
+        n = 5;
+        System.out.println("Possible ways to climb 5 steps using fibonacci number: " + possibleWaystoClimbFibonacciNumber(n));
+
+        n = 6;
+        System.out.println("Possible ways to climb 6 steps using fibonacci number: " + possibleWaystoClimbFibonacciNumber(n));
+
     }
 }
