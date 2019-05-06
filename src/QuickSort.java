@@ -23,12 +23,30 @@ import java.util.Arrays;
  * What is Stability?
  *
  * Stability preserves the order in case of duplicate keys.
+ *
+ * Consider partition on this array
+ * 4a, 2, 3, 4b, 1
+ *
+ * pivot = 1
+ *
+ * 1, 2, 3, 4b, 4a
+ * So quick sort is not stable algorithm
+ *
+ * Work at level 1 is n
+ * Work at level 2 is n/2 + n/2 = n
+ *
+ * n + n + n = n (1 + 1 + 1) = work at each level * height of tree
+ * n (logn)
+ * for n = 8
+ * n (log 8) = 3n
+ *
  */
 public class QuickSort {
 
     //Place the pivot at it's right position and return it's index
     //Smaller elements placed to left of pivot
     //Larger elements to it's right
+    //is partition stable - yes
     private static int partition(int[] array, int low, int high) {
 
         //Lomuto's partition
@@ -49,7 +67,7 @@ public class QuickSort {
 
         //Increment i and swap pivot with ith
         i++;
-        swap(array, i, high);
+        swap(array, i, high); //place pivot at it's correct position
         return i;
     }
 
@@ -60,6 +78,7 @@ public class QuickSort {
     //Best and Average case TC and SC
     //Time Complexity: O(nlogn)
     //Space Complexity: O(nlogn)
+    //Brute force approach is stable but requires n more space
     private static int partitionBruteForce(int[] array, int low, int high) {
         int pivot = array[high];
 

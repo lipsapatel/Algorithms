@@ -11,8 +11,12 @@ import Node.BinaryTreeNode;
  *
  * Time Complexity: O(n)
  * Space Complexity: O(1)
+ *
+ * This is counting number of nodes for diameter
  */
 public class BinaryTreeDiameter_On {
+
+    private static int ans;
 
     private static int[] BinaryTreeDiameter(BinaryTreeNode root) {
 
@@ -41,6 +45,40 @@ public class BinaryTreeDiameter_On {
         return heightAndDiameter;
     }
 
+    /**
+     * This method calculates the left depth and right depth
+     * And it keeps track of max(leftDepth + rightDepth)
+     * @param root
+     */
+    private static int BinaryTreeDepth(BinaryTreeNode root) {
+
+        if (root == null) {
+            return 0;
+        }
+
+        int L = BinaryTreeDepth(root.left);
+        int R = BinaryTreeDepth(root.right);
+        ans = Math.max(ans, L + R + 1); //this is counting number of nodes. To count number of edges, do L + R
+        return Math.max(L, R) + 1; //height is also counting no of nodes
+
+    }
+
+    /**
+     * This calculates height using edges and diameter using edges
+     * @param root
+     * @return
+     */
+    private static int BinaryTreeDepthEdges(BinaryTreeNode root) {
+        if (root == null) {
+            return -1; //Since it's calculating edges
+        }
+
+        int L = BinaryTreeDepthEdges(root.left);
+        int R = BinaryTreeDepthEdges(root.right);
+        ans = Math.max(ans, L + R + 2); //add 2 for edges because height s also calculated using edges
+        return Math.max(L, R) + 1;
+    }
+
     public static void main(String[] args) {
         BinaryTreeNode root = new BinaryTreeNode(1);
         root.left = new BinaryTreeNode(2);
@@ -52,5 +90,13 @@ public class BinaryTreeDiameter_On {
         root.left.left.left = new BinaryTreeNode(8);
 
         System.out.println("The Diameter of Binary Tree is " + BinaryTreeDiameter(root)[1]);
+
+        ans = 0;
+        BinaryTreeDepth(root);
+        System.out.println("The Diameter of Binary Tree is " + ans);
+
+        ans = 0;
+        BinaryTreeDepthEdges(root);
+        System.out.println("The Diameter of Binary Tree using edges: " + ans);
     }
 }

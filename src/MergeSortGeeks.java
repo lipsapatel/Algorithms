@@ -28,6 +28,8 @@ import java.util.Arrays;
  *
  *    Merge Sort is useful in sorting Linkedlist in O(nlogn) time. elements are not contiguous in linked list, and merge is done with out extra
  *    space since we can insert items in middle.
+ *
+ *    Merge Sort is stable sorting algorithm only because of <= condition.
  */
 public class MergeSortGeeks {
 
@@ -35,7 +37,7 @@ public class MergeSortGeeks {
 
         if (l < r) {
 
-            int m = (l + r)/2; //Middle
+            int m = l + (r - l)/2; //Middle - to avoid int overflow if start and end are very big.
 
             //sort left and right
             mergeSort(a, l, m);
@@ -60,7 +62,7 @@ public class MergeSortGeeks {
         }
 
         for (int i = 0; i < n2; i++) {
-            R[i] = a[m + i + 1];
+            R[i] = a[m + 1 + i];
         }
 
         //Merge logic

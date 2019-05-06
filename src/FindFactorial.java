@@ -34,7 +34,7 @@ public class FindFactorial {
     }
 
     public static void main(String[] args) {
-        int n = 10;
+        int n = 23;
         int factorial = findFactorial(n);
 
         System.out.println("Factorial of a number: " + n + " is: " + factorial);

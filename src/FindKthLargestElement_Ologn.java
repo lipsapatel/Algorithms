@@ -14,7 +14,7 @@ import java.util.PriorityQueue;
  * Extract k max elements from Priority Queue
  * The last max (Kth) element extracted will be the Kth Largest element in the array.
  *
- * Time Complexity: O(logn)
+ * Time Complexity: O((n + k)*logn)
  */
 public class FindKthLargestElement_Ologn {
 
@@ -22,13 +22,13 @@ public class FindKthLargestElement_Ologn {
 
     private static int findKthLargestElement(int[] array, int k) {
 
-        for (int i = 0; i < array.length; i++) {
-            priorityQueue.offer(array[i]);
+        for (int i = 0; i < array.length; i++) { //n
+            priorityQueue.offer(array[i]); //logn
         }
 
         int kthLargestElement = -1;
-        while (k > 0) {
-            kthLargestElement = priorityQueue.poll();
+        while (k > 0) { //k
+            kthLargestElement = priorityQueue.poll(); //logn
             k--;
         }
         return kthLargestElement;

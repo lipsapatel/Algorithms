@@ -10,6 +10,7 @@
  * Binary representation: 1101
  * Number of set bits = 3
  *
+ * When we borrow 1, it becomes 2 1's.
  * Subtract 1 from number will toggle all bits till rightmost set bits including
  * right most set bits
  * Do bitwise AND with itself will unset rightmost set bit.

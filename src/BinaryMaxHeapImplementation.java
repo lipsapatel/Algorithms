@@ -112,7 +112,7 @@ public class BinaryMaxHeapImplementation {
         }
     }
 
-    private static void bubbleUp() {
+    private static void bubbleUp() { //TC = O(logn), since we keep going up until the condition is violated.
 
         int elementPosition = position - 1;
 

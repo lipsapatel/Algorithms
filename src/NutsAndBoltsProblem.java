@@ -33,7 +33,7 @@ import java.util.HashMap;
  * 1) Compare each nut (or key) will all the bolts (or locks).
  * 2) If there is a match, perform swap for bolts (or locks)
  *
- * Time Complexity: O(n2)
+ * Time Complexity: O(n^2)
  *
  *
  * Using HashMap:
@@ -44,6 +44,16 @@ import java.util.HashMap;
  *
  * Time Complexity: O(n)
  * Space Complexity: O(n)
+ *
+ * Using QuickSort:
+ *
+ * 1) Pick last element as pivot in bolts
+ * 2) Partition nuts based on that pivot
+ * 3) Partition bolts based on nuts[pivot]
+ * 4) Recur left and right
+ *
+ * Time Complexity: 2n(logn)
+ * Space Complexity: O(1)
  */
 public class NutsAndBoltsProblem {
 
@@ -104,6 +114,49 @@ public class NutsAndBoltsProblem {
         System.out.println(Arrays.toString(nuts));
         System.out.println(Arrays.toString(bolts));
     }
+
+    private static void matchNutsAndBoltsUsingQuickSort(int[] nuts, int[] bolts, int low, int high) {
+
+        if (low < high) {
+
+            //Choose last character from bolts as pivot and partition nuts based on that
+            int pivot = partition(nuts, low, high, bolts[high]);
+
+            //Partition bolts using nuts[pivot]
+            partition(bolts, low, high, nuts[pivot]);
+
+            //Recur
+            matchNutsAndBoltsUsingQuickSort(nuts, bolts, low, pivot - 1); //Left
+            matchNutsAndBoltsUsingQuickSort(nuts, bolts, pivot + 1, high); //right
+        }
+    }
+
+    private static int partition(int[] array, int low, int high, int pivot) {
+
+        int i = low - 1;
+
+        for (int j = low; j < high; j++) {
+
+            if (array[j] < pivot) {
+                i++;
+                swap(array, i, j);
+            } else if (array[j] == pivot) { //Pivot can be some where in middle, if found place it at the end
+                swap(array, j, high);
+                j--;
+            }
+        }
+
+        i++;
+        swap(array, i, high);
+        return i;
+    }
+
+    private static void swap(int[] array, int i, int j) {
+        int temp = array[i];
+        array[i] = array[j];
+        array[j] = temp;
+    }
+
     public static void main(String[] args) {
 
         char[] nuts = {'$', '%', '&', 'x', '@'};
@@ -115,5 +168,15 @@ public class NutsAndBoltsProblem {
         char[] bolts1 = {'%', '@', 'x', '$', '&'};
 
         matchNutsAndBoltsUsingHashMap(nuts1, bolts1);
+
+        //Sort both
+        int[] nuts2 = {2, 1, 3, 5};
+        int[] bolts2 = {5, 3, 1, 2};
+
+        matchNutsAndBoltsUsingQuickSort(nuts2, bolts2, 0, nuts2.length - 1);
+
+        System.out.println("Matched nuts and bolts using Quick sort are: ");
+        System.out.println(Arrays.toString(nuts2));
+        System.out.println(Arrays.toString(bolts2));
     }
 }

@@ -36,10 +36,12 @@ import java.util.Arrays;
  * 3) Heapify the root of the heap with reduce size
  * 4) Repeat the steps 2 and 3 till entire array is sorted
  *
- * Time Complexity: O(nlogn)
+ * Time Complexity: O(nlogn) in all cases
  * Space Complexity: O(1)
  * In place algorithm
  * Heap sort algorithm has limited uses because quick sort and mergesort are better in practice.
+ * Heap sort is not cache friendly.
+ * Heap sort is not stable.
  */
 public class HeapSort {
 
@@ -56,13 +58,13 @@ public class HeapSort {
         }
 
         //Extract the max and move it to the last location and call heapify (create max heap) on reduced heap - logn
-        for (int i = size - 1; i >= 0; i--) {
+        for (int i = size - 1; i >= 0; i--) { //n
 
             //Swap the first and last element
             swap(array, 0, i);
 
             //Call heapify on the reduced heap (create max heap out of reduced heap)
-            heapify(array, i, 0);
+            heapify(array, i, 0); //logn
         }
     }
 

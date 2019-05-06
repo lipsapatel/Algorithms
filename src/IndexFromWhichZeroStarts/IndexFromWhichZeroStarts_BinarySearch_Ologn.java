@@ -61,7 +61,7 @@ public class IndexFromWhichZeroStarts_BinarySearch_Ologn {
             return mid;
         } else if (array[mid] == 0 && array[mid-1] == 0) { //If mid element is 0 and left
             //element is 0 then search left
-            return findIndexFromWhichZeroStarts(array, start, mid);
+            return findIndexFromWhichZeroStarts(array, start, mid - 1);
         } else { //search right if middle element is 1
             return findIndexFromWhichZeroStarts(array, mid+1, end);
         }
