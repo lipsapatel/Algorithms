@@ -105,8 +105,8 @@ public class MedianOfTwoSortedArrayOfSameSize {
     }
 
     public static void main(String[] args) {
-        int[] a = {2, 6, 9, 10, 11};
-        int[] b = {1, 5, 7, 12, 15};
+        int[] a = {1, 3};
+        int[] b = {2};
 
         float median = findMedianOfSortedArray(a, 0, a.length - 1, b, 0, b.length - 1);
         System.out.println("Median of combined sorted array is: " + median);

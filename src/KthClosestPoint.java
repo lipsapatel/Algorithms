@@ -45,7 +45,7 @@ import java.util.PriorityQueue;
 
  Partition till pivot becomes k, all k closet element will be together.
 
- If you need to sort it, do a quicksort on k elements which will be klogk
+ If you need to sort it, do a quicksort on k elements which will be O(klogk)
 
  */
 class KthClosestPoint {

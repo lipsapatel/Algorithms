@@ -134,15 +134,17 @@ public class NutsAndBoltsProblem {
     private static int partition(int[] array, int low, int high, int pivot) {
 
         int i = low - 1;
+        boolean placePivotOnce = false; //If there are duplicate pivot place only on pivot to position high
 
         for (int j = low; j < high; j++) {
 
             if (array[j] < pivot) {
                 i++;
                 swap(array, i, j);
-            } else if (array[j] == pivot) { //Pivot can be some where in middle, if found place it at the end
+            } else if (array[j] == pivot && !placePivotOnce) { //Pivot can be some where in middle, if found place it at the end
                 swap(array, j, high);
                 j--;
+                placePivotOnce = true;
             }
         }
 
@@ -170,8 +172,8 @@ public class NutsAndBoltsProblem {
         matchNutsAndBoltsUsingHashMap(nuts1, bolts1);
 
         //Sort both
-        int[] nuts2 = {2, 1, 3, 5};
-        int[] bolts2 = {5, 3, 1, 2};
+        int[] nuts2 = {2, 1, 2, 5};
+        int[] bolts2 = {5, 2, 1, 2};
 
         matchNutsAndBoltsUsingQuickSort(nuts2, bolts2, 0, nuts2.length - 1);
 

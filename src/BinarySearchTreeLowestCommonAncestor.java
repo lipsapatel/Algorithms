@@ -15,8 +15,17 @@ import Node.BinaryTreeNode;
  * in right subtree
  * If step 2 and 3 are false then root is the lowest common ancestor and return it.
  *
- * Time Complexity = O(logn)
- * Space Complexity = O(1)
+ *
+ * Time Complexity: O(N), where N is the number of nodes in the BST.
+ * In the worst case we might be visiting all the nodes of the BST.
+
+ Space Complexity: O(N). This is because the maximum amount of space utilized by the recursion stack would be N
+ since the height of a skewed BST could be N.
+
+ Iterative approach
+
+ Time Complexity: O(N)
+ Space Complexity: O(1)
  */
 public class BinarySearchTreeLowestCommonAncestor {
 
@@ -35,6 +44,23 @@ public class BinarySearchTreeLowestCommonAncestor {
 
         //If you are here that mean root is the Lowest Common Ancestor
         return root;
+    }
+
+    public static BinaryTreeNode getLCAIterative(BinaryTreeNode root, BinaryTreeNode n1, BinaryTreeNode n2) {
+
+        BinaryTreeNode node = root;
+
+        while (node != null) {
+
+            if (node.data < n1.data && node.data < n2.data) {
+                node = node.right;
+            } else if (node.data > n1.data && node.data > n2.data) {
+                node = node.right;
+            } else {
+                return node; //found
+            }
+        }
+        return null;
     }
 
     private static boolean find(int n) {
@@ -104,6 +130,10 @@ public class BinarySearchTreeLowestCommonAncestor {
         BinaryTreeNode lca = getLCA(root, node1, node2);
 
         System.out.println("The lowest common ancestor between 6 and 20 is " + lca.data);
+
+        BinaryTreeNode lca10 = getLCAIterative(root, node1, node2);
+
+        System.out.println("The lowest common ancestor between 6 and 20 iteratively   is " + lca10.data);
 
         BinaryTreeNode node3 = new BinaryTreeNode(3);
         BinaryTreeNode node4 = new BinaryTreeNode(10);

@@ -49,10 +49,38 @@ public class SingleStockSellingProblem_On {
                 + buyDateIndex + " Sell Date Index " + sellDateIndex);
     }
 
+    private static void findMaxProfitSameAsMaxDifference(int[] prices) {
+
+        int profit = -1;
+        int max_so_far_index = prices.length - 1;
+        int max_so_far = prices[prices.length - 1];
+
+        int minIndex = prices.length - 1;
+        int maxIndex = prices.length - 1;
+
+        for (int i = prices.length - 2; i >= 0; i--) {
+
+            if (prices[i] > max_so_far) {
+                max_so_far = prices[i];
+                max_so_far_index = i;
+            } else {
+                if (max_so_far - prices[i] > profit) {
+                    profit = max_so_far - prices[i];
+                    maxIndex = max_so_far_index;
+                    minIndex = i;
+                }
+            }
+        }
+
+        System.out.println("Maximum profit/Maximum Difference is " + profit + " Buy Date Index is "
+                + minIndex + " Sell Date Index " + maxIndex);
+    }
+
     /**
      * Say you have an array for which the ith element is the price of a given stock on day i.
 
-     Design an algorithm to find the maximum profit. You may complete as many transactions as you like (i.e., buy one and sell one share of the stock multiple times).
+     Design an algorithm to find the maximum profit. You may complete as many transactions as you like
+     (i.e., buy one and sell one share of the stock multiple times).
 
      Note: You may not engage in multiple transactions at the same time (i.e., you must sell the stock before you buy again).
      TC = O(n)
@@ -72,6 +100,7 @@ public class SingleStockSellingProblem_On {
     public static void main(String[] args) {
         int[] prices = {200, 500, 1000, 700, 30, 400, 900, 400, 50};
         findMaxProfit(prices);
+        findMaxProfitSameAsMaxDifference(prices);
         System.out.println("Multiple transactions max profit: " + findMaxProfitMultipleTransaction(prices));
     }
 }

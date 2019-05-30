@@ -6,8 +6,9 @@ package Node;
 public class BinaryTreeNode {
 
     public int data;
-    public BinaryTreeNode left;;
+    public BinaryTreeNode left;
     public BinaryTreeNode right;
+    public BinaryTreeNode next;
 
     //This is for single threaded binary tree
     public boolean rightThread;
@@ -16,6 +17,7 @@ public class BinaryTreeNode {
         this.data = data;
         this.left = null;
         this.right = null;
+        this.next = null;
 
         //This is for single threaded binary tree
         rightThread = false;

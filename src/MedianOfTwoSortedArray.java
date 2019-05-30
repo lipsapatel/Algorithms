@@ -50,6 +50,8 @@ Approach: find kth number of two sorted array, k ~= (m+n)/2
 - when k = 1, since A/B lists are sorted, should return the min
 - Be careful with index: it's all 0 based
 
+We are always discarding smallest in the smallest median and biggest in the biggest median.
+
 TC = O(log(m + n))
 */
 

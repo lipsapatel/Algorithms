@@ -15,6 +15,8 @@ import java.util.Arrays;
  * In place sorting
  *
  * Little more better than selection sort and bubble sort
+ *
+ * Insertion sort is a stable algorithm and good for smaller inputs
  */
 public class InsertionSort {
 

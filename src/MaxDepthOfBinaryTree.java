@@ -17,6 +17,8 @@ import Node.BinaryTreeNode;
  /  \
  15   7
  return its depth = 3.
+
+ Bottom-up or postorder traversal
  */
 public class MaxDepthOfBinaryTree {
 
