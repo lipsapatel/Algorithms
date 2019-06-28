@@ -27,22 +27,31 @@ public class BinaryTreeLowestCommonAncestor {
     private static boolean v1 = false;
     private static boolean v2 = false;
 
-    private static BinaryTreeNode getLCA(BinaryTreeNode root, BinaryTreeNode n1, BinaryTreeNode n2) {
+    private static BinaryTreeNode getLCAUtil(BinaryTreeNode root, BinaryTreeNode n1, BinaryTreeNode n2) {
 
         if (root == null) {
             return null;
         } else {
-            if (root.data == n1.data || root.data == n2.data) {
-                if (root.data == n1.data) {
-                    v1 = true;
-                } else if (root.data == n2.data) {
-                    v2 = true;
-                }
-                return root;
+            BinaryTreeNode temp = null; //Store so that we can search for other key
+
+            //if (root.data == n1.data || root.data == n2.data) { //Do this if we don't need to check for existence
+            //    return root;
+            //}
+            if (root.data == n1.data) {
+                v1 = true;
+                temp = root;
+            }
+            if (root.data == n2.data) {
+                v2 = true;
+                temp = root;
             }
 
-            BinaryTreeNode left = getLCA(root.left, n1, n2);
-            BinaryTreeNode right = getLCA(root.right, n1, n2);
+            BinaryTreeNode left = getLCAUtil(root.left, n1, n2);
+            BinaryTreeNode right = getLCAUtil(root.right, n1, n2);
+
+            if (temp != null) {
+                return temp;
+            }
 
             if (left != null && right != null) {
                 return root;
@@ -56,6 +65,24 @@ public class BinaryTreeLowestCommonAncestor {
 
             return null;
         }
+    }
+
+    // Finds lca of n1 and n2 under the subtree rooted with 'node'
+    public static BinaryTreeNode getLCA(BinaryTreeNode root, BinaryTreeNode n1, BinaryTreeNode n2)
+    {
+        // Initialize n1 and n2 as not visited
+        v1 = false;
+        v2 = false;
+
+        // Find lca of n1 and n2 using the technique discussed above
+        BinaryTreeNode lca = getLCAUtil(root, n1, n2);
+
+        // Return LCA only if both n1 and n2 are present in tree
+        if (v1 && v2)
+            return lca;
+
+        // Else return NULL
+        return null;
     }
 
     public static void main(String[] args) {

@@ -1,5 +1,6 @@
 import java.util.Arrays;
 import java.util.HashMap;
+import java.util.Random;
 
 /**
  * Nuts and Bolts Problem (Lock and key problem)
@@ -54,6 +55,136 @@ import java.util.HashMap;
  *
  * Time Complexity: 2n(logn)
  * Space Complexity: O(1)
+ *
+ * IK Problem Statement
+ *
+ * Nuts and Bolts!
+
+
+ Problem Statement:
+
+
+ A disorganized carpenter has a mixed pile of bolts and nuts and would like to find the corresponding pairs of bolts and nuts.
+ Each nut matches exactly one bolt and vice versa. By trying to match a bolt and a nut, the carpenter can see which one is bigger,
+ but she cannot compare two bolts or two nuts directly. Can you help the carpenter match the nuts and bolts quickly?
+
+
+ In other words: You are given a collection of N nuts of different size and N corresponding bolts. You can choose
+ to compare any nut & any bolt to determine whether the nut is larger than the bolt, smaller than the bolt or matches the bolt exactly.
+ However, there is no way to compare two nuts together or two bolts together. (i.e. you cannot sort all nuts or sort all bolts).
+ Write an algorithm to match each bolt to its matching nut.
+
+
+ Note that:
+
+ No two nuts are of same size. Similarly, no two bolts are of same size.
+ A given nut uniquely matches a bolt. i.e. There are no extra unmatched nuts or extra bolts. Every nut has one and only one matching
+ bolt and vice-versa.
+
+
+ Input Format:
+
+
+ You will be given two integer arrays, NUTS[] and BOLTS[] of size N.
+
+
+ Output Format:
+
+
+ Return a string array res, of size N, with an entry for each pair of Nut and its corresponding Bolt separated by a single space.
+
+
+ Format: “Nut Bolt”
+
+
+ Order of the output does not matter.
+
+
+ Input/Output Format For The Custom Input:
+
+
+ Input Format:
+
+
+ The first line of input should contain an integer N, denoting no. of nuts. In next N lines, ith line should contain an
+ integer NUTS[i], denoting size of ith nut.
+
+ Next line should contain an integer N, denoting no. of bolts. In next N lines, ith line should contain an
+ integer BOLTS[i], denoting size of ith bolt.
+
+
+ If N = 4, NUTS = [4, 32, 5, 7] and BOLTS = [32, 7, 5, 4], then input should be:
+
+
+ 4
+
+ 4
+
+ 32
+
+ 5
+
+ 7
+
+ 4
+
+ 32
+
+ 7
+
+ 5
+
+ 4
+
+
+ Output Format:
+
+
+ There will be N lines of output, where ith line contains a string res[i], denoting value at index i of res.
+
+ Here, res is the result array returned by solution function.
+
+
+ For input N = 4, NUTS = [4, 32, 5, 7] and BOLTS = [32, 7, 5, 4], output will be:
+
+
+ 4 4
+
+ 32 32
+
+ 5 5
+
+ 7 7
+
+
+ Constraints:
+
+ 1 <= N <= 10^5
+ 1 <= NUTS <= 10^9
+ 1 <= BOLTS <= 10^9
+
+
+ Sample Test Case:
+
+
+ Sample Input:
+
+
+ NUTS = [4, 32, 5, 7]
+
+ BOLTS = [32, 7, 5, 4]
+
+
+ Sample Output:
+
+
+ 4 4
+
+ 32 32
+
+ 5 5
+
+ 7 7
  */
 public class NutsAndBoltsProblem {
 
@@ -115,9 +246,31 @@ public class NutsAndBoltsProblem {
         System.out.println(Arrays.toString(bolts));
     }
 
+    //Sort low, mid and high
+    private static void medianOfThree(int[] a, int low, int middle, int high) {
+
+        if (a[middle] < a[low]) {
+            swap(a, low, middle);
+        }
+        if (a[high] < a[low]) {
+            swap(a, low, high);
+        }
+
+        if (a[high] < a[middle]) {
+            swap(a, middle, high);
+        }
+    }
+
     private static void matchNutsAndBoltsUsingQuickSort(int[] nuts, int[] bolts, int low, int high) {
 
         if (low < high) {
+
+            int middle = low + (high - low)/2;
+            medianOfThree(bolts, low, middle, high);
+            swap(bolts, middle, high);
+
+            //You can use random - upper bound exclusive, 0 inclusive
+            //int pivot = partition(nuts, low, high, bolts[new Random().nextInt(high - low + 1) + low]);
 
             //Choose last character from bolts as pivot and partition nuts based on that
             int pivot = partition(nuts, low, high, bolts[high]);
@@ -176,6 +329,15 @@ public class NutsAndBoltsProblem {
         int[] bolts2 = {5, 2, 1, 2};
 
         matchNutsAndBoltsUsingQuickSort(nuts2, bolts2, 0, nuts2.length - 1);
+
+        String[] res = new String[nuts2.length];
+
+        for (int i = 0; i < nuts2.length; i++) {
+            res[i] = nuts[i] + " " + bolts[i];
+            System.out.println(res[i]);
+        }
+
+
 
         System.out.println("Matched nuts and bolts using Quick sort are: ");
         System.out.println(Arrays.toString(nuts2));

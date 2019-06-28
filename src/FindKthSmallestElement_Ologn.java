@@ -143,6 +143,8 @@ public class FindKthSmallestElement_Ologn {
 
     //The average time complexity is O(n)
     //Worst Case time complexity is O(n^2)
+    //Stack space = O(logn)
+    //Heap Space = O(1)
     //n + n/2 + n/4 + ..1 = n(1+ 1/2...) = n (1/i < 2) = Work at each level is not same
     //Not to do complete quicksort, do it till pivot == kth element
     //Make recursive call to either left or right sides of pivot based on the position of pivot

@@ -106,6 +106,12 @@ public class MedianOfTwoSortedArray {
         }
     }
 
+    public static int findKthSmallestElementInTwoSortedArrays(int[] a, int[] b, int k) {
+
+        return findMedian(a, 0, b, 0, k);
+
+    }
+
     public static void main(String[] args) {
         int[] a = {1, 2};
         int[] b = {3, 4, 5};
@@ -116,5 +122,10 @@ public class MedianOfTwoSortedArray {
         int[] b1 = {6, 10, 13, 20, 23};
 
         System.out.println("The median is: " + findMedianSortedArrays(a1, b1));
+
+        int[] a2 = {1, 5, 7, 9, 10};
+        int[] b2 = {2, 4, 6, 8, 11};
+
+        System.out.println("The Kth Smallest element in two sorted array is: " + findKthSmallestElementInTwoSortedArrays(a2, b2, 5));
     }
 }

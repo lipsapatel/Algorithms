@@ -36,8 +36,9 @@ import java.util.Arrays;
  * 3) Heapify the root of the heap with reduce size
  * 4) Repeat the steps 2 and 3 till entire array is sorted
  *
- * Time Complexity: O(nlogn) in all cases
+ * Time Complexity: O(n + nlogn) in all cases
  * Space Complexity: O(1)
+ * Recursive call stack: O(logn)
  * In place algorithm
  * Heap sort algorithm has limited uses because quick sort and mergesort are better in practice.
  * Heap sort is not cache friendly.
@@ -51,7 +52,7 @@ public class HeapSort {
         int size = array.length;
 
         //Transforming it to max heap
-        // Build max heap - O(n)
+        // Amortized Build max heap - O(n)
         for (int i = size/2 - 1; i >= 0; i--) {
 
             heapify(array, size, i);

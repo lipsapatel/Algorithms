@@ -1,4 +1,5 @@
 import java.util.Arrays;
+import java.util.List;
 
 /**
  * Merge Sort is a divide and conquer algorithm.
@@ -8,7 +9,7 @@ import java.util.Arrays;
  * The merge(arr, l, m, r) is key process that assumes that arr[l..m] and arr[m+1..r] are sorted and merges the two sorted sub-arrays into one.
  *
  * Time Complexity: For all cases O(nlogn)
- * Space Complexity: O(n)
+ * Space Complexity: O(n) Recursive call Stack space: O(logn)
  * Stable - in case of duplicates, the relative order is preserved in case of same key
  *
  *
@@ -32,6 +33,69 @@ import java.util.Arrays;
  *    Merge Sort is stable sorting algorithm only because of <= condition.
  */
 public class MergeSortGeeks {
+
+    public static List<Integer> mergeSortUsingList(List<Integer> arr) {
+        mergeSortHelper(arr, 0, arr.size() - 1);
+        return arr;
+    }
+
+    public static void mergeSortHelper(List<Integer> arr, int l, int r) {
+
+        if (l < r) {
+
+            int m = l + (r - l)/2;
+
+            mergeSortHelper(arr, l, m);
+            mergeSortHelper(arr, m + 1, r);
+
+            mergeList(arr, l, m, r);
+        }
+    }
+
+    public static void mergeList(List<Integer> arr, int l, int m, int r) {
+        int n1 = m - l + 1;
+        int n2 = r - m;
+
+        int[] L = new int[n1];
+        int[] R = new int[n2];
+
+        for (int i = 0; i < n1; i++) {
+            L[i] = arr.get(l + i);
+        }
+
+        for (int i = 0; i < n2; i++) {
+            R[i] = arr.get(m + i + 1);
+        }
+
+        int i = 0;
+        int j = 0;
+        int k = l;
+
+        while (i < n1 && j < n2) {
+
+            if (L[i] <= R[j]) {
+                arr.set(k, L[i]);
+                i++;
+            } else {
+                arr.set(k, R[j]);
+                j++;
+            }
+            k++;
+        }
+
+        //Copy remaining
+        while (i < n1) {
+            arr.set(k, L[i]);
+            i++;
+            k++;
+        }
+
+        while (j < n2) {
+            arr.set(k, R[j]);
+            j++;
+            k++;
+        }
+    }
 
     private static void mergeSort(int[] a, int l, int r) {
 

@@ -26,7 +26,8 @@ import java.util.HashMap;
 
  1) We first find the last node in post[]. The last node is “1”, we know this value is root as root always appear in the end of postorder traversal.
 
- 2) We search “1” in in[] to find left and right subtrees of root. Everything on left of “1” in in[] is in left subtree and everything on right is in right subtree.
+ 2) We search “1” in in[] to find left and right subtrees of root. Everything on left of “1” in in[] is in left subtree and everything on right
+ is in right subtree.
 
  1
  /    \

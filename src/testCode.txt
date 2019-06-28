@@ -1,0 +1,70 @@
+    /*
+     * Complete the dutch_flag_sort function below.
+     */
+    static String dutch_flag_sort(String balls) {
+        /*
+         * Write your code here.
+         */
+         if(balls == null || balls.isEmpty()) {
+             return "";
+         }
+         char[] arr = balls.toCharArray();
+         int p = partition(arr, 0, arr.length-1, 'R');
+
+         partition(arr, p+1, arr.length-1, 'G');
+
+         //dualPartition(arr, 0, arr.length-1, 'R', 'B');
+
+         return new String(arr);
+
+    }
+
+    static int partition(char[] arr, int start, int end, char pivot) {
+        int j = start-1;
+        if(start < end) {
+
+            for(int i=start; i<=end; i++) {
+                if(pivot == arr[i]) {
+                    j++;
+                    char tmp = arr[i];
+                    arr[i] = arr[j];
+                    arr[j] = tmp;
+                }
+            }
+
+        }
+        return j;
+
+    }
+
+    static void dualPartition(char[] arr, int start, int end, char lp, char rp) {
+        int lo = start-1;
+        int hi = end+1;
+
+        if(start < end) {
+
+            for(int i=start; i<=end; i++) {
+                if(lo <= hi) {
+                    if(lp == arr[i]) {
+                        lo++;
+                        char tmp = arr[i];
+                        arr[i] = arr[lo];
+                        arr[lo] = tmp;
+                    } else if(rp == arr[i]) {
+                        hi--;
+                        char tmp = arr[i];
+                        arr[i] = arr[hi];
+                        arr[hi] = tmp;
+                        while(arr[hi] == rp) {
+                            hi--;
+                        }
+
+                    }
+                }
+            }
+
+        }
+        //return j;
+
+    }
+

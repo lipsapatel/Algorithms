@@ -55,7 +55,7 @@ public class BinarySearchTreeLowestCommonAncestor {
             if (node.data < n1.data && node.data < n2.data) {
                 node = node.right;
             } else if (node.data > n1.data && node.data > n2.data) {
-                node = node.right;
+                node = node.left;
             } else {
                 return node; //found
             }
