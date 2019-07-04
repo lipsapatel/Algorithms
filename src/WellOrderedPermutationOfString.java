@@ -25,12 +25,15 @@ import java.util.Arrays;
  */
 public class WellOrderedPermutationOfString {
 
+    private static int k = 2; //If you want to print upto 2 permutations
+
     private static void findAllPermutations(char[] A, int left) {
 
         if (left == A.length) {
 
             //Check if it's well formed and print it if true
-            if (isWellFormed(A)) {
+            if (isWellFormed(A)) { //&& k > 0
+                //k--;
                 System.out.println(Arrays.toString(A));
             }
             return;
@@ -38,9 +41,11 @@ public class WellOrderedPermutationOfString {
 
         //Find all the permutations
         for (int i = left; i < A.length; i++) {
-            swap(i, left, A); //Fix the letter at left position
-            findAllPermutations(A, left + 1); //Left position 0, 1, 2 fixed
-            swap(i, left, A); //This is for backtrack
+            //if (k > 0) {
+                swap(i, left, A); //Fix the letter at left position
+                findAllPermutations(A, left + 1); //Left position 0, 1, 2 fixed
+                swap(i, left, A); //This is for backtrack
+           // }
         }
 
     }

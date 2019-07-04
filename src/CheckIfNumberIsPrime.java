@@ -122,7 +122,7 @@ public class CheckIfNumberIsPrime {
         isPrimeBetterApproach(number);
         isPrimeBestMethod(number);
 
-        number = 15;
+        number = 1;
         isPrimeNaiveApproach(number);
         isPrimeBetterApproach(number);
         isPrimeBestMethod(number);

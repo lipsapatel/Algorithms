@@ -40,7 +40,7 @@ public class QueueUsingCircularArray {
         public Queue(int capacity) {
 
             //Initialize queue with the given capacity
-            n = capacity;
+            n = capacity + 1;
             queue = new int[n];
         }
 
@@ -94,8 +94,25 @@ public class QueueUsingCircularArray {
         public void printQueue() {
             System.out.println(Arrays.toString(queue));
         }
-    }
 
+        /** Get the last item from the queue. */
+        public int Rear() {
+            if (isEmpty()) {
+                return -1;
+            } else {
+                if (rear - 1 < 0) {
+                    return queue[n - 1];
+                } else {
+                    return queue[rear - 1];
+                }
+            }
+        }
+
+        /** Checks whether the circular queue is full or not. */
+        public boolean isFull() {
+            return ((n - front + rear) % n) == n - 1;
+        }
+    }
 
     public static void main(String[] args) {
 
@@ -113,5 +130,16 @@ public class QueueUsingCircularArray {
         queue.dequeue();
         queue.enqueue(100);
         queue.printQueue();
+
+        queue = new Queue(3);
+        queue.enqueue(1);
+        queue.enqueue(2);
+        queue.enqueue(3);
+        queue.enqueue(4);
+        queue.Rear();
+        queue.isFull();
+        queue.dequeue();
+        queue.enqueue(4);
+        queue.Rear();
     }
 }

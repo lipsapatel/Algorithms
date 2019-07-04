@@ -12,13 +12,30 @@ import java.util.Arrays;
  *
  * Swap the elements with the left position.
  * Left position will be 0, 1, 2
+ *
+ * resources/PermutationOfStringUsingSwap.png
+ * resources/PermutationOfStringUsingBacktrack.png
+ * resources/PermutationOfStringUsingSoFar.png
+ *
+ * Time Complexity: n! * n(n is for printing)
+ * Branching factor is different at each level
+ * For first level it's 3, then 2 and then 1 so n!
+ *
+ * TC = (height)^degree
+ * Don't know the degree so can also count no of leaves which is n! because that's where all work is happening
+ * height = O(n)
+ *
+ * Call Stack = order of height = O(n)
  */
 public class PermutationOfString {
 
     private static void printStringPermutation(char[] A, int left) {
 
+        //fix the element at position left
+        //Every body from left till size get chance to be at position left
+
         //Base Case
-        if (left == A.length) {
+        if (left == A.length - 1) {
             System.out.println(Arrays.toString(A));
             return;
         }
@@ -72,7 +89,9 @@ public class PermutationOfString {
 
     public static void main(String[] args) {
         String input = "ABC";
+        System.out.println("Permutation using swap:");
         printStringPermutation(input.toCharArray(), 0); //Swap
+        System.out.println("Done with Permutation using swap");
 
         printStringPermutation("", input);
         printStringPermutation("", "lipsa");

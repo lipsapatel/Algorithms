@@ -11,11 +11,13 @@ import java.util.Arrays;
  *
  * If there are duplicates from left to ith position, don't swap
  *
+ * resources/DistinctPermutationOfString.png
  */
 public class DistinctPermutationOfString {
 
     private static boolean hasDuplicate(char[] input, int left, int current) {
 
+        //If there's any duplicate character then that combination has already been tried
         for (int i = left; i < current; i++) {
             if (input[i] == input[current]) {
                 return true;
