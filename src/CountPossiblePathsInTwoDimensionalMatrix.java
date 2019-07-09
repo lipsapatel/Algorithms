@@ -11,10 +11,11 @@
  * Time Complexity: Exponential
  *
  * From every cell we can either go to right or down
- * Base Case: Check if you have reached last row or last column
- *
- * Then there is only one way to reach last cell
- * Travel through that row or column
+ * Base Case: Check if you have reached last row and last column
+ * If reached the out of boundary, return 0
+
+  * Time Complexity: O(2 ^ (n + m - 1)) = (Branching Factor(Degree) ^ height
+ * Space Complexity: O(m + n) = O(height)
  *
  * Bottom-up approach of Dynamic Programming
  * And store the results of sub problems
@@ -25,13 +26,22 @@ public class CountPossiblePathsInTwoDimensionalMatrix {
 
     private static int recursiveCountPossiblePaths(int[][] array, int currentRow, int currentColumn) {
 
+        int numRows = array.length;
+        int numCols = array[0].length;
+
+        //Guard
+        if (currentRow >= numRows || currentColumn >= numCols) {
+            return 0;
+        }
+
         //Base case: if currentRow or currentColumn is the last row or column
-        if (currentRow == array.length - 1 || currentColumn == array.length - 1) {
+        if (currentRow == numRows - 1 && currentColumn == numCols - 1) {
             return 1;
         }
 
-        return recursiveCountPossiblePaths(array, currentRow + 1, currentColumn) +
-                recursiveCountPossiblePaths(array, currentRow, currentColumn + 1);
+        int numRight = recursiveCountPossiblePaths(array, currentRow, currentColumn + 1);
+        int numDown = recursiveCountPossiblePaths(array, currentRow + 1, currentColumn);
+        return numRight + numDown;
     }
 
     private static int dynamicProgrammingCountPossiblePaths(int[][] array) {

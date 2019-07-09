@@ -37,7 +37,7 @@ public class BinaryTreeReverseLevelOrder {
 
         queue.add(root);
         temp.add(root.data);
-        array.add(new ArrayList<>(temp));
+        array.add(temp);
 
         while(!queue.isEmpty()) {
 
@@ -57,9 +57,10 @@ public class BinaryTreeReverseLevelOrder {
                     temp.add(removedNode.right.data);
                 }
             }
-            array.add(0, new ArrayList<>(temp));
+            if (!temp.isEmpty()) {
+                array.add(0, temp);
+            }
         }
-        array.remove(0);
         return array;
     }
 
