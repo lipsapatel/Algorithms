@@ -21,6 +21,9 @@
  1) If number is 0, return 1
  2) Make a recursive all to get the result of number - 1
  3) Multiply number with the result of number - 1
+
+ Time Complexity: O(n)
+ Space Complexity: O(n)
  */
 public class FindFactorial {
 

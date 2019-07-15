@@ -16,6 +16,10 @@ import java.util.Stack;
  * print it
  * add right and left children
  *
+ * Time Complexity: O(n)
+ * Space Complexity: O(n) Worst and Average Case
+ * Best Case is O(1) if the binary tree is skewed
+ *
  */
 public class BinaryTreeTraversal_DepthFirstSearch {
 

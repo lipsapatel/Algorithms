@@ -8,6 +8,34 @@
  fibonacci(0) → 0
  fibonacci(1) → 1
  fibonacci(2) → 1
+
+ Time Complexity: O(2 ^ (n - 1))
+ Constant work in single instance of function
+ So time complexity = no of nodes = O(2 ^ height)
+
+ If there is O(K) work in base case then all leaf will do O(K) work and non leaf node will do O(1) work
+ So total TC = O(1 * non leaf nodes) + O(k * leaf nodes)
+
+ In a complete binary tree, total no of nodes = 2 ^ h = 2 ^ 3 = 8
+ No of leaf nodes = 2 ^ h - 1 = 2 ^ 2 = 4
+ Non leaf nodes = 2 ^ h - 1 = 4
+
+ Space Complexity: O(n) = height of tree - Auxillary space
+
+ Any recursive code can be modeled iteratively if you use your own stack
+
+   5
+ /   \
+ 4   3
+ /\   /\
+ 3 2  2 1
+ /\   /\   /\  /\
+ 2 1 1 0   1 0
+/\
+ 1 0
+
+ Preorder traversal tells you the execution sequence.
+
  */
 public class Fibonacci {
 

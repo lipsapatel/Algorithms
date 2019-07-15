@@ -12,6 +12,9 @@ import java.util.Arrays;
  * If there are duplicates from left to ith position, don't swap
  *
  * resources/DistinctPermutationOfString.png
+ *
+ * Time Complexity = O(n!)
+ * Space Complexity/ Call Stack = O(n)
  */
 public class DistinctPermutationOfString {
 

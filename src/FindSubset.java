@@ -14,9 +14,12 @@ import java.util.Arrays;
  * Degree = 2 because we are making 2 decisions at each node
  * Height = n
  * Time Complexity: 2 ^ n
- * Space Complexity: O(n).
+ * Space Complexity: O(n) Auxillary space
+ *
+ * Subset problems are inclusion/exclusion.
  *
  * resources/FindSubset.png
+ * resources/FindSubsetUsingArray.png
  *
  */
 public class FindSubset {
@@ -37,11 +40,16 @@ public class FindSubset {
 
     //Time Complexity: O(2 ^ n) * n (for printing)
     //Space Complexity: O(n)
+    //Build the subset as you go down
+    //Top Down approach.
+    //All recursions are top-down approach.
+    //Best data structure to use is stack
+    //The array implementation below for subsetSoFar is array implementation of stack
     private static void findSubsetsArray(char[] array, int i, char[] subsetSoFar, int j) {
 
         if (i == array.length) { //Base case
             for (int k = 0; k < j; k++) {
-                System.out.print(subsetSoFar[k]);
+                System.out.print(subsetSoFar[k]); //Print them as you get it.
             }
             System.out.println();
         } else { //Recursive case

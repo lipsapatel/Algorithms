@@ -35,7 +35,7 @@ public class PermutationOfString {
         //Every body from left till size get chance to be at position left
 
         //Base Case
-        if (left == A.length - 1) {
+        if (left == A.length - 1) { //or A.length is also fine
             System.out.println(Arrays.toString(A));
             return;
         }
@@ -43,7 +43,7 @@ public class PermutationOfString {
         for (int i = left; i < A.length; i++) {
             swap(i, left, A);
             printStringPermutation(A, left + 1); //Keep increasing left for different position
-            swap(i, left, A); //This is for backtrack
+            swap(i, left, A); //This is for backtrack; revert back to previous state
         }
     }
 
