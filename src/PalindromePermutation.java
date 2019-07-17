@@ -26,34 +26,59 @@
 
  Approach #2 Using HashMap [Accepted]
  Algorithm
- From the discussion above, we know that to solve the given problem, we need to count the number of characters with odd number of occurences in the given string sss. To do so, we can also make use of a hashmap, mapmapmap. This mapmapmap takes the form (characteri,numberofoccurencesofcharacteri)(character_i, number of occurences of character_i)(characteri​,numberofoccurencesofcharacteri​).
- We traverse over the given string sss. For every new character found in sss, we create a new entry in the mapmapmap for this character with the number of occurences as 1. Whenever we find the same character again, we update the number of occurences appropriately.
- At the end, we traverse over the mapmapmap created and find the number of characters with odd number of occurences. If this countcountcount happens to exceed 1 at any step, we conclude that a palindromic permutation isn't possible for the string sss. But, if we can reach the end of the string with countcountcount lesser than 2, we conclude that a palindromic permutation is possible for sss.
+
+ 1) From the discussion above, we know that to solve the given problem, we need to count the number of characters with odd number of occurrences
+ in the given string s.
+ 2) To do so, we can also make use of a hashmap, map. This map takes the form (characteri,numberofoccurencesofcharacteri)
+ 3) We traverse over the given string s. For every new character found in s, we create a new entry in the map for this character
+ with the number of occurrences as 1. Whenever we find the same character again, we update the number of occurrences appropriately.
+ 4) At the end, we traverse over the map created and find the number of characters with odd number of occurrences.
+ If this count happens to exceed 1 at any step, we conclude that a palindromic permutation isn't possible for the string s.
+ But, if we can reach the end of the string with count lesser than 2, we conclude that a palindromic permutation is possible for s.
+
  The following animation illustrates the process.
  Current
  1 / 13
  Complexity Analysis
- Time complexity : O(n)O(n)O(n). We traverse over the given string sss with nnn characters once. We also traverse over the mapmapmap which can grow upto a size of nnn in case all characters in sss are distinct.
- Space complexity : O(n)O(n)O(n). The hashmap can grow upto a size of nnn, in case all the characters in sss are distinct.
+ Time complexity : O(n). We traverse over the given string s with n characters once. We also traverse over the map which can grow
+ upto a size of n in case all characters in s are distinct.
+ Space complexity : O(n). The hashmap can grow upto a size of n, in case all the characters in s are distinct.
 
  Approach #3 Using Array [Accepted]
  Algorithm
- Instead of making use of the inbuilt Hashmap, we can make use of an array as a hashmap. For this, we make use of an array mapmapmap with length 128. Each index of this mapmapmap corresponds to one of the 128 ASCII characters possible.
- We traverse over the string sss and put in the number of occurences of each character in this mapmapmap appropriately as done in the last case. Later on, we find the number of characters with odd number of occurences to determine if a palindromic permutation is possible for the string sss or not as done in previous approaches.
+
+ 1) Instead of making use of the inbuilt Hashmap, we can make use of an array as a hashmap. For this, we make use of an array with length 128.
+ 2) Each index of this map corresponds to one of the 128 ASCII characters possible.
+3) We traverse over the string s and put in the number of occurrences of each character in this map appropriately as done in the last case.
+ Later on, we find the number of characters with odd number of occurrences to determine if a palindromic permutation is possible
+ for the string s or not as done in previous approaches.
+
  Complexity Analysis
- Time complexity : O(n)O(n)O(n). We traverse once over the string sss of length nnn. Then, we traverse over the mapmapmap of length 128(constant).
- Space complexity : O(1)O(1)O(1). Constant extra space is used for mapmapmap of size 128.
+ Time complexity : O(n). We traverse once over the string s of length n. Then, we traverse over the map of length 128(constant).
+ Space complexity : O(1). Constant extra space is used for map of size 128.
 
  Approach #4 Single Pass [Accepted]:
  Algorithm
- Instead of first traversing over the string sss for finding the number of occurences of each element and then determining the countcountcount of characters with odd number of occurences in sss, we can determine the value of countcountcount on the fly while traversing over sss.
- For this, we traverse over sss and update the number of occurences of the character just encountered in the mapmapmap. But, whevenever we update any entry in mapmapmap, we also check if its value becomes even or odd. We start of with a countcountcount value of 0. If the value of the entry just updated in mapmapmap happens to be odd, we increment the value of countcountcount to indicate that one more character with odd number of occurences has been found. But, if this entry happens to be even, we decrement the value of countcountcount to indicate that the number of characters with odd number of occurences has reduced by one.
- But, in this case, we need to traverse till the end of the string to determine the final result, unlike the last approaches, where we could stop the traversal over mapmapmap as soon as the countcountcount exceeded 1. This is because, even if the number of elements with odd number of occurences may seem very large at the current moment, but their occurences could turn out to be even when we traverse further in the string sss.
- At the end, we again check if the value of countcountcount is lesser than 2 to conclude that a palindromic permutation is possible for the string sss.
+
+ 1) Instead of first traversing over the string s for finding the number of occurrences of each element and
+ then determining the count of characters with odd number of occurrences in s, we can determine the value of count on the fly while
+ traversing over s.
+ 2) For this, we traverse over s and update the number of occurrences of the character just encountered in the map.
+ But, when ever we update any entry in map, we also check if its value becomes even or odd. We start of with a count value of 0.
+ 3) If the value of the entry just updated in map happens to be odd, we increment the value of count to indicate that one more character
+ with odd number of occurrences has been found.
+ 4) But, if this entry happens to be even, we decrement the value of count to indicate that the number of characters with odd number of
+ occurrences has reduced by one.
+ But, in this case, we need to traverse till the end of the string to determine the final result, unlike the last approaches,
+ where we could stop the traversal over map as soon as the count exceeded 1.
+ This is because, even if the number of elements with odd number of occurrences may seem very large at the current moment,
+ but their occurrences could turn out to be even when we traverse further in the string s.
+
+ At the end, we again check if the value of count is lesser than 2 to conclude that a palindromic permutation is possible for the string s.
 
  Complexity Analysis
- Time complexity : O(n)O(n)O(n). We traverse over the string sss of length nnn once only.
- Space complexity : O(128)O(128)O(128). A mapmapmap of constant size(128) is used.
+ Time complexity : O(n). We traverse over the string s of length n once only.
+ Space complexity : O(128)O(128)O(128). A map of constant size(128) is used.
  */
 public class PalindromePermutation {
 
