@@ -80,6 +80,38 @@ public class CountPossiblePathsInTwoDimensionalMatrix {
         return numRight + numDown;
     }
 
+    //Count the no of paths whose sum is less than equal to k
+    private static int countPathsThatSumToKOrLess(int[][] array, int currentRow, int currentColumn, int k, int sum) {
+
+        int numRows = array.length;
+        int numCols = array[0].length;
+
+        //Guard
+        if (currentRow >= numRows || currentColumn >= numCols) {
+            return 0;
+        }
+
+        //Base Case
+        if (currentRow == numRows - 1 && currentColumn == numCols - 1) {
+
+            if (sum + array[currentRow][currentColumn] <= k) {
+                return 1;
+            }
+            return 0;
+        }
+
+        //Right
+        //At any point if value of sum becomes greater than k, than stop the recursion, there are no paths
+        //return 0
+
+        if (sum > k) {
+            return 0;
+        }
+
+        return countPathsThatSumToKOrLess(array, currentRow, currentColumn + 1, k, sum + array[currentRow][currentColumn]) +        //Down
+                countPathsThatSumToKOrLess(array, currentRow + 1, currentColumn, k, sum + array[currentRow][currentColumn]);
+    }
+
     //Return the maximum sum of path
     private static int maxSum = Integer.MIN_VALUE;
 
@@ -179,5 +211,9 @@ public class CountPossiblePathsInTwoDimensionalMatrix {
         int[][] array2 = {{1, 2, 100}, {4, 5, 6}, {7, 8, 9}};
         maxSumPath(array2, 0, 0);
         System.out.println("The max sum is: " +maxSumPath(array2, 0, 0));
+
+        //Count no of paths whose sum is <= k
+        int[][] array3 = {{1, 2, 3}, {4, 5, 6}, {7, 8, 9}};
+        System.out.println("No of paths whose sum is less than equal to k is: " +countPathsThatSumToKOrLess(array3, 0, 0, 25, 0));
     }
 }

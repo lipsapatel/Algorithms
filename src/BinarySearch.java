@@ -4,9 +4,13 @@
  * Divide and Conquer
  * Recursive Approach
  *
+ * TC = O(logn)
+ * SC = O(logn)
+ *
  * Iterative approach
  *
  * Time Complexity: O(logn)
+ * SC = O(1)
  */
 public class BinarySearch {
 

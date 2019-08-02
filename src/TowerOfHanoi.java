@@ -12,6 +12,8 @@
  * 1) Recursively move n - 1 disks from source to auxillary peg
  * 2) Move the last disk from source to destination
  * 3) Recursively move n - 1 disks from auxillary to destination peg.
+ *
+ * Time Complexity: 2 ^ n because 2 branches/degree and height is n
  */
 public class TowerOfHanoi {
 
@@ -34,7 +36,7 @@ public class TowerOfHanoi {
 
     public static void main(String[] args) {
 
-        int n = 62;
+        int n = 4;
         long startTime = System.currentTimeMillis();
         towerOfHanoi(n, "S", "A", "D");
         long endTime = System.currentTimeMillis();

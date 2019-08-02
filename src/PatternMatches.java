@@ -7,7 +7,7 @@
  *
  * a?b -> ab, aab
  *
- * Time Complexity: O(2 ^ (str.length))
+ * Time Complexity: O(2 ^ (m + n)) where m is the str length and n is the pattern length
  * Because once pattern is over, and string is not then we return false and don't continue.
  *
  * Approach:
@@ -26,6 +26,18 @@
  *
  * resources/PatternMatches.png
  * resources/PatternMatchesExecutionTree.png
+ *
+ * Pattern ** and String ab
+ *
+ *                                                        (0, 0)
+ *                                             Exclude/t                       C&S\t
+ *                                            (1, 0)                          (0, 1)
+ *                                   Exclude/f     C&S\t               Exclude/t     C&S\t
+ *                                     (2, 0)       (1, 1)               (1, 1)      (0,2)
+ *                                  return false  Exclude/f    t\C&S   Exclude/f  C&S\t
+ *                                                (2, 1)      (1,2)     (2, 1)      (1, 2)
+ *                                                return false return true
+
  */
 public class PatternMatches {
 

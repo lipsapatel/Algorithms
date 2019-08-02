@@ -20,6 +20,9 @@ import Node.SinglyLinkedListNode;
  *    Reverse 'k' nodes
  *    Skip the 'k' nodes
  * 5) We use boolean variable to identify when to reverse or skip nodes.
+ *
+ * Time Complexity: O(n)
+ * Space Complexity: O(n/k)
  */
 public class ReverseAlternateKNodesInLinkedList {
 
@@ -48,8 +51,8 @@ public class ReverseAlternateKNodesInLinkedList {
                 x--;
             }
 
-            if (nextNode != null) { //For remaining list
-                head.next = reverseAlternateKNodesInLinkedList(nextNode, k, false);
+            if (currentNode != null) { //For remaining list
+                head.next = reverseAlternateKNodesInLinkedList(currentNode, k, false);
             }
 
             //Return new head

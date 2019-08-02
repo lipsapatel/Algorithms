@@ -68,18 +68,19 @@ public class ReverseLinkedList {
 
     //Stack frame  - O(n) = SC
     //TC = O(n)
-    private static void reverseLinkedListUsingRecursion1(SinglyLinkedListNode currentNode) {
+    private static SinglyLinkedListNode reverseLinkedListUsingRecursion1(SinglyLinkedListNode currentNode) {
 
         //Base Case
         if (currentNode.next == null) {
             head = currentNode;
-            return;
+            return head;
         } else { //Recursive Case
-            reverseLinkedListUsingRecursion1(currentNode.next);
+            SinglyLinkedListNode newHead= reverseLinkedListUsingRecursion1(currentNode.next);
 
             SinglyLinkedListNode nextNode = currentNode.next;
             nextNode.next = currentNode;
             currentNode.next = null;
+            return newHead;
         }
     }
 

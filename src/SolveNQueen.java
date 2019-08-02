@@ -13,8 +13,10 @@
  *
  *    1) If queen can be placed safely, then place the queen
  *    2) Solve recursively for col + 1
- *    3) If it doesn't lead to solution then backtract and go to step 3 to try other rows.
+ *    3) If it doesn't lead to solution then backtrack and go to step 3 to try other rows.
  * 4) If all rows has been tried for this column return false
+ *
+ * Time Complexity: N (for all possible rows - degree or branching factor) ^ N X N(for all possible rows)
  */
 public class SolveNQueen {
 
@@ -87,6 +89,79 @@ public class SolveNQueen {
         }
     }
 
+    //Time Complexity: O(N! * NxN)
+    private static void solveNQueenUsingPermutation(int[][] board) {
+
+        //create array where index represent row and value represent column
+        int[] array = new int[board[0].length];
+
+        for (int i = 0; i < board[0].length; i++) {
+            array[i] = i;
+        }
+
+        if (foundValidPermutation(array, 0, board)) {
+            System.out.println("N Queen output using permutation");
+            printBoard(board);
+        } else {
+            System.out.println("Solution does not exist");
+        }
+    }
+
+    private static boolean foundValidPermutation(int[] array, int left, int[][] board) {
+
+        //Base Case
+        if (left == array.length - 1) {
+
+            if (isValid(array)) {
+                setBoard(array, board);
+                return true;
+            }
+            return false;
+        }
+
+        for (int i = left; i < array.length; i++) {
+
+            swap(i, left, array);
+            if (foundValidPermutation(array, left + 1, board)) {
+                return true;
+            }
+            swap(i, left, array);
+        }
+
+        return false;
+    }
+
+    private static void swap(int i, int j, int[] array) {
+        int temp = array[i];
+        array[i] = array[j];
+        array[j] = temp;
+    }
+
+    //nxn
+    private static boolean isValid(int[] array) {
+
+        //Diagonal is always at 45 degree angle to 135 degree angle
+        // y2 - y1/x2 - x1 = 1 or -1
+
+        for (int i = 0; i < array.length; i++) {
+
+            for (int j = i + 1; j < array.length; j++) {
+
+                if (Math.abs((array[j] - array[i]) / (j - i)) == 1) {
+                    return false;
+                }
+            }
+        }
+        return true;
+    }
+
+    private static void setBoard(int[] array, int[][] board) {
+
+        for (int i = 0; i < array.length; i++) {
+            board[i][array[i]] = 1;
+        }
+    }
+
     public static void main(String[] args) {
 
         int[][] board = {{0,0,0,0}, {0,0,0,0}, {0,0,0,0}, {0,0,0,0}};
@@ -96,5 +171,8 @@ public class SolveNQueen {
         } else {
             System.out.println("Solution does not exist");
         }
+
+        int[][] board1 = {{0,0,0,0}, {0,0,0,0}, {0,0,0,0}, {0,0,0,0}};
+        solveNQueenUsingPermutation(board1);
     }
 }

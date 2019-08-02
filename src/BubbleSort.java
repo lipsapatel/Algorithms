@@ -28,9 +28,10 @@ import java.util.Arrays;
  *
  * Pros and Cons of Bubble sort
  *
- * Pros: Bubble sort algorithm is considered as very simple sorting technique since all you need to do is compare all adjacent elements and swap them
- * if they are in wrong order
- * Cons: Main drawback of bubble sort is it's time complexity which is O(n2) since all the pairs are compared even when the original array is sorted
+ * Pros: Bubble sort algorithm is considered as very simple sorting technique since all you need to do is compare all adjacent elements
+ * and swap them if they are in wrong order
+ * Cons: Main drawback of bubble sort is it's time complexity which is O(n2) since all the pairs are compared
+ * even when the original array is sorted
  *
  * Optimized Bubble Sort
  *
@@ -99,7 +100,7 @@ public class BubbleSort {
             }
 
             //Check if any swapping occured in last iteration
-            //If yes then break the loop, array is sorted at this point
+            //If no then break the loop, array is sorted at this point
             if (isSwapped == false) {
                 break;
             }
