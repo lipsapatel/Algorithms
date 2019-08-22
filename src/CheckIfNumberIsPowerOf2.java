@@ -29,6 +29,8 @@
  * 1) Every number which is a power of 2 has only one bit set (4 = 100, 8 = 1000, 16 = 10000)
  * 2) Convert the given number into binary and count the number of set bits, if count > 1 then number is not power of 2
  * else the number is power of 2
+ *
+ * Time Complexity = O(logn)
  */
 public class CheckIfNumberIsPowerOf2 {
 

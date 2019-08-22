@@ -2,6 +2,15 @@ import java.util.HashMap;
 import java.util.Map;
 
 /**
+ * Part 1 of problem: It's not recursive
+ * Given sentence with space separated words
+ * and given pattern of characters
+ *
+ * Sentence: red blue green blue
+ * Pattern: abcb
+ *
+ * Part 2: where space is not given
+ *
  * Example
  *
  * redbluegreenblue - String
@@ -87,11 +96,15 @@ public class PatternMatchCharsWithWordsInSentence {
 
         System.out.println("Pattern matches: " + patternMatches(pattern1, 0, str1, 0, new HashMap<Character, String>()));
 
-
         String str3 = "blued";
         String pattern3 = "abb";
 
         System.out.println("Pattern matches: " + patternMatches(pattern3, 0, str3, 0, new HashMap<Character, String>()));
+
+        String str4 = "redbluebluee";
+        String pattern4 = "abb";
+
+        System.out.println("Pattern matches: " + patternMatches(pattern4, 0, str4, 0, new HashMap<Character, String>()));
 
     }
 }

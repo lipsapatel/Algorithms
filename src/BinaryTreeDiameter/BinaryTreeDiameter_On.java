@@ -6,11 +6,11 @@ import Node.BinaryTreeNode;
  * iteration.
  * Calculate height and diameter at every iteration of that node.
  *
- * Height = 1 + Math.max(leftHeight + rightHeight)
+ * Height = 1 + Math.max(leftHeight, rightHeight)
  * Diameter = Max(leftDiameter, rightDiameter, rootDiameter)
  *
  * Time Complexity: O(n)
- * Space Complexity: O(1)
+ * Space Complexity: O(n) - Call stack
  *
  * This is counting number of nodes for diameter
  */
@@ -47,7 +47,9 @@ public class BinaryTreeDiameter_On {
 
     /**
      * This method calculates the left depth and right depth
-     * And it keeps track of max(leftDepth + rightDepth)
+     * And it keeps track of max(leftDepth + rightDepth + 1)
+     * Calculate left depth and right depth
+     * Calculate the diameter and keep the track of max diameter so far
      * @param root
      */
     private static int BinaryTreeDepth(BinaryTreeNode root) {

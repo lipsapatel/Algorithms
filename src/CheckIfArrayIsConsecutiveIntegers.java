@@ -213,7 +213,7 @@ public class CheckIfArrayIsConsecutiveIntegers {
         System.out.println(Arrays.toString(array3) + " : " + checkIfArrayIsConsecutiveIntegersByNegative(array3));
 
         int[] array4 = {-4, -5, -6, -6, -8};
-        System.out.println(Arrays.toString(array4) + ": " + checkIfArrayIsConsecutiveIntegersUsingAuxArray(array4));
+        System.out.println(Arrays.toString(array4) + ": " + checkIfArrayIsConsecutiveIntegersByNegative(array4));
 
         int[] array5 = {4, 5, 6, 6, 8};
         System.out.println(Arrays.toString(array5) + " :" + checkIfArrayIsConsecutiveIntegersUsingAuxArray(array5));
