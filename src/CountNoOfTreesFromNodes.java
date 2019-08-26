@@ -135,6 +135,8 @@ Sample Test Case 2:
  Space Complexity:
  O(n).
  As auxiliary space used is O(n) and input is O(1), giving O(n) + O(1) -> O(n).
+
+ resources/CatalanNumber.png
  */
 public class CountNoOfTreesFromNodes {
 

@@ -2,27 +2,24 @@
     /*
      * Complete the function below.
      */
-    static boolean check_if_sum_possible(long[] arr, long k) {
-        return helper(arr, k, 0, 0);
+    static String[] find_all_well_formed_brackets(int n) {
+        List<String> l = new ArrayList<>();
+
+        helper(0, 0, "", l, n);
+
+        return l.toArray(new String[0]);
     }
 
-    static boolean helper(long[] arr, long target, long sofar, int idx) {
-        if(sofar == target && idx!=0) {
-            return true;
-        } else if(idx >= arr.length) {
-            return false;
+    static void helper(int open, int close, String sofar, List<String> l, int n) {
+        if(close > open || close > n || open > n) {
+            return;
+        }
+        if(close == n && open == n) {
+            l.add(sofar);
         } else {
-            for(int i=idx; i<arr.length; i++) {
-                //-ve ints present so wont work
-                //if( (sofar + arr[i]) <= target) {
-                    //include
-                    //xplore
-                    if(helper(arr, target, sofar+arr[i], i+1)) {
-                        return true;
-                    }
-                //}
-            }
-            return false;
+            helper(open+1, close, sofar+"(", l, n);
+            helper(open, close+1, sofar+")", l, n);
         }
     }
+
 
