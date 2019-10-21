@@ -19,10 +19,17 @@ import java.util.Stack;
  *
  * push popped node right and left.
  *
+ * Recursive solution Complexity
+ *
  * Space Complexity: O(h) for recursive stack frame and non recursive too
  * Height of the tree in worst case will be n - 1, so space complexity in worst case will be O(n)
  * Height of the tree in best and average case will be logn, so space complexity in worst case will be O(logn)
  * Time Complexity: O(n)
+ *
+ * Non Recursive Solution Complexity
+ *
+ * Time Complexity: O(n)
+ * Space Complexity: O(logn) - At most logn nodes will be store in stack a time
  */
 public class BinaryTreeNonRecursivePreOrderTraversal {
 

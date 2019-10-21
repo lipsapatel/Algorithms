@@ -38,7 +38,9 @@ import java.util.HashMap;
  ….a) Recur for in[] = {4, 8, 2, 5} and post[] = {8, 4, 5, 2}.
  …….Make the created tree as left child of root.
 
- Time Complexity: O(n2)
+ Time Complexity: O(n^2) - Worst case occurs when tree is left skewed Pre = {1, 2, 3, 4} In = {4, 3, 2, 1} - If it's not left skewed = O(nlogn) = n for search work for logn height
+ Space Complexity: O(n) - Call Stack in worst case
+
  Keeping map will reduce TC = O(n)
  and SC = O(n)
 
@@ -107,7 +109,7 @@ public class ConstructBinaryTreeFromPostOrderAndInOrderTraversal {
             return null;
         }
 
-        if (il == ir) {
+        if (il == ir) { //This is when only one node left
             return new BinaryTreeNode(in[il]);
         }
 
@@ -116,12 +118,14 @@ public class ConstructBinaryTreeFromPostOrderAndInOrderTraversal {
         //Find the index in inorder list
         int i = il;
 
+        //n for search
         while(root.data != in[i]) {
             i++;
         }
 
         int leftSize = i - il;
 
+        //logn but n in worst case
         root.left = buildTreeHelperPre(in, il, i - 1, pre, pl + 1, pl + leftSize);
         root.right = buildTreeHelperPre(in, i + 1, ir, pre, pl + leftSize + 1, pr);
         return root;

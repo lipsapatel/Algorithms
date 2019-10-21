@@ -1,4 +1,5 @@
 import Node.BinaryTreeNode;
+import javafx.util.Pair;
 
 /**
  * In a Binary Tree, Check if two nodes are cousins.
@@ -63,6 +64,46 @@ public class CheckIfTwoNodesAreCousins {
                 hasSameParent(root.right, x, y));
     }
 
+    /***************************************************************************************************************************************/
+
+    //Time Complexity: O(n)
+    //Space Complexity: O(n)
+
+    private static Pair<BinaryTreeNode, Integer> getNodeParentAndHeight(BinaryTreeNode root, BinaryTreeNode x, BinaryTreeNode parent, int height) {
+
+        //Base Cases
+        if (root == null) {
+            return new Pair<BinaryTreeNode, Integer>(parent, 0);
+        }
+
+        if (root == x) {
+            return new Pair<BinaryTreeNode, Integer>(parent, height);
+        }
+
+        //Recursive Case
+        Pair<BinaryTreeNode, Integer> pair = getNodeParentAndHeight(root.left, x, root, height + 1);
+        if (pair.getValue() != 0) {
+            return pair;
+        }
+
+        return getNodeParentAndHeight(root.right, x, root, height + 1);
+    }
+
+    private static boolean areTwoNodesCousins(BinaryTreeNode root, BinaryTreeNode x, BinaryTreeNode y) {
+
+        if (root == null) {
+            return false;
+        }
+
+        Pair<BinaryTreeNode, Integer> pair1 = getNodeParentAndHeight(root, x, null, 1);
+        Pair<BinaryTreeNode, Integer> pair2 = getNodeParentAndHeight(root, y, null, 1);
+
+        if (pair1.getValue() == pair2.getValue() && pair1.getKey() != pair2.getKey()) {
+            return true;
+        }
+        return false;
+    }
+
     public static void main(String[] args) {
         BinaryTreeNode root = new BinaryTreeNode(1);
         BinaryTreeNode x1 = new BinaryTreeNode(2);
@@ -79,6 +120,9 @@ public class CheckIfTwoNodesAreCousins {
 
         System.out.println("Node " + x1.data + " and Node " + y1.data + " are cousins??? " + twoNodesAreCousins(root, x1, y1));
         System.out.println("Node " + x2.data + " and Node " + y2.data + " are cousins??? " + twoNodesAreCousins(root, x2, y2));
+
+        System.out.println("Node " + x1.data + " and Node " + y1.data + " are cousins??? " + areTwoNodesCousins(root, x1, y1));
+        System.out.println("Node " + x2.data + " and Node " + y2.data + " are cousins??? " + areTwoNodesCousins(root, x2, y2));
     }
 
 

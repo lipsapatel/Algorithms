@@ -17,6 +17,9 @@
  * Make a new string by appending first string to itself
  * 2) stringAdd.contains(s2);
  * Check if second string is substring of new string.
+ *
+ * Space Complexity: O(2n)
+ * Time Complexity: O(2n * n) = where 2n is the length stringAdd and n is the length of s2 = O(n ^ 2)
  */
 public class CheckIfOneStringIsRotationOfAnother {
 

@@ -18,7 +18,7 @@ import Node.BinaryTreeNode;
  Output :  9
 
  Approach: -
- 1) In order traversal of binary search tree
+ 1) pre order traversal of binary search tree
  2) If root.data is equal to k set that as minDiff and minDiffKey and return
  3) Calculate and update minDiff and minDiffKey
  4) If k is greater, then root.data, go to right
@@ -26,6 +26,47 @@ import Node.BinaryTreeNode;
 
  Time Complexity: O(n) skewed binary search tree
  Space Complexity: O(n) skewed binary search tree
+
+ Leet Code Solution:
+
+ //TC = O(n) SC = O(n)
+ private int minDiffKey;
+ private double minDiff;
+
+ public int closestValue(TreeNode root, double target) {
+
+ minDiffKey = -1;
+ minDiff = Double.MAX_VALUE;
+
+ findClosestValue(root, target);
+
+ return minDiffKey;
+ }
+
+ public void findClosestValue(TreeNode root, double k) {
+
+ //Base Case
+ if (root == null) {
+ return;
+ }
+
+ if (root.val == k) {
+ minDiffKey = root.val;
+ minDiff = 0;
+ return;
+ }
+
+ if (Math.abs(root.val - k) <= minDiff) {
+ minDiff = Math.abs(root.val - k);
+ minDiffKey = root.val;
+ }
+
+ if (k < root.val) {
+ findClosestValue(root.left, k);
+ } else {
+ findClosestValue(root.right, k);
+ }
+ }
  */
 public class FindClosestElementInBinarySearchTree {
 

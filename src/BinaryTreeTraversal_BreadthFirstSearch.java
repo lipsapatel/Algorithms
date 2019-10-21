@@ -26,8 +26,8 @@ import java.util.Queue;
  * and insert left and right children
  *
  * Time Complexity: O(n)
- * Space Complexity: O(n) for worst case/Average Case
- * O(1) in best case - Tree is like linked list
+ * Space Complexity: O(n/2) for worst case/Average Case n/2 is the max total leaf nodes which will be in queue
+ *  O(1) in best case - Tree is like linked list
  */
 public class BinaryTreeTraversal_BreadthFirstSearch {
 

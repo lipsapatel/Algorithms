@@ -27,11 +27,11 @@ public class CompareStringLexicographically {
         //Edge cases for string like string1 = "Geeks"; string2 = "Geeksy";
         if (string1.length() < string2.length()) {
 
-            return (int)string2.charAt(string1.length());
+            return string1.length() - string2.length();
 
         } else if (string1.length() > string2.length()) {
 
-            return (int)string1.charAt(string2.length());
+            return string1.length() - string2.length();
         } else {
             return 0;
         }
@@ -43,11 +43,13 @@ public class CompareStringLexicographically {
         String string2 = new String("Practice");
         String string3 = new String("Geeks");
         String string4 = new String("Geeksy");
+        String string5 = new String("Geekb");
 
-        System.out.println(compareStringLexicographically(string1, string2));
-        System.out.println(compareStringLexicographically(string1, string3));
-        System.out.println(compareStringLexicographically(string2, string1));
-        System.out.println(compareStringLexicographically(string1, string4));
+        System.out.println(string1 + " " + string2 + " " + compareStringLexicographically(string1, string2));
+        System.out.println(string3 + " " + string3 + " " + compareStringLexicographically(string3, string3));
+        System.out.println(string2 + " " + string1 + " " + compareStringLexicographically(string2, string1));
+        System.out.println(string1 + " " + string4 + " " + compareStringLexicographically(string1, string4));
+        System.out.println(string5 + " " + string1 + " " + compareStringLexicographically(string5, string1));
     }
 
 }

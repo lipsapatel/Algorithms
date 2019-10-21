@@ -15,19 +15,30 @@
 
  Solution
  Approach #1 Brute Force [Accepted]
- If a string with an even length is a palindrome, every character in the string must always occur an even number of times. If the string with an odd length is a palindrome, every character except one of the characters must always occur an even number of times. Thus, in case of a palindrome, the number of characters with odd number of occurences can't exceed 1(1 in case of odd length and 0 in case of even length).
- Based on the above observation, we can find the solution for the given problem. The given string could contain atmost all the ASCII characters from 0 to 127. Thus, we iterate over all the characters from 0 to 127. For every character chosen, we again iterate over the given string sss and find the number of occurences, chchch, of the current character in sss. We also keep a track of the number of characters in the given string sss with odd number of occurences in a variable countcountcount.
- If, for any character currently considered, its corresponding count, chchch, happens to be odd, we increment the value of countcountcount, to reflect the same. In case of even value of chchch for any character, the countcountcount remains unchanged.
- If, for any character, the countcountcount becomes greater than 1, it indicates that the given string sss can't lead to the formation of a palindromic permutation based on the reasoning discussed above. But, if the value of countcountcount remains lesser than 2 even when all the possible characters have been considered, it indicates that a palindromic permutation can be formed from the given string sss.
+ If a string with an even length is a palindrome, every character in the string must always occur an even number of times. If the string with an odd length is a palindrome, every character except one of the characters must always occur an even number of times.
+ Thus, in case of a palindrome, the number of characters with odd number of occurences can't exceed 1(1 in case of odd length and
+ 0 in case of even length).
+ Based on the above observation, we can find the solution for the given problem. The given string could contain atmost all the
+ ASCII characters from 0 to 127. Thus, we iterate over all the characters from 0 to 127.
+ For every character chosen, we again iterate over the given string sss and find the number of occurences,
+ ch, of the current character in s. We also keep a track of the number of characters in the given string s with odd number
+ of occurences in a variable count.
+ If, for any character currently considered, its corresponding count, ch, happens to be odd, we increment the value of count,
+ to reflect the same. In case of even value of ch for any character, the count remains unchanged.
+ If, for any character, the count becomes greater than 1, it indicates that the given string s can't lead to the formation
+ of a palindromic permutation based on the reasoning discussed above. But, if the value of count remains lesser than 2
+ even when all the possible characters have been considered, it indicates that a palindromic permutation can be formed from the given string sss.
 
  Complexity Analysis
- Time complexity : O(128∗n)O(128*n)O(128∗n). We iterate constant number of times(128) over the string sss of length nnn giving a time complexity of 128n128n128n.
- Space complexity : O(1)O(1)O(1). Constant extra space is used.
+ Time complexity : O(128∗n). We iterate constant number of times(128) over the string s of length n giving a time
+ complexity of 128n.
+ Space complexity : O(1). Constant extra space is used.
 
  Approach #2 Using HashMap [Accepted]
  Algorithm
 
- 1) From the discussion above, we know that to solve the given problem, we need to count the number of characters with odd number of occurrences
+ 1) From the discussion above, we know that to solve the given problem, we need to count the number of characters with
+ odd number of occurrences
  in the given string s.
  2) To do so, we can also make use of a hashmap, map. This map takes the form (characteri,numberofoccurencesofcharacteri)
  3) We traverse over the given string s. For every new character found in s, we create a new entry in the map for this character
@@ -47,7 +58,8 @@
  Approach #3 Using Array [Accepted]
  Algorithm
 
- 1) Instead of making use of the inbuilt Hashmap, we can make use of an array as a hashmap. For this, we make use of an array with length 128.
+ 1) Instead of making use of the inbuilt Hashmap, we can make use of an array as a hashmap. For this, we make use of an array
+ with length 128.
  2) Each index of this map corresponds to one of the 128 ASCII characters possible.
 3) We traverse over the string s and put in the number of occurrences of each character in this map appropriately as done in the last case.
  Later on, we find the number of characters with odd number of occurrences to determine if a palindromic permutation is possible
@@ -78,7 +90,7 @@
 
  Complexity Analysis
  Time complexity : O(n). We traverse over the string s of length n once only.
- Space complexity : O(128)O(128)O(128). A map of constant size(128) is used.
+ Space complexity : O(128). A map of constant size(128) is used.
  */
 public class PalindromePermutation {
 

@@ -18,6 +18,15 @@ import java.util.Stack;
  * Pop from the stack and print it
  * Add node at right to the stack
  *
+ * Recursive
+ * TC = O(n)
+ * SC = O(n)
+ *
+ * Non Recursive
+ * TC = O(n)
+ * SC = O(n) - Because it case of left skewed binary tree it will store all nodes in stack
+ * Best and Average case is O(logn)
+ *
  */
 public class BinaryTreeNonRecursiveInOrderTraversal {
 

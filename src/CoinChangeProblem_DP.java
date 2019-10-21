@@ -38,6 +38,9 @@
  *                   solution[i - 1][j]                                   if (coins[i] > j)
  *
  * resources/CoinChangeProblem.png
+ *
+ * TC = O(m x n) where m = coins length and n = amount
+ * SC = O(m x n)
  */
 public class CoinChangeProblem_DP {
 
@@ -64,6 +67,7 @@ public class CoinChangeProblem_DP {
 
                     //Add the solution from the top and reduce the amount by coin
                     //coins[i - 1] because the coins array is from index 0
+                    //Exclude + include
                     solution[i][j] = solution[i - 1][j] + solution[i][j - coins[i - 1]];
                 } else {
 

@@ -25,6 +25,14 @@ import java.util.Stack;
  * Pop all the nodes from stack 2 and print it.
  *
  * images/BinaryTreeNonRecursivePostOrderTraversal.PNG
+ *
+ * Recursive
+ * TC = O(n)
+ * SC = O(n)
+ *
+ * Non Recursive
+ * TC = O(n)
+ * SC = O(n) - Stack2 will contain n nodes
  */
 public class BinaryTreeNonRecursivePostOrderTraversal {
 

@@ -15,6 +15,9 @@ import Node.BinaryTreeNode;
  * 2) If root is not null and data matched, the make recursive call to root.left and root.right
  * 3) If any of the tree gets over and other not then return false
  * 4) If both of the traversal ends at the same time, then return true.
+ *
+ * Time Complexity: O(n) = O(n + m) for both the trees
+ * Space Complexity: O(n) O(n + m) for both the trees
  */
 public class CheckIfBSTAreIdentical {
 

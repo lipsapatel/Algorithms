@@ -6,7 +6,7 @@ import Node.BinaryTreeNode;
  *
  * Time Complexity: O(n2) which is bad
  * For another approach: O(n)
- * Space Complexity: O(1)
+ * Space Complexity: O(n)
  *
  * resources/CheckIfBinaryTreeIsBST.png
  */

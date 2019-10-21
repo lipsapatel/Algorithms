@@ -17,6 +17,9 @@ import Node.BinaryTreeNode;
  * 4) If not then add root.data to path
  * 5) Update sum = sum - root.data
  * 6) If sum == 0 then print path
+ *
+ * This path is not from root to leaf
+ * This path is from root to any node.
  */
 public class PrintAllPathsFromRootWhoseSumEqualToGivenNumber {
 
@@ -54,6 +57,6 @@ public class PrintAllPathsFromRootWhoseSumEqualToGivenNumber {
         root.right.left = new BinaryTreeNode(6);
         root.right.right = new BinaryTreeNode(7);
 
-        printAllPathsFromRootWhoseSumEqualToGivenNumber(root, 10, "");
+        printAllPathsFromRootWhoseSumEqualToGivenNumber(root, 3, "");
     }
 }
