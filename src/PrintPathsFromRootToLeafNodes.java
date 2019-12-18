@@ -1,5 +1,8 @@
 import Node.BinaryTreeNode;
 
+import java.util.ArrayList;
+import java.util.List;
+
 /**
  * Print paths from root to all leaf nodes in Binary Tree.
  *
@@ -14,6 +17,9 @@ import Node.BinaryTreeNode;
  * 5) If yes then print the path
  * 6) Else make recursive call to root.left and root.right. Pass the path and pathLevel
  * so that at each level have it's own copy of path and pathLength.
+ *
+ * Time Complexity: O(n)
+ * Space Complexity: O(n) Total number of paths will be n/2(leaf) * logn(height of complete binary tree)
  */
 public class PrintPathsFromRootToLeafNodes {
 
@@ -45,6 +51,45 @@ public class PrintPathsFromRootToLeafNodes {
         System.out.println();
     }
 
+    private static List<List<Integer>> allPathsOfABinaryTree(BinaryTreeNode root) {
+
+        List<List<Integer>> list = new ArrayList<>();
+        List<Integer> path = new ArrayList<>();
+
+        allPathsOfABinaryTreeHelper(root, list, path);
+        return list;
+    }
+
+    private static void allPathsOfABinaryTreeHelper(BinaryTreeNode root, List<List<Integer>> list, List<Integer> path) {
+
+        //Base Case
+        if (root == null) {
+            return;
+        }
+
+        //Add to path
+        path.add(root.data);
+
+        //If leaf node, add path to list and remove that node
+        if (root.left == null && root.right == null) {
+            list.add(copyPath(path));
+            path.remove(path.size() - 1); //remove leaf node
+        } else {
+            allPathsOfABinaryTreeHelper(root.left, list, path);
+            allPathsOfABinaryTreeHelper(root.right, list, path);
+            path.remove(path.size() - 1); //Remove the node after processing left and right child
+        }
+    }
+
+    private static List<Integer> copyPath(List<Integer> path) {
+        List<Integer> pathCopy = new ArrayList<>();
+
+        for (Integer data: path) {
+            pathCopy.add(data);
+        }
+        return pathCopy;
+    }
+
     public static void main(String[] args) {
         BinaryTreeNode root = new BinaryTreeNode(1);
         root.left = new BinaryTreeNode (2);
@@ -57,5 +102,20 @@ public class PrintPathsFromRootToLeafNodes {
 
         int [] path = new int [100];
         pathFromRootToLeafNode(root, 0, path);
+
+        BinaryTreeNode root1 = new BinaryTreeNode(10);
+        root1.left = new BinaryTreeNode(20);
+        root1.left.left = new BinaryTreeNode(40);
+        root1.left.right = new BinaryTreeNode(50);
+        root1.right = new BinaryTreeNode(30);
+
+        List<List<Integer>> list = allPathsOfABinaryTree(root1);
+
+        for (List<Integer> rootToLeafPath: list) {
+            for (Integer data: rootToLeafPath) {
+                System.out.print(data + " ");
+            }
+            System.out.println();
+        }
     }
 }

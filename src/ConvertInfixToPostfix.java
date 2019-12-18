@@ -111,7 +111,7 @@ public class ConvertInfixToPostfix {
     }
 
     public static void main(String[] args) {
-        String infixExpression = "((A+B)*C-D)*E";
+        String infixExpression = "((A+B)*C-D)*E"; // Postfix = AB+C*D-E*
 
         System.out.println("Postfix Expression: " + convertInfixToPostfix(infixExpression));
     }

@@ -6,7 +6,10 @@ import Node.IntervalNode;
  2) Remove an interval
  3) Given an interval x, find if x overlaps with any of the existing intervals.
 
- insert, find, delete, insert one interval, delete one interval, find one interval = O(logn)
+ insert, find, delete, insert one interval, delete one interval, find one interval = O(logn) - This is assuming that the interval tree
+ is balanced.
+ If it's not balanced then it's n for insert, delete and search.
+
  find all intervals = Rlogn where R is the number of interval
 
  Using Red-black BST = R + logn

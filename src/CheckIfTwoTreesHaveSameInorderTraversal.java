@@ -8,7 +8,11 @@ import java.util.Stack;
  * Time Complexity: O(m + n)
  * Space Complexity: O(m + n)
  *
+ * This doesn't completely travel both the trees to end.
+ *
  * If there are million nodes and there's mismatch in first 200 nodes, it will not traverse the whole tree.
+ *
+ * The same thing can be done with preorder also.
  */
 public class CheckIfTwoTreesHaveSameInorderTraversal {
 

@@ -2,24 +2,47 @@
     /*
      * Complete the function below.
      */
-    static String[] find_all_well_formed_brackets(int n) {
-        List<String> l = new ArrayList<>();
 
-        helper(0, 0, "", l, n);
+    /*
+        For your reference:
 
-        return l.toArray(new String[0]);
-    }
+        static class TreeNode
+        {
+            Vector<TreeNode> vec = new Vector<TreeNode>(0);
+            TreeNode()
+            {
+                children.clear();
+            }
+        };
+    */
 
-    static void helper(int open, int close, String sofar, List<String> l, int n) {
-        if(close > open || close > n || open > n) {
-            return;
+    // static int find_height(TreeNode root)
+    // {
+    //     //empty or null tree/node
+    //     if(root == null)
+    //         return -1;
+
+    //     int max = -1;
+    //     for(TreeNode child : root.children) {
+    //         max = Math.max(max, find_height(child));
+    //     }
+
+    //     return max + 1;
+
+    // }
+
+    static int find_height(TreeNode root)
+    {
+        if(root == null)
+            return -1;
+
+        if(root.children.size() == 0)
+            return 0;
+
+        int h = Integer.MIN_VALUE;
+        for(TreeNode child : root.children) {
+            h = Math.max(h, find_height(child));
         }
-        if(close == n && open == n) {
-            l.add(sofar);
-        } else {
-            helper(open+1, close, sofar+"(", l, n);
-            helper(open, close+1, sofar+")", l, n);
-        }
+        return 1 + h;
     }
-
 

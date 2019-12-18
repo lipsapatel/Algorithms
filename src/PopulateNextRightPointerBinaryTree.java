@@ -1,5 +1,8 @@
 import Node.BinaryTreeNode;
 
+import java.util.LinkedList;
+import java.util.Queue;
+
 /**
  * Given a binary tree
 
@@ -36,8 +39,18 @@ import Node.BinaryTreeNode;
  Finish first level then go to second level
  The idea is to use next pointer to traverse at each level, and call getNext(root) to get the left most node at the next level.
 
- Time Complexity: O(n)
+ Time Complexity: O(n) - Time complexity of this approach is more may be O(n^2) because of getNext()
  Space Complexity: O(1)
+
+ Approach 2:
+
+ 1) Do the BFS traversal using queue.
+ 2) Add nodes to queue.
+ 3) Size variable for count of nodes at each level.
+ 4) Update next pointer at each level
+
+ Time Complexity: O(n)
+ Space Complexity: O(n)
  */
 public class PopulateNextRightPointerBinaryTree {
 
@@ -94,6 +107,44 @@ public class PopulateNextRightPointerBinaryTree {
             }
         }
         return null;
+    }
+
+    //BFS Queue approach
+    private static BinaryTreeNode populateNextRightPointer(BinaryTreeNode root) {
+
+        //Base Case
+        if (root == null) {
+            return null;
+        }
+
+        Queue<BinaryTreeNode> queue = new LinkedList<>();
+        queue.add(root);
+
+        while(!queue.isEmpty()) {
+
+            BinaryTreeNode prev = null; //Start of each level
+            int size = queue.size(); //no of elements at each level
+
+            for (int i = 0; i < size; i++) {
+
+                BinaryTreeNode current = queue.remove();
+
+                if (prev != null) {
+                    prev.next = current;
+                }
+
+                prev = current;
+
+                //Add children
+                if (current.left != null) {
+                    queue.add(current.left);
+                }
+                if (current.right != null) {
+                    queue.add(current.right);
+                }
+            }
+        }
+        return root;
     }
 
     public static void displayBinaryTree(BinaryTreeNode root) {

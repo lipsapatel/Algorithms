@@ -1,5 +1,7 @@
 import Node.BinaryTreeNode;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Stack;
 
 /**
@@ -50,6 +52,7 @@ public class BinaryTreeNonRecursivePostOrderTraversal {
 
             Stack<BinaryTreeNode> stack1 = new Stack<BinaryTreeNode>();
             Stack<BinaryTreeNode> stack2 = new Stack<BinaryTreeNode>();
+            List<BinaryTreeNode> list = new ArrayList<>();
 
             //push root node first into the stack
             stack1.push(root);
@@ -60,6 +63,7 @@ public class BinaryTreeNonRecursivePostOrderTraversal {
                 BinaryTreeNode poppedNode = stack1.pop();
 
                 stack2.push(poppedNode);
+                list.add(0, poppedNode);
 
                 if (poppedNode.left != null) {
                     stack1.push(poppedNode.left);
@@ -72,6 +76,13 @@ public class BinaryTreeNonRecursivePostOrderTraversal {
 
             //print stack2
             System.out.println("Post order traversal using non recursive approach");
+
+            for (BinaryTreeNode node: list) {
+                System.out.print(node.data + " ");
+            }
+
+            System.out.println();
+
             while(!stack2.isEmpty()) {
                 System.out.print(stack2.pop().data + "->");
             }

@@ -1,4 +1,5 @@
-import java.util.LinkedList;
+import java.lang.reflect.Array;
+import java.util.*;
 
 /**
  * Graph Depth First Search Using Recursion
@@ -24,65 +25,82 @@ import java.util.LinkedList;
  * Time Complexity: O(V + E)
  * V = number of vertices
  * E = number of Edges
+ *
+ * Space Complexity: O(V)
+ *
+ * This works for connected or disconnected undirected graph to print connected components
+ * For directed graph to print connected components, the starting vertex needs to be given for dfs.
+ *
+ * DFS traversal remains the same for connected/disconnected directed/undirected graph.
  */
 public class GraphDepthFirstSearchUsingRecursion {
 
-    private static int vertices;
-    private static LinkedList<Integer>[] graphList;
-
-    private static void initializeGraph(int nodes) {
-
-        vertices = nodes;
-        graphList = new LinkedList[vertices];
-
-        for (int i = 0; i < vertices; i++) {
-            graphList[i] = new LinkedList<>();
-        }
-    }
+    private static HashMap<Integer, HashSet<Integer>> graphMap = new HashMap<>();
 
     private static void addEdge(int source, int destination) {
-        graphList[source].addFirst(destination);
+
+        if (graphMap.containsKey(source)) {
+            HashSet set = graphMap.get(source);
+            set.add(destination);
+            graphMap.put(source, set);
+        } else {
+            HashSet<Integer> set = new HashSet<>();
+            set.add(destination);
+            graphMap.put(source, set);
+        }
     }
 
     private static void printGraph() {
 
-        for (int i = 0; i < vertices; i++) {
-            if (graphList[i].size() > 0) {
+        for (Map.Entry<Integer, HashSet<Integer>> entry: graphMap.entrySet()) {
+            HashSet<Integer> set = entry.getValue();
 
-                System.out.print("Vertex " + i + " is connected to: ");
-                for (int j = 0; j < graphList[i].size(); j++) {
-                    System.out.print(graphList[i].get(j) + " ");
+            System.out.print("Vertex " + entry.getKey() + " is connected to: ");
+
+            for (Integer destination: set) {
+                System.out.print(destination + " ");
+            }
+            System.out.println();
+        }
+    }
+
+    private static void DFSUsingRecursion(HashMap<Integer, HashSet<Integer>> graphMap) {
+
+        HashSet<Integer> visited = new HashSet<>(); //Keeps the track of nodes seen
+        for (Integer vertex: graphMap.keySet()) { //This is if the graph is not connected - TC = O(V)
+            if (!visited.contains(vertex)) { //Not seen so far
+
+                ArrayList<Integer> dfsList = new ArrayList<>();
+                //Explore that node if not visited
+                explore(vertex, visited, dfsList); //O(E)
+
+                //Print dfsList of connected components
+                for (Integer dfs: dfsList) {
+                    System.out.print(dfs + " ");
                 }
                 System.out.println();
             }
         }
     }
 
-    private static void DFSUsingRecursion(int startVertex) {
+    private static void explore(Integer start, HashSet<Integer> visited, ArrayList<Integer> dfsList) {
 
-        boolean[] visisted = new boolean[vertices];
-        dfs(startVertex, visisted);
-    }
+        visited.add(start); //SC = O(V)
+        dfsList.add(start);
+        HashSet<Integer> adjacentSet = graphMap.get(start);
 
-    private static void dfs(int start, boolean[] visited) {
+        if (adjacentSet != null) {
+            for (Integer adjacentVertex : adjacentSet) { // Delta i for all the vertices = 2|E| = O(E)
 
-        visited[start] = true;
-
-        System.out.print(start + " ");
-        for (int i = 0; i < graphList[start].size(); i++) {
-
-            int adjacentVertex = graphList[start].get(i);
-
-            if (!visited[adjacentVertex]) {
-                dfs(adjacentVertex, visited);
+                if (!visited.contains(adjacentVertex)) {
+                    explore(adjacentVertex, visited, dfsList); //SC - stack Space = O(V)
+                }
             }
         }
     }
 
     public static void main(String[] args) {
 
-        int vertices = 6;
-        initializeGraph(vertices);
         addEdge(0, 1);
         addEdge(0, 2);
         addEdge(1, 2);
@@ -92,6 +110,8 @@ public class GraphDepthFirstSearchUsingRecursion {
         addEdge(4, 0);
         addEdge(4, 1);
         addEdge(4, 5);
-        DFSUsingRecursion(0);
+        addEdge(13, 14);
+        printGraph();
+        DFSUsingRecursion(graphMap);
     }
 }

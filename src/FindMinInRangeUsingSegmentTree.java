@@ -1,6 +1,12 @@
 import java.util.Arrays;
 
 /**
+ * Brute force Time Complexity is O(n) and if you have m queries it's O(m x n)
+ *
+ * Another approach is to build matrix of size n x n and find min.
+ * TC for build O(n ^ 2)
+ * SC = O(n ^ 2)
+ *
  * Segment Trees are used for range-based query.
  * Find minimum in range, maximum in range, sum in range
  *
@@ -28,6 +34,8 @@ import java.util.Arrays;
  * resources/Increment[0,0]By2.jpg
  * resources/RangeMinQuery[3,5].jpg
  *
+ * The size of segment tree in worst case = 4n because if the n is not power of 2 then we expand it to the
+ * nearest power of 2 which will double the n.
  */
 public class FindMinInRangeUsingSegmentTree {
 

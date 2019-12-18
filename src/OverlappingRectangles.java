@@ -16,8 +16,12 @@ import java.util.PriorityQueue;
  * Sort: nlogn
  * insert: nlogn
  * delete: nlogn
- * search: Rlogn
+ * search: Rlogn - NRlogn
  *
+ * This is assuming that the interval tree
+ is balanced.
+ If it's not balanced then it's n for insert, delete and search.
+
  * Now lets see the detailed algorithm of the original problem:
  1) Sort all left and right rectangle edges, according to their X value, into list L.
  2) Create a new empty range search tree T, for Y ordering of rectangle tops/bottoms
@@ -102,13 +106,13 @@ public class OverlappingRectangles {
             } else {
 
                 List<IntervalNodeRect> overlappedInterval = new ArrayList<>();
-                searchOverlappingInterval(overlappedInterval, root, rect.y1, rect.y2);
+                searchOverlappingInterval(overlappedInterval, root, rect.y2, rect.y1);
 
                 for (IntervalNodeRect overlapInterval: overlappedInterval) {
                     Pair<Rectangle, Rectangle> pair = new Pair(overlapInterval.rect, rect);
                     resultSet.add(pair);
                 }
-                root = insert(root, rect, rect.y1, rect.y2);
+                root = insert(root, rect, rect.y2, rect.y1);
             }
         }
         return resultSet;
@@ -237,13 +241,13 @@ public class OverlappingRectangles {
     public static void main(String[] args) {
         List<Rectangle> list = new ArrayList<>();
 
-        Rectangle rectangle = new Rectangle(1, 4, 1, 4, "a", true);
+        Rectangle rectangle = new Rectangle(1, 4, 4, 1, "a", true);
         Rectangle rectangle1 = new Rectangle(4, 1,1, 4, "a", false);
-        Rectangle rectangle2 = new Rectangle(3, 6, 3, 5, "b", true);
+        Rectangle rectangle2 = new Rectangle(3, 6, 5, 3, "b", true);
         Rectangle rectangle3 = new Rectangle(6, 3, 3, 5, "b", false);
-        Rectangle rectangle4 = new Rectangle(5, 7, 1, 4, "c", true);
+        Rectangle rectangle4 = new Rectangle(5, 7, 4, 1, "c", true);
         Rectangle rectangle5 = new Rectangle(7, 5, 1, 4, "c", false);
-        Rectangle rectangle6 = new Rectangle(8, 9, 1, 3, "d", true);
+        Rectangle rectangle6 = new Rectangle(8, 9, 3, 1, "d", true);
         Rectangle rectangle7 = new Rectangle(9, 8, 1, 3, "d", false);
 
         list.add(rectangle);
@@ -263,8 +267,8 @@ public class OverlappingRectangles {
             Rectangle r2 = pair.getValue();
 
             System.out.println("List of Overlapping Rectangles");
-            System.out.println("Rectangle1: (" + r1.x1 + " , " + r1.y2 + ")  (" + r1.x2 + " , " + r1.y1 + " )");
-            System.out.println("Rectangle2: (" + r2.x1 + " , " + r2.y2 + ")  (" + r2.x2 + " , " + r2.y1 + " )");
+            System.out.println("Rectangle1: (" + r1.x1 + " , " + r1.y1 + ")  (" + r1.x2 + " , " + r1.y2 + " )");
+            System.out.println("Rectangle2: (" + r2.x1 + " , " + r2.y1 + ")  (" + r2.x2 + " , " + r2.y2 + " )");
         }
     }
 }

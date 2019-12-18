@@ -1,13 +1,13 @@
 import Node.AVLNode;
 
 /**
- * AVL tree is self balancing binary tree.
+ * AVL tree is self balancing binary search tree.
  * Difference of height of left and right subtree cannot be greater than one.
  *
  * There are four different use cases to insert into AVL tree
- * 1) left left = left rotation
+ * 1) left left = right rotation
  * 2) left right = left rotation, right rotation
- * 3) right right = right rotation
+ * 3) right right = left rotation
  * 4) right left = right rotation, left rotation
  *
  * Insert is same as binary search tree.

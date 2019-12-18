@@ -78,51 +78,34 @@ public class BinarySearchTreeLowestCommonAncestor {
         return false;
     }
 
-    private static void insert(int id) {
+    private static BinaryTreeNode insert(int id, BinaryTreeNode root) {
         BinaryTreeNode newNode = new BinaryTreeNode(id);
 
-        BinaryTreeNode parent = null;
-        BinaryTreeNode current = root;
-
         if (root == null) {
-            root = newNode;
-            return;
+            return newNode;
         }
 
-        while(true) {
-            parent = current;
-
-            if (current.data < id) {
-                current = current.right;
-
-                if (current == null) {
-                    parent.right = newNode;
-                    return;
-                }
-            } else {
-                current = current.left;
-
-                if (current == null) {
-                    parent.left = newNode;
-                    return;
-                }
-            }
+        if (id <= root.data) {
+            root.left = insert(id, root.left);
+        } else {
+            root.right = insert(id, root.right);
         }
+        return root;
     }
 
     public static void main(String[] args) {
-        insert(3);
-        insert(8);
-        insert(1);
-        insert(4);
-        insert(6);
-        insert(2);
-        insert(10);
-        insert(9);
-        insert(20);
-        insert(25);
-        insert(15);
-        insert(16);
+        root = insert(3, root);
+        root = insert(8, root);
+        root = insert(1, root);
+        root = insert(4, root);
+        root = insert(6, root);
+        root = insert(2, root);
+        root = insert(10, root);
+        root = insert(9, root);
+        root = insert(20, root);
+        root = insert(25, root);
+        root = insert(15, root);
+        root = insert(16, root);
 
         BinaryTreeNode node1 = new BinaryTreeNode(6);
         BinaryTreeNode node2 = new BinaryTreeNode(20);

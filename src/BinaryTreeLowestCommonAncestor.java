@@ -21,6 +21,9 @@ import Node.BinaryTreeNode;
  *
  * images/BinaryTreeLowestCommonAncestorBacktrack.png
  *
+ * Time Complexity: O(n)
+ * Space Complexity: O(n)
+ *
  */
 public class BinaryTreeLowestCommonAncestor {
 
@@ -46,18 +49,16 @@ public class BinaryTreeLowestCommonAncestor {
                 temp = root;
             }
 
+            //Continue going in search of another node
             BinaryTreeNode left = getLCAUtil(root.left, n1, n2);
             BinaryTreeNode right = getLCAUtil(root.right, n1, n2);
 
-            if (temp != null) {
-                return temp;
-            }
 
             if (left != null && right != null) {
                 return root;
-            }
-
-            if (left != null) {
+            } else if (temp != null) {
+                return temp;
+            } else if (left != null) {
                 return left;
             } else if (right != null) {
                 return right;
@@ -132,5 +133,10 @@ public class BinaryTreeLowestCommonAncestor {
         } else {
             System.out.println("Lowest Common Ancestor (" + n4.data + ", " + n5.data + " ) is " + lca.data);
         }
+
+        BinaryTreeNode root1 = new BinaryTreeNode(1);
+        root1.left = new BinaryTreeNode(2);
+
+        System.out.println("Lca: " + getLCA(root1, root1, root1.left).data);
     }
 }

@@ -1,4 +1,4 @@
-import Node.BinaryTreeNode;
+ import Node.BinaryTreeNode;
 
 /**
  * Find the Kth Largest element in BST
@@ -18,8 +18,8 @@ import Node.BinaryTreeNode;
  *
  *  1) Do reverse in-order traversal
  *  2) When k == 0, return or print root.data
- *  3) Time Complexity: O(n) - The code first traverse to the right most node and then goes up k nodes O(h + k) where h = logn for balanced tree and
- *  n for skewed tree
+ *  3) Time Complexity: O(n) - The code first traverse to the right most node and then goes up k nodes O(h + k) where h = logn
+ *  for balanced tree and n for skewed tree
  *  4) Space Complexity: O(n)
  *
  **********************************************************************************************************************
@@ -62,6 +62,31 @@ import Node.BinaryTreeNode;
 
  resources/KthSmallestElementInBST.png
 
+ ************************************************************************************************************
+ * Time complexity:
+
+ In terms of N we can write it as O(N).
+ Using other variables we can write tighter bound for the same solution. In terms of height of the tree and k,
+ we can write tighter bound as O(height of tree + k).
+
+ The code first traverses down to the leftmost node which takes O(h) time, then traverses k elements in O(k) time.
+ Therefore overall time complexity is O(h + k).
+
+ Note that even if k=1 the algorithm has to go all the way down the tree to find the smallest element,
+ visiting all the nodes on the way, and visiting one node takes constant time. So far we have used O(h) time
+ where h is the height of the tree (worst case is when the left-most leaf of the tree is the longest one).
+
+ Having gone all the way down to the smallest element, the algorithm then visits exactly k nodes from there
+ (still constant time per node); complexity so far is O(h) + O(k).
+
+ Having found and saved the k-th element value, the algorithm still needs to pop out from the recursion depth
+ so that it can return the answer in the end. For that it will use constant time per level of recursion,
+ per depth of the tree (worst case again is when we have found the k-th element at the leaf of the longest branch of the tree).
+ That takes another O(h) time. Therefore the overall time complexity: O(h) + O(k) + O(h) = O(2h + k) = O(h + k).
+
+ Auxiliary space used:
+
+ O(height of the tree) due to recursive calls. (Assuming that you are already given BST you are not creating it.)
  */
 public class FindKthLargestElementInBST {
 

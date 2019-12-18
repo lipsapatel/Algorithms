@@ -1,9 +1,7 @@
 import javafx.util.Pair;
 import sun.awt.image.ImageWatched;
 
-import java.util.Comparator;
-import java.util.LinkedList;
-import java.util.PriorityQueue;
+import java.util.*;
 
 /**
  * Dijkstra's Shortest Path Algorithm (SPT) - Adjacency List and Priority Queue
@@ -11,20 +9,26 @@ import java.util.PriorityQueue;
  * Implementing Dijkstra's Algorithm using adjacency list and priority queue.
  *
  * resources/DijkstraShortestPathAlgorithm.png
+ * resources/DijkstraShortestPathPriorityQueue.png
  *
  * Approach:
  *
  * 1) Create priority queue of size = no of vertices
- * 2) Will create pair object for each vertex with two information, distance and vertex (similar to heap node)
- * 3) Override the Comparator interface of priority queue to sort them based on the key(which is distance)
- * 4) Use SPT[] to keep track of vertices which are currently in Shortest Path Tree (SPT)
- * 5) Create distance[] to keep track of distance for each vertex from source. Initialize all distances as
- *    Integer.MAX_VALUE except the first vertex for which distance will be 0.
+ * 2) Will create pair object for each vertex with two information, vertex and distance (similar to heap node)
+ * 3) Override the Comparator interface of priority queue to sort them based on the value(which is distance)
+ * 4) Use exhausted to keep track of vertices already visited
+ * 5) Create distance map to keep track of distance for each vertex from source. Initialize all distances as
+ *    Integer.MAX_VALUE except the source vertex for which distance will be 0.
  * 6) Create a pair object for vertex 0 with distance 0 and insert into priority queue.
  * 7) While priority queue is not empty
- *    1) Extract the min node from the priority queue, say it vertex u and add it to SPT
- *    2) For adjacent vertex v, if v is not in SPT[] and distance[v] > distance[u] + edge u-v weight then update
+ *    1) Extract the min node from the priority queue, say it vertex u and add it to exhausted
+ *    2) For adjacent vertex v, if v is not in exhausted[] and distance[v] > distance[u] + edge u-v weight then update
  *       distance[v] = distance[u] + edge u-v weight and add it to the priority queue.
+ *
+ * 1) Find the closest unexhausted node
+ * 2) Update the distance for it's neighbours
+ * 3) Update the priority queue and distance map
+ * 4) Mark the node as exhausted.
  *
  * Time Complexity
  *
@@ -32,148 +36,92 @@ import java.util.PriorityQueue;
  * 2) O(logV) - insert new pair for each vertex and it will be done for at most once for each edge.
  *    So for total E edge - O(ElogV)
  * 3) Overall time complexity = O(VlogV) + O(ElogV) = O((V+E)logV) = O(ElogV)
+ *
+ * Insert in priority queue = logV and for E edges so TC = O(ElogV)
+ *
  */
 public class DijkstraAdjacencyListPriorityQueue {
 
-    private static class Edge{
+    private static HashMap<Integer, HashSet<Pair<Integer, Integer>>> graph = new HashMap<>();
 
-        int source;
-        int destination;
-        int weight;
+    private static void addEdge(int source, int destination, int weight) {
 
-        public Edge(int source, int destination, int weight) {
-
-            this.source = source;
-            this.destination = destination;
-            this.weight = weight;
+        if (graph.containsKey(source)) {
+            HashSet<Pair<Integer, Integer>> set = graph.get(source);
+            Pair<Integer, Integer> pair = new Pair<>(destination, weight);
+            set.add(pair);
+            graph.put(source, set);
+        } else {
+            Pair<Integer, Integer> pair = new Pair<>(destination, weight);
+            HashSet<Pair<Integer, Integer>> set = new HashSet<>();
+            set.add(pair);
+            graph.put(source, set);
         }
     }
 
-    private static class Graph {
+    private static void dijkstra(int source) {
 
-        private static int vertices;
-        private static LinkedList<Edge>[] graph;
+        HashMap<Integer, Integer> distance = new HashMap<>();
 
-        public Graph(int vertices) {
-
-            this.vertices = vertices;
-            graph = new LinkedList[vertices];
-
-            //Initialize graph for all the vertices
-            for (int i = 0; i < vertices; i++) {
-                graph[i] = new LinkedList<>();
-            }
+        for(Integer vertex: graph.keySet()) {
+            distance.put(vertex, Integer.MAX_VALUE);
         }
+        distance.put(source, 0);
 
-        private static void addEdge(int source, int destination, int weight) {
+        PriorityQueue<Pair<Integer, Integer>> pq = new PriorityQueue<>(new Comparator<Pair<Integer, Integer>>() {
 
-            Edge edge = new Edge(source, destination, weight);
-            graph[source].addFirst(edge);
-
-            edge = new Edge(destination, source, weight);
-            graph[destination].addFirst(edge);
-        }
-
-        private static void dijkstraGetMinDistance(int sourceVertex) {
-
-            boolean[] SPT = new boolean[vertices];
-
-            //Distance used to store distance of vertex from a source vertex
-            int[] distance = new int[vertices];
-
-            //Initialize all the distance to infinity
-            for (int i = 0; i < vertices; i++) {
-
-                distance[i] = Integer.MAX_VALUE;
+            @Override
+            public int compare(Pair<Integer, Integer> p1, Pair<Integer, Integer> p2) {
+                return p1.getValue() - p2.getValue();
             }
+        });
 
-            //Initialize priority queue and override the comparator interface to do sorting based on keys(distance)
-            PriorityQueue<Pair<Integer, Integer>> pq = new PriorityQueue<>(vertices, new Comparator<Pair<Integer, Integer>>() {
+        pq.offer(new Pair<>(source, 0));
 
-                @Override
-                public int compare(Pair<Integer, Integer> p1, Pair<Integer, Integer> p2) {
+        HashSet<Integer> exhausted = new HashSet<>();
 
-                    //Sort using distance values
-                    int key1 = p1.getKey();
-                    int key2 = p2.getKey();
-                    return key1 - key2;
-                }
-            });
+        while(!pq.isEmpty()) {
 
-            //Create pair for first index, distance = 0 and vertex = 0
-            distance[0] = 0;
-            Pair<Integer, Integer> p0 = new Pair<>(distance[0], 0);
+            Pair<Integer, Integer> extractedPair = pq.poll();
+            int extractedVertex = extractedPair.getKey();
+            int extractedDistance = extractedPair.getValue();
 
-            //Add to pq
-            pq.offer(p0);
+            for(Pair<Integer, Integer> neighbor: graph.get(extractedVertex)) { //E - No of edges in worst case is V - 1
 
-            //While priority queue is not empty
-            while(!pq.isEmpty()) {
+                if(!exhausted.contains(neighbor.getKey())) {
 
-                //Extract the min
-                Pair<Integer, Integer> extractedPair = pq.poll();
+                    if (extractedDistance + neighbor.getValue() < distance.get(neighbor.getKey())) {
 
-                //Extracted vertex
-                int extractedVertex = extractedPair.getValue();
-
-                if (!SPT[extractedVertex]) {
-
-                    SPT[extractedVertex] = true;
-
-                    //Iterate through all the adjacent vertices and update the distance(keys)
-                    LinkedList<Edge> adjacencyList = graph[extractedVertex];
-
-                    for (int i = 0; i < adjacencyList.size(); i++) {
-
-                        Edge edge = adjacencyList.get(i);
-
-                        int destination = edge.destination;
-
-                        //Only if destination edge is not present in SPT
-                        if (!SPT[destination]) {
-
-                            //Check if distance needs an update or not
-                            //Means check if weight from source vertex to vertexv + distance < current distance value, if yes update the distance
-                            int newDistance = distance[extractedVertex] + edge.weight;
-                            int currentDistance = distance[destination];
-
-                            if (currentDistance > newDistance) {
-
-                                Pair<Integer, Integer> p = new Pair<>(newDistance, destination);
-                                pq.offer(p);
-                                distance[destination] = newDistance;
-                            }
-                        }
+                        distance.put(neighbor.getKey(), extractedDistance + neighbor.getValue());
+                        pq.offer(new Pair<>(neighbor.getKey(), extractedDistance + neighbor.getValue())); // logV
                     }
                 }
             }
-
-            //Print Shortest Path Tree
-            printDijkstra(distance, sourceVertex);
+            exhausted.add(extractedVertex);
         }
 
-        private static void printDijkstra(int[] distance, int sourceVertex) {
-
-            System.out.println("Dijkstra Algorithm: (Adjacency List and Priority Queue)");
-
-            for (int i = 0; i < vertices; i++) {
-
-                System.out.println("Source Vertex: " + sourceVertex + " to vertex " + i + " Distance: " + distance[i]);
-            }
+        //Print distance HashMap
+        for (Map.Entry<Integer, Integer> map: distance.entrySet()) {
+            System.out.println("The distance of vertex " + map.getKey() + " from source is " + map.getValue());
         }
     }
 
     public static void main(String[] args) {
 
-        int vertices = 6;
-        Graph graph = new Graph(6);
-        graph.addEdge(0, 1, 4);
-        graph.addEdge(0, 2, 3);
-        graph.addEdge(1, 2, 1);
-        graph.addEdge(1, 3, 2);
-        graph.addEdge(2, 3, 4);
-        graph.addEdge(3, 4, 2);
-        graph.addEdge(4, 5, 6);
-        graph.dijkstraGetMinDistance(0);
+        addEdge(0, 1, 4);
+        addEdge(0, 2, 3);
+        addEdge(1, 2, 1);
+        addEdge(1, 3, 2);
+        addEdge(1, 0, 4);
+        addEdge(2, 3, 4);
+        addEdge(2, 0, 3);
+        addEdge(2, 1, 1);
+        addEdge(3, 4, 2);
+        addEdge(3, 1, 2);
+        addEdge(3, 2, 4);
+        addEdge(4, 5, 6);
+        addEdge(4, 3, 2);
+        addEdge(5, 4, 6);
+        dijkstra(0);
     }
 }
