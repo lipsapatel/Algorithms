@@ -35,9 +35,9 @@ import java.util.*;
  * 1) O(logV) - to extract each vertex from queue. So for V vertices - O(VlogV)
  * 2) O(logV) - insert new pair for each vertex and it will be done for at most once for each edge.
  *    So for total E edge - O(ElogV)
- * 3) Overall time complexity = O(VlogV) + O(ElogV) = O((V+E)logV) = O(ElogV)
+ * 3) Overall time complexity = O(VlogV) + O(ElogV) = O((V+E)logV) = O(E+ V)*logV = O(ElogV)
  *
- * Insert in priority queue = logV and for E edges so TC = O(ElogV)
+ * Insert in priority queue = logV and for E edges so TC = O(ElogV) + VlogV for extract = O(E + V)logV = O(ElogV)
  *
  */
 public class DijkstraAdjacencyListPriorityQueue {

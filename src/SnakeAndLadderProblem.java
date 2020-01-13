@@ -1,3 +1,5 @@
+import java.util.HashMap;
+import java.util.HashSet;
 import java.util.LinkedList;
 import java.util.Queue;
 
@@ -22,6 +24,7 @@ import java.util.Queue;
  * of snake without dice throw.
  *
  * resources/SnakeAndLadder.png
+ * resources/SnakeAndLadder1.png
  *
  * Minimum moves required to reach end (36th cell) from start (1st cell) = 3
  *
@@ -33,103 +36,104 @@ import java.util.Queue;
  *
  * 1) Consider each cell as vertex in directed graph.
  * 2) From cell 1, you can go to cells 2, 3, 4, 5, 6, 7 so vertex 1 will have directed edge towards
- * vertex 2...vertex 7.
+ * vertex 2...vertex 7. Check the board hashmap for snake and ladder. If there's snake or ladder you can go
+ * to directly to that cell.
  * 3) Directed edge for snake and ladder
  * 4) Now the problem is reduced to Shortest Path Problem. So using BFS and queue, we can solve the
  * problem.
+ * Maintain distance array. Distance[target] will be the answer.
  *
  * Implementation:
  *
- * 1) Each vertex will store 2 information, cell number and number of moves required to reach
- * that cell.
- * 2) Start from cell 1 and add it to the queue
- * 3) While queue is not empty, count all the possible moves from 1 to 6
- * 4) Update the moves to moves +1
- * 5) Update the cell to i and if there's snake or ladder update the cell with board[i]
- * 6) Add it to the queue
- * 7) Maintain the visited[] to avoid going in loops
- * 8) Once reach the end return Vertex.moves
+ * 1) Create adjacency list since the graph is sparse and not dense.
+ * 2) Start from cell 0 and add it to the queue
+ * 3) While queue is not empty, pop and get all the neighbors.
+ * 4) Add neighbors to queue, mark as visited and update the distance.
+ * 5) If we find the target in any of the neighbors, return the updated distance.
  *
- * Time Complexity: O(n)
+ * Time Complexity: O(n) same as BFS which is O(V + E) Here V = number of cells which 100 and edges are 6
+ * for each vertex so the time complexity is n - number of cells.
  *
  */
 public class SnakeAndLadderProblem {
 
-    private static class Vertex {
-        int cell;
-        int moves;
-    }
+    //Create board with snake and ladder
+    private static HashMap<Integer, Integer> board = new HashMap<>();
 
-    private static int findMinimumMoves(int[] board) {
+    //Graph
+    private static HashMap<Integer, HashSet<Integer>> graph = new HashMap<>();
 
-        int size = board.length;
+    private static int findMinimumThrowsBFS(int start, int target) {
 
-        boolean[] visited = new boolean[size];
-        Queue<Vertex> queue = new LinkedList<>();
+        //Create adjacency list, capture all 6 possible throws.
+        for (int i = 0; i < 100; i++) {
+            HashSet<Integer> neighbor = new HashSet<>();
 
-        //Start from index 0
-        Vertex vertex = new Vertex();
-        vertex.cell = 0;
-        vertex.moves = 0;
-        queue.add(vertex);
-        visited[0] = true;
-
-        //BFS from cell Number 0
-        while (!queue.isEmpty()) {
-
-            vertex = queue.remove();
-            int cellNumber = vertex.cell;
-
-            //If reached the end
-            if (cellNumber == size - 1) {
-                break;
+            for (int j = 1; j <= 6; j++) {
+                if (i + j <= 100) {
+                    neighbor.add(board.get(i + j));
+                }
             }
+            graph.put(i, neighbor);
+        }
 
-            //Iterate through 1 to 6 moves, all reachable adjacent cells
-            for (int i = cellNumber + 1; i <= cellNumber + 6 && i < size; i++) {
+        //BFS
+        Queue<Integer> queue = new LinkedList<>();
+        HashSet<Integer> visited = new HashSet<>();
+        HashMap<Integer, Integer> distance = new HashMap<>();
 
-                if (!visited[i]) {
+        queue.add(start);
+        visited.add(start);
+        distance.put(start, 0);
 
-                    Vertex currentVertex = new Vertex();
-                    currentVertex.moves = vertex.moves + 1;
-                    visited[i] = true;
+        while(!queue.isEmpty()) {
 
-                    //If no snake or ladder
-                    if (board[i] == -1) {
-                        currentVertex.cell = i;
-                    } else {
-                        //Snake or ladder
-                        currentVertex.cell = board[i];
+            Integer poppedNode = queue.remove();
+            HashSet<Integer> adjacentVertex = graph.get(poppedNode);
+
+            if(adjacentVertex != null) {
+                for(Integer vertex: adjacentVertex) {
+                    if(!visited.contains(vertex)) {
+                        queue.add(vertex);
+                        visited.add(vertex);
+                        distance.put(vertex, distance.get(poppedNode) + 1);
+
+                        if (target == vertex) {
+                            return distance.get(vertex);
+                        }
                     }
-
-                    //Add to queue
-                    queue.add(currentVertex);
                 }
             }
         }
-        return vertex.moves;
+        return -1;
     }
 
     public static void main(String[] args) {
 
-        int size = 36;
-
-        int[] board = new int[size];
-
-        for (int i = 0; i < size; i++) {
-            board[i] = -1;
+        for (int i = 0; i <= 100; i++) {
+            board.put(i, i);
         }
 
-        //Ladders
-        board[2] = 15;
-        board[14] = 24;
-        board[20] = 31;
+        //Ladder
+        board.put(1, 38);
+        board.put(4, 14);
+        board.put(9, 31);
+        board.put(21, 42);
+        board.put(28, 84);
+        board.put(51, 67);
+        board.put(72, 91);
+        board.put(80, 99);
 
-        //Snakes
-        board[11] = 1;
-        board[29] = 3;
-        board[34] = 21;
+        //Snake
+        board.put(17, 7);
+        board.put(62, 19);
+        board.put(64, 60);
+        board.put(92, 73);
+        board.put(95, 75);
+        board.put(98, 79);
+        board.put(87, 36);
+        board.put(54, 34);
 
-        System.out.println("Minimum Dice throws needed to reach to end: " + findMinimumMoves(board));
+        System.out.println("The minimum number of throws required to reach target 100 is " + findMinimumThrowsBFS(0, 100));
     }
 }

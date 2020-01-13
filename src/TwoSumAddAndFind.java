@@ -13,6 +13,10 @@ import java.util.HashMap;
  add(1); add(3); add(5);
  find(4) // return true
  find(7) // return false
+
+ add(3); add(1); add(2);
+ find(3) -> true
+ find(6) -> false
  */
 public class TwoSumAddAndFind {
 

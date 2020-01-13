@@ -36,6 +36,7 @@ import java.util.*;
 public class GraphDepthFirstSearchUsingRecursion {
 
     private static HashMap<Integer, HashSet<Integer>> graphMap = new HashMap<>();
+    private static int time = 0;
 
     private static void addEdge(int source, int destination) {
 
@@ -71,8 +72,12 @@ public class GraphDepthFirstSearchUsingRecursion {
             if (!visited.contains(vertex)) { //Not seen so far
 
                 ArrayList<Integer> dfsList = new ArrayList<>();
+
+                HashMap<Integer, Integer> arrival = new HashMap<>();
+                HashMap<Integer, Integer> departure = new HashMap<>();
+
                 //Explore that node if not visited
-                explore(vertex, visited, dfsList); //O(E)
+                explore(vertex, visited, dfsList, arrival, departure); //O(E)
 
                 //Print dfsList of connected components
                 for (Integer dfs: dfsList) {
@@ -83,20 +88,28 @@ public class GraphDepthFirstSearchUsingRecursion {
         }
     }
 
-    private static void explore(Integer start, HashSet<Integer> visited, ArrayList<Integer> dfsList) {
+    private static void explore(Integer start, HashSet<Integer> visited, ArrayList<Integer> dfsList,
+                                HashMap<Integer, Integer> arrival, HashMap<Integer, Integer> departure) {
 
         visited.add(start); //SC = O(V)
         dfsList.add(start);
+        arrival.put(start, time++);
         HashSet<Integer> adjacentSet = graphMap.get(start);
 
         if (adjacentSet != null) {
             for (Integer adjacentVertex : adjacentSet) { // Delta i for all the vertices = 2|E| = O(E)
 
                 if (!visited.contains(adjacentVertex)) {
-                    explore(adjacentVertex, visited, dfsList); //SC - stack Space = O(V)
-                }
+                    explore(adjacentVertex, visited, dfsList, arrival, departure); //SC - stack Space = O(V)
+                } //else {
+                //For undirected graph, the edge to already visited vertex represent backedge.
+                //But for directed directed graph we need to distinguish between backedge and cross edge.
+                //There is back-edge which indicate cycle and arrival time of adjacent vertex is after arrival
+                //time of start and departure time of adjacent vertex is before start.
+                //Adjacent vertex arrival and departure time is contained with in start.
             }
         }
+        departure.put(start, time++);
     }
 
     public static void main(String[] args) {
