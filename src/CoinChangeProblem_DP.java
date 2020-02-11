@@ -38,6 +38,7 @@
  *                   solution[i - 1][j]                                   if (coins[i] > j)
  *
  * resources/CoinChangeProblem.png
+ * resources/CoinChangeRecursiveTrace.jpg
  *
  * TC = O(m x n) where m = coins length and n = amount
  * SC = O(m x n)
@@ -70,7 +71,7 @@ public class CoinChangeProblem_DP {
                     //Exclude + include
                     solution[i][j] = solution[i - 1][j] + solution[i][j - coins[i - 1]];
                 } else {
-
+                    //Exclude
                     solution[i][j] = solution[i - 1][j];
                 }
             }
@@ -79,11 +80,33 @@ public class CoinChangeProblem_DP {
         return solution[coins.length][amount];
     }
 
+    //TC = O(2^ amount) SC = amount
+    private static int numberOfWaysToGetChangeRecursive(int[] coins, int amount, int noOfCoins) {
+        //Base Case
+        if(amount == 0) {
+            return 1;
+        }
+
+        if(amount < 0 || noOfCoins < 0) {
+            return 0;
+        }
+
+        //include
+        int include = numberOfWaysToGetChangeRecursive(coins, amount - coins[noOfCoins], noOfCoins);
+
+        //exclude
+        int exclude = numberOfWaysToGetChangeRecursive(coins, amount, noOfCoins - 1);
+
+        return include + exclude;
+    }
+
     public static void main(String[] args) {
 
         int amount = 5;
         int[] v = { 1, 2, 3 };
         System.out.println("The number of ways to get change by Dynamic Programming " +
                 numberOfWaysToGetChange(v, amount));
+
+        System.out.println("The number of ways to get change by Recursive: " + numberOfWaysToGetChangeRecursive(v, amount, v.length - 1));
     }
 }

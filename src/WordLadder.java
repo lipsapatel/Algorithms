@@ -67,7 +67,7 @@ public class WordLadder {
             String key = word.substring(0, i) + "*" + word.substring(i + 1, word.length());
             List<String> list = graphList.get(key);
             for (String s: list) {
-                if (s != word) {
+                if (!s.equals(word)) {
                     result.add(s);
                 }
             }
@@ -80,7 +80,7 @@ public class WordLadder {
         createGraph(words);
         Queue<String> queue = new LinkedList<>();
         HashSet<String> visited = new HashSet<>();
-        HashMap<String, String> backRefs = new HashMap<>();
+        HashMap<String, String> backRefs = new HashMap<>(); //child, parent
 
         queue.add(start);
         visited.add(start);
@@ -88,9 +88,10 @@ public class WordLadder {
         while(!queue.isEmpty()) {
 
             String poppedNode = queue.remove();
-            if (poppedNode.equalsIgnoreCase(end)) {
-                return buildPath(backRefs, end);
-            } else {
+           // if (poppedNode.equalsIgnoreCase(end)) { //If start = end and no transformation needed and in that case
+            // if you want to add start to the return list then do this
+             //   return buildPath(backRefs, end);
+            //} else {
 
                 HashSet<String> adjacentVertex = getNeighbors(poppedNode);
 
@@ -107,7 +108,7 @@ public class WordLadder {
                         }
                     }
                 }
-            }
+            //}
         }
         return new ArrayList<>();
     }

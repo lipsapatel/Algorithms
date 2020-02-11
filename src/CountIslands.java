@@ -17,7 +17,7 @@ import java.util.List;
  *
  *  Approach
  *
- *  1) Start with the cell and exhaust all connected neighboring cells with 1.
+ *  1) Start with the cell and exhaust all connected neighboring cells with 1. - DFS
  *  2) Run the for loop and call exhaust for cell if it's 1 and increment the count
  *  3) Return the count.
  *

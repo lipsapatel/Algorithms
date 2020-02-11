@@ -4,7 +4,7 @@ import sun.awt.image.ImageWatched;
 import java.util.*;
 
 /**
- * Dijkstra's Shortest Path Algorithm (SPT) - Adjacency List and Priority Queue
+ * Dijkstra's Shortest Path Algorithm (SPT) - Adjacency List and Priority Queue - BFS
  *
  * Implementing Dijkstra's Algorithm using adjacency list and priority queue.
  *
@@ -90,7 +90,7 @@ public class DijkstraAdjacencyListPriorityQueue {
 
                 if(!exhausted.contains(neighbor.getKey())) {
 
-                    if (extractedDistance + neighbor.getValue() < distance.get(neighbor.getKey())) {
+                    if (extractedDistance + neighbor.getValue() < distance.get(neighbor.getKey())) { //Change this and you get prim's algorithm MST
 
                         distance.put(neighbor.getKey(), extractedDistance + neighbor.getValue());
                         pq.offer(new Pair<>(neighbor.getKey(), extractedDistance + neighbor.getValue())); // logV

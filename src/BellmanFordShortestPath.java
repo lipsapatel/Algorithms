@@ -1,3 +1,9 @@
+import javafx.util.Pair;
+
+import java.util.HashMap;
+import java.util.HashSet;
+import java.util.Map;
+
 /**
  * We use Bellman-Ford Algorithm to find the shortest path from a single source node/vertex to all
  * destination nodes/vertices.
@@ -19,139 +25,112 @@
  * resources/BellmanFord.png
  *
  * Time Complexity: O(EV)
+ *
+ * Approach:
+ *
+ * 1) Iterate v-1 times
+ * 2) Do the Edge relaxation
+ * 3) Iterate vth time
+ * 4) Check for negative weight cycle
  */
 public class BellmanFordShortestPath {
 
-    public static class Edge {
-        int source;
-        int destination;
-        int weight;
+    private static HashMap<Integer, HashSet<Pair<Integer, Integer>>> graph = new HashMap<>();
 
-        public Edge() {
-            source = 0;
-            destination = 0;
-            weight = 0;
-        }
-    }
+    private static void bellmanFord(int source) {
 
-    private static class Graph {
-        public int V;
-        public int E;
-        public Edge[] edge;
+        //Distance used to store distance from source vertex
+        HashMap<Integer, Integer> distance = new HashMap<>();
 
-        public Graph(int vertices, int edges) {
-            this.V = vertices;
-            this.E = edges;
-
-            edge = new Edge[edges];
-            for (int i = 0; i < E; i++) {
-                edge[i] = new Edge();
-            }
+        //Initialize all distance to infinity
+        for (Integer vertex: graph.keySet()) {
+            distance.put(vertex, Integer.MAX_VALUE);
         }
 
-        private void BellmanFord(int src) {
-            //Distance used to store distance from source vertex
-            int[] distance = new int[V];
+        //Distance for source vertex is 0
+        distance.put(source, 0);
 
-            //Initialize all distance to infinity
-            for (int i = 0; i < V; i++) {
-                distance[i] = Integer.MAX_VALUE;
-            }
+        //Relax all the edges V - 1 times
+        //A simple shortest path from src to any other vertex can have atmost V - 1 edges
+        //O(V)
+        for (int i = 0; i < graph.size() - 1; i++) {
+            //Stop the iteration if the distance is not updated
+            boolean valueChanged = false;
 
-            //Distance for source vertex is 0
-            distance[src] = 0;
+            //O(E)
+            for(Integer vertex: graph.keySet()) {
+                HashSet<Pair<Integer, Integer>> neighbor = graph.get(vertex);
 
-            //Relax all the edges V - 1 times
-            //A simple shortest path from src to any other vertex can have atmost V - 1 edges
-            for (int i = 1; i < V; i++) {
-                //Stop the iteration if the distance is not updated
-                boolean valueChanged = false;
-
-                for (int j = 0; j < E; j++) {
-                    int u = edge[j].source;
-                    int v = edge[j].destination;
-                    int w = edge[j].weight;
-
-                    if (distance[u] != Integer.MAX_VALUE && distance[u] + w < distance[v]) {
-                        distance[v] = distance[u] + w;
-                        valueChanged = true;
+                if (neighbor != null) {
+                    for(Pair<Integer, Integer> av: neighbor) {
+                        if (distance.get(vertex) != Integer.MAX_VALUE && distance.get(vertex) + av.getValue() < distance.get(av.getKey())) {
+                            distance.put(av.getKey(), distance.get(vertex) + av.getValue());
+                            valueChanged = true;
+                        }
                     }
                 }
-
-                if (!valueChanged) {
-                    break;
-                }
             }
 
-            //Check for negative-weight cycle.
-            //If we get shorter path (distance updated) then there's negative-weight cycle
-            //vth iteration will determine negative weight cycle
-            for (int j = 0; j < E; j++) {
-                int u = edge[j].source;
-                int v = edge[j].destination;
-                int w = edge[j].weight;
-
-                if (distance[u] != Integer.MAX_VALUE && distance[u] + w < distance[v]) {
-                    System.out.println("Graph contains negative weight cycle");
-                    break;
-                }
+            //All edges relaxed but the value not changed then stop we are done finding the shortest path
+            if (!valueChanged) {
+                break;
             }
-            printBellmanFord(distance, src);
         }
 
-        private void printBellmanFord(int[] distance, int src) {
-            for (int i = 0; i < V; i++) {
-                System.out.println("Source Vertex: " + src + " to vertex " + i + " distance: " +distance[i]);
+        //Check for negative-weight cycle.
+        //If we get shorter path (distance updated) then there's negative-weight cycle
+        //vth iteration will determine negative weight cycle
+        //O(E)
+        for(Integer vertex: graph.keySet()) {
+            HashSet<Pair<Integer, Integer>> neighbor = graph.get(vertex);
+
+            if (neighbor != null) {
+                for(Pair<Integer, Integer> av: neighbor) {
+                    if (distance.get(vertex) != Integer.MAX_VALUE && distance.get(vertex) + av.getValue() < distance.get(av.getKey())) {
+                        System.out.println("Graph contains negative weight cycle");
+                        return;
+                    }
+                }
             }
+        }
+
+        //Print distance
+        for(Map.Entry<Integer, Integer> entry: distance.entrySet()) {
+            System.out.println("The distance of vertex " + entry.getKey() + " from source vertex is " + entry.getValue());
         }
     }
 
     public static void main(String[] args) {
-        int V = 5;
-        int E = 8;
+        HashSet<Pair<Integer, Integer>> neighbor = new HashSet<>();
+        Pair<Integer, Integer> pair = new Pair<>(2, -1);
+        neighbor.add(pair);
+        pair = new Pair<>(3, 4);
+        neighbor.add(pair);
+        graph.put(1, neighbor);
 
-        Graph graph = new Graph(V, E);
+        neighbor = new HashSet<>();
+        pair = new Pair<>(3, 3);
+        neighbor.add(pair);
+        pair = new Pair<>(4, 2);
+        neighbor.add(pair);
+        pair = new Pair<>(5, 2);
+        neighbor.add(pair);
+        graph.put(2, neighbor);
 
-        // add edge 0-1 (or A-B in above figure)
-        graph.edge[0].source = 0;
-        graph.edge[0].destination = 1;
-        graph.edge[0].weight = -1;
+        neighbor = new HashSet<>();
+        graph.put(3, neighbor);
 
-        // add edge 0-2 (or A-C in above figure)
-        graph.edge[1].source = 0;
-        graph.edge[1].destination = 2;
-        graph.edge[1].weight = 4;
+        pair = new Pair<>(2, 1);
+        neighbor.add(pair);
+        pair = new Pair(3, 5);
+        neighbor.add(pair);
+        graph.put(4, neighbor);
 
-        // add edge 1-2 (or B-C in above figure)
-        graph.edge[2].source = 1;
-        graph.edge[2].destination = 2;
-        graph.edge[2].weight = 3;
+        pair = new Pair<>(4, -3);
+        neighbor = new HashSet<>();
+        neighbor.add(pair);
+        graph.put(5, neighbor);
 
-        // add edge 1-3 (or B-D in above figure)
-        graph.edge[3].source = 1;
-        graph.edge[3].destination = 3;
-        graph.edge[3].weight = 2;
-
-        // add edge 1-4 (or A-E in above figure)
-        graph.edge[4].source = 1;
-        graph.edge[4].destination = 4;
-        graph.edge[4].weight = 2;
-
-        // add edge 3-2 (or D-C in above figure)
-        graph.edge[5].source = 3;
-        graph.edge[5].destination = 2;
-        graph.edge[5].weight = 5;
-
-        // add edge 3-1 (or D-B in above figure)
-        graph.edge[6].source = 3;
-        graph.edge[6].destination = 1;
-        graph.edge[6].weight = 1;
-
-        // add edge 4-3 (or E-D in above figure)
-        graph.edge[7].source = 4;
-        graph.edge[7].destination = 3;
-        graph.edge[7].weight = -3;
-
-        graph.BellmanFord(0);
+        bellmanFord(1);
     }
 }

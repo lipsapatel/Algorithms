@@ -152,14 +152,14 @@ public class CountPossiblePathsInTwoDimensionalMatrix {
             return 0;
         }
 
-        //Base case
-        if (currentRow == numRows - 1 && currentCol == numCols - 1) {
-            return 1;
-        }
-
         //Obstruction
         if (array[currentRow][currentCol] == 0) {
             return 0;
+        }
+
+        //Base case
+        if (currentRow == numRows - 1 && currentCol == numCols - 1) {
+            return 1;
         }
 
         //Options - Recursive call
@@ -168,6 +168,8 @@ public class CountPossiblePathsInTwoDimensionalMatrix {
         return numRight + numDown;
     }
 
+    //TC = O(mn)
+    //SC = O(mn)
     private static int dynamicProgrammingCountPossiblePaths(int[][] array) {
 
         int[][] result = new int[array.length][array.length];

@@ -28,13 +28,13 @@ import java.util.List;
  *
  * resources/PalindromicDecompositionOfString.png
  *
- * So for string of length n, there will be 2 ^ (n - 1) palindromic decomposition and for each it will take n to check for palindrome
- * So Time Complexity = O(2 ^ (n - 1) * n)
+ * So for string of length n, there will be n ^ (n - 1) palindromic decomposition and for each it will take n to check for palindrome
+ * So Time Complexity = O(n ^ (n - 1) * n)
  *
  * Auxillary Space: O(2 ^ (n - 1) * n)
  * Because there will be 2 ^(n - 1) palindromic decomposition and each will be of length n
  *
- * Time Complexity: O(n ^ n)
+ * Time Complexity: O(n ^ n) O(n!)
  * Space Complexity: O(n)
  *
  * Degree = n

@@ -1,9 +1,6 @@
 import javafx.util.Pair;
 
-import java.util.HashMap;
-import java.util.HashSet;
-import java.util.Map;
-import java.util.Stack;
+import java.util.*;
 
 /**
  * Longest Path in graph with cycle is NP hard problem.
@@ -17,20 +14,21 @@ import java.util.Stack;
  *  TC = O(V + E)
  *
  *  resources/LongestPathInDAG.jpg
+ *  resources/LongestPathInDAGNoDijkstra.jpg
  *
  */
 public class LongestPathInDAG {
 
     private static HashMap<Integer, HashSet<Pair<Integer, Integer>>> graph = new HashMap<>();
 
-    private static void findLongestPath(int source) {
+    private static void findLongestPath(int source, int destination) {
         Stack<Integer> stack = new Stack<>();
 
         //TC = O(V + E)
         getTopologicalOrder(stack);
 
         //TC = O(V + E)
-        findLongestDistance(stack, source);
+        findLongestDistance(stack, source, destination);
 
     }
 
@@ -61,9 +59,10 @@ public class LongestPathInDAG {
         stack.push(s);
     }
 
-    private static void findLongestDistance(Stack<Integer> stack, Integer source) {
+    private static void findLongestDistance(Stack<Integer> stack, Integer source, int destination) {
 
         HashMap<Integer, Integer> distance = new HashMap<>();
+        HashMap<Integer, Integer> pathRef = new HashMap<>(); //(child, parent)
 
         for(Integer vertex: graph.keySet()) {
             distance.put(vertex, Integer.MIN_VALUE);
@@ -73,12 +72,18 @@ public class LongestPathInDAG {
         while(!stack.isEmpty()) {
             Integer vertex = stack.pop();
 
+            if(vertex == destination) {
+                //return buildPath(destination, pathRef); //If you are ask to return longest path from source to destination
+                //Once you pop that vertex from stack, it has it's longest path set, since the topological order of DAG is linear.
+            }
+
             HashSet<Pair<Integer, Integer>> neighbors = graph.get(vertex);
 
             if (neighbors != null) {
                 for(Pair<Integer, Integer> av: neighbors) {
                     if(distance.get(vertex) + av.getValue() > distance.get(av.getKey())) {
                         distance.put(av.getKey(), distance.get(vertex) + av.getValue());
+                        pathRef.put(av.getKey(), vertex);
                     }
                 }
             }
@@ -88,6 +93,20 @@ public class LongestPathInDAG {
         for(Map.Entry<Integer, Integer> entry: distance.entrySet()) {
             System.out.println("The distance of vertex " + entry.getKey() + " from the source vertex is " + entry.getValue());
         }
+    }
+
+    private static List<Integer> buildPath(int destination, HashMap<Integer, Integer> pathRef) {
+        List<Integer> path = new ArrayList<>();
+
+        path.add(0, destination);
+
+        int current = destination;
+
+        while(pathRef.get(current) != null) {
+            current = pathRef.get(current);
+            path.add(0, current);
+        }
+        return path;
     }
 
     public static void main(String[] args) {
@@ -133,6 +152,6 @@ public class LongestPathInDAG {
         neighbor = new HashSet<>();
         graph.put(6, neighbor);
 
-        findLongestPath(3);
+        findLongestPath(3, 5);
     }
 }

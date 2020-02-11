@@ -37,15 +37,6 @@
  Adjacency List – Priority Queue with decrease key
  Adjacency List – Priority Queue without decrease key – Better
 
-
- ArrowArrowPlay
- 13-13
- Ways to Implement:
-
- Adjacency Matrix – Searching.
- Adjacency List – Binary Heap
- Adjacency List – Priority Queue with decrease key
- Adjacency List – Priority Queue without decrease key – Better
  Time Complexity:
 
  The time complexity of Prim’s algorithm depends on the data structures used for the graph and for ordering the edges by weight.
@@ -53,7 +44,7 @@
  Data Structure of Graph	Ordering	Time Complexity
  Adjacency Matrix	Searching	O(|V|2)
  Adjacency List	Binary Heap	O(|E|log|V|)
- Adjacency List	Priority Queue with decrease key	O(|E|2log|V|)
+ Adjacency List	Priority Queue with decrease key	O(|E||V|log|V|)
  Adjacency List	Priority Queue without decrease key – Better Implementation	O(|E|log|V|)
  */
 public class MinimumSpanningTreePrimsAlgorithm {
