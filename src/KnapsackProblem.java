@@ -14,69 +14,85 @@
  * 1) nth item included
  * 2) nth item not included
  *
- * The above method computes the same subproblem again and again.
- * K(1,1) is being evaluated twice.
- * The Time complexity of recursive solution is 2^n which is exponential.
+ * Recursive Approach
  *
- * resources/KnapsackProblemRecursiveTree.png
+ * TC = O(2^W) where W is the number of items
+ * SC = O(W)
  *
- * Dynamic Programming implememntation
+ * DP Approach
+ *
+ *  TC = O(items * targetWeight)
+ *  SC = O(items * targetWeight)
+ *
+ *  resources/KnapsackProblemRecursive.jpg
  */
 public class KnapsackProblem {
 
-    private static int getMaxKnapsackRecursive(int[] values, int[] weight, int restWeight, int restItems) {
-
+    private static int getMaxValueKnapsackRecursive(int[] values, int[] weight, int targetWeight, int index) {
         //Base Case
-        if (restItems == 0 || restWeight == 0) {
+        if(targetWeight == 0) {
             return 0;
         }
 
-        //If nth item weight is greater than restWeight then don't include n
-        if (weight[restItems - 1] > restWeight) {
-            return getMaxKnapsackRecursive(values, weight, restWeight, restItems - 1);
-        } else {
-
-            //If nth item is included and not included
-            return Math.max(values[restItems - 1] + getMaxKnapsackRecursive(values, weight, restWeight - weight[restItems - 1], restItems - 1),
-                                                    getMaxKnapsackRecursive(values, weight, restWeight, restItems - 1));
+        if(index == weight.length) {
+            return 0;
         }
+
+        int maxValue = -1;
+
+        if(weight[index] <= targetWeight) {
+            //include
+            maxValue = Math.max(maxValue, values[index] + getMaxValueKnapsackRecursive(values, weight, targetWeight - weight[index], index + 1));
+        }
+
+        //Exclude
+        return Math.max(maxValue, getMaxValueKnapsackRecursive(values, weight, targetWeight, index + 1));
     }
 
-    //TC = O(iw)
-    //SC = O(iw)
-    // Pseudo Polynomial
-    private static int getMaxKnapsackDP(int[] values, int[] weight, int restWeight, int restItems) {
+    private static int getMaxValueKnapsackDP(int[] values, int[] weight, int targetWeight) {
 
-        int[][] k = new int[restItems + 1][restWeight + 1];
+        int[][] dp = new int[values.length + 1][targetWeight + 1];
 
-        //Build table in bottom up
-        for (int i = 0; i <= restItems; i++) {
-            for (int w = 0; w <= restWeight; w++) {
+        //For targetWeight == 0, initialize the first column with 0
+        for(int i = 0; i < dp.length; i++) {
+            dp[i][0] = 0;
+        }
 
-                //Base case
-                if (i == 0 || w == 0) {
-                    k[i][w] = 0;
-                } else if(weight[i - 1] <= w) {
-                    //Weight of nth item is less than rem weight
-                    //nth item included, nth item not included
-                    k[i][w] = Math.max(values[i - 1] + k[i-1][w - weight[i - 1]],
-                                       k[i - 1][w]);
-                } else {
-                    //nth item not included
-                    k[i][w] = k[i - 1][w];
+        //For index == number of items + 1, 0 items left, initialize last row with 0
+        for(int i = 0; i < dp[0].length; i++) {
+            dp[dp.length - 1][i] = 0;
+        }
+
+        //Traversal direction
+        //index = n - 0
+        for(int i = dp.length - 2; i >= 0; i--) {
+
+            //target weight 0 - 50
+            for(int j = 1; j <= targetWeight; j++) {
+
+                int maxValue = -1;
+
+                //Avoid negatives
+                if(weight[i] <= j) {
+                    //include
+                    maxValue = Math.max(maxValue, values[i] + dp[i + 1][j - weight[i]]);
                 }
+
+                //Exclude
+                maxValue = Math.max(maxValue, dp[i + 1][j]);
+
+                dp[i][j] = maxValue;
             }
         }
-        return k[restItems][restWeight];
+        return dp[0][targetWeight];
     }
 
     public static void main(String[] args) {
         int[] values = {60, 100, 120};
         int[] weight = {10, 20, 30};
-        int restWeight = 50;
-        int restItems = values.length;
+        int targetWeight = 50;
 
-        System.out.println(getMaxKnapsackRecursive(values, weight, restWeight, restItems));
-        System.out.println("DP " + getMaxKnapsackDP(values, weight, restWeight, restItems));
+        System.out.println(getMaxValueKnapsackRecursive(values, weight, targetWeight, 0));
+        System.out.println(getMaxValueKnapsackDP(values, weight, targetWeight));
     }
 }
