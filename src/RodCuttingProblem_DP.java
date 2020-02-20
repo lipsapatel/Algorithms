@@ -25,7 +25,8 @@ import java.util.Arrays;
  * 2) There are n^n - 1 ways to cut rod
  * 3) For every length we have 2 options whether to cut the rod or not.
  *
- * Time Complexity: n^n-1
+ * Time Complexity: n^n-1 ~ O(n!)
+ * Space Complexity: O(n)
  * But this complexity is very high since we are solving many subproblems repeatedly.
  *
  * resources/RodCuttingProblemOverlappingSubproblems.png
@@ -44,7 +45,7 @@ public class RodCuttingProblem_DP {
     //SC = O(n)
     private static int rodCuttingProblemMaximumRevenue_UsingRecursion(int[] price, int rodLength) {
 
-        if (rodLength <= 0) {
+        if (rodLength == 0) {
             return 0;
         }
 
@@ -79,8 +80,7 @@ public class RodCuttingProblem_DP {
         //Recursive case
         int max = -1;
         for(int i = 1; i <= rodLength; i++) {
-            max = Math.max(max, price[i] + ((bestPrice[rodLength - i] != -1)
-                    ? bestPrice[rodLength - i] : rodCuttingRecursionMemorizationHelper(price, rodLength - i, bestPrice)));
+            max = Math.max(max, price[i] + rodCuttingRecursionMemorizationHelper(price, rodLength - i, bestPrice));
         }
         bestPrice[rodLength] = max;
         return max;
