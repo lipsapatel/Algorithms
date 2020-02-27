@@ -41,103 +41,95 @@
  *
  * LCS("ABCDE", "AEBDF") = Max(LCS("ABCDE", "AEBD"), LCS("ABCD", "AEBDF"))
  *
- * In the given string of length n, there can be 2^n subsequence.
- * If we do by recursion, the Time Complexity: O(2^n)
+ * Recursion
+ * Time Complexity: O(2 ^ (max(m,n)))
+ * Space Complexity: O(max(m, n))
  *
- * resources/LongestCommonSubsequenceRecursionTree.png
+ * DP Approach
  *
- * Dynamic Programming:
+ * resources/LongestCommonSubsequenceDP.jpg
  *
- * 1) We will solve it using Top-Down approach
- * 2) Store the solution of subproblem in array and use it whenever needed.
- * 3) This technique is called memoization.
+ * 1) Identify the DP table (type, size) - changing params
+ * 2) Initialize the DP table - base conditions
+ * 3) Traversal direction - opp of recursion
+ * 4) Populate the DP table - recursion code
+ *
+ * Time Complexity = O(mn)
+ * Space Complexity = O(mn)
  */
 public class LongestCommonSubsequence_DP {
 
-    private static int LCS_UsingRecursion(String A, String B) {
+    private static int LCSRecursion(String s1, String s2, int i, int j) {
 
-        if (A.length() == 0 || B.length() == 0) {
+        //Base Case
+        if(i == s1.length() || j == s2.length()) {
             return 0;
         }
 
-        int lengthA = A.length();
-        int lengthB = B.length();
-
-        //check if last characters are same
-        if (A.charAt(lengthA - 1) == B.charAt(lengthB - 1)) {
-
-            //Add 1 and remove last character and make recursive call
-            return 1 + LCS_UsingRecursion(A.substring(0, lengthA - 1), B.substring(0, lengthB - 1));
+        //If both chars are same, 1 + increment i and j
+        if(s1.charAt(i) == s2.charAt(j)) {
+            return 1 + LCSRecursion(s1, s2, i + 1, j + 1);
         } else {
-
-            return Math.max(LCS_UsingRecursion(A.substring(0, lengthA - 1), B),
-                    LCS_UsingRecursion(A, B.substring(0, lengthB - 1)));
+            //Not same so take max of lcs after advancing i once and then j once.
+            return Math.max(LCSRecursion(s1, s2, i + 1, j), LCSRecursion(s1, s2, i, j + 1));
         }
     }
 
-    private static int LCS_UsingDP(char[] A, char[] B) {
+    private static int LCSDP(String s1, String s2) {
+        //Identify the DP table
+        int[][] dp = new int[s1.length() + 1][s2.length() + 1];
 
-        int[][] LCS = new int[A.length + 1][B.length + 1];
-        String[][] solutionArray = new String[A.length + 1][B.length + 1];
-
-        //If A is null then LCS is 0
-        for (int i = 0; i <= B.length; i++) {
-            LCS[0][i] = 0;
-            solutionArray[0][i] = "0";
+        //Initialize the DP table - Base Case
+        //Initialize the last row and last col with 0
+        for(int i = 0; i <= s2.length(); i++) {
+            dp[s1.length()][i] = 0;
         }
 
-        //If B is null then LCS = 0
-        for (int i = 0; i <= A.length; i++) {
-            LCS[i][0] = 0;
-            solutionArray[i][0] = "0";
+        for(int i = 0; i <= s1.length(); i++) {
+            dp[i][s2.length()] = 0;
         }
 
-        for (int i = 1; i <= A.length; i++) {
-            for (int j = 1; j <= B.length; j++) {
+        //Traversal direction
+        for(int i = s1.length() - 1; i >= 0; i--) {
+            for(int j = s2.length() - 1; j >= 0; j--) {
 
-                if (A[i - 1] == B[j - 1]) {
-                    LCS[i][j] = 1 + LCS[i - 1][j - 1];
-                    solutionArray[i][j] = "diagonal";
+                //Populate dp table - recursion logic
+                if(s1.charAt(i) == s2.charAt(j)) {
+                    dp[i][j] = 1 + dp[i + 1][j + 1];
                 } else {
-                    LCS[i][j] = Math.max(LCS[i - 1][j], LCS[i][j - 1]);
-
-                    if (LCS[i][j] == LCS[i - 1][j]) {
-                        solutionArray[i][j] = "top";
-                    } else {
-                        solutionArray[i][j] = "left";
-                    }
+                    dp[i][j] = Math.max(dp[i + 1][j], dp[i][j + 1]);
                 }
             }
         }
+        //Print LCS
+        StringBuilder result = new StringBuilder();
+        printLCS(dp, s1, s2, 0, 0, result);
+        System.out.println(result.toString());
 
-        //Below is the code to print the result
-        String answer = "";
-        int a = A.length;
-        int b = B.length;
+        //return the position where it started the recursion
+        return dp[0][0];
+    }
 
-        while(solutionArray[a][b] != "0") {
+    private static void printLCS(int[][] dp, String s1, String s2, int i, int j, StringBuilder result) {
 
-            if (solutionArray[a][b] == "diagonal") {
-                answer = A[a - 1] + answer;
-                a--;
-                b--;
-            } else if (solutionArray[a][b] == "left") {
-                b--;
-            } else if (solutionArray[a][b] == "top"){
-                a--;
-            }
-        }
-        System.out.println("The longest common subsequence string is " + answer);
-
-        //Printing the LCS array
-        for (int i = 0; i <= A.length; i++) {
-            for (int j = 0; j <= B.length; j++) {
-                System.out.print(" " + LCS[i][j]);
-            }
-            System.out.println();
+        //Base Case
+        if (i == s1.length() || j == s2.length()) {
+            return;
         }
 
-        return LCS[A.length][B.length];
+        if(s1.charAt(i) == s2.charAt(j)) {
+            result.append(s1.charAt(i));
+            printLCS(dp, s1, s2, i + 1, j + 1, result);
+        } else {
+            if(dp[i + 1][j] > dp[i][j + 1]) {
+                i = i + 1;
+                j = j;
+            } else {
+                i = i;
+                j = j + 1;
+            }
+            printLCS(dp, s1, s2, i, j, result);
+        }
     }
 
     public static void main(String[] args) {
@@ -146,9 +138,14 @@ public class LongestCommonSubsequence_DP {
         String B = "ABC";
 
         System.out.println("The length of longest common subsequence using recursion is " +
-                            LCS_UsingRecursion(A, B));
+                            LCSRecursion(A, B, 0, 0));
 
         System.out.println("The length of longest common subsequence using DP is " +
-                            LCS_UsingDP(A.toCharArray(), B.toCharArray()));
+                            LCSDP(A, B));
+
+        String s1 = "abracadabra";
+        String s2 = "bradcar";
+
+        System.out.println("The length of longest common subsequence using DP is " + LCSDP(s1, s2));
     }
 }

@@ -38,6 +38,7 @@ import java.util.Arrays;
  *
  * 1) Instead of solving problem again and again we can store the result in the array and use it.
  *
+ * resources/RodCuttingPrintPaths.jpg
  */
 public class RodCuttingProblem_DP {
 
@@ -102,7 +103,29 @@ public class RodCuttingProblem_DP {
             dp[i] = max;
         }
 
+        printPaths(dp, price, rodLength);
+        System.out.println();
         return dp[rodLength];
+    }
+
+    private static void printPaths(int[] dp, int[] price, int length) {
+        if(length == 0) { //no further cuts
+            return;
+        }
+        int maxPrice = dp[length];
+
+        //Cuts
+        for(int i = 1; i <= length; i++) {
+            int remPrice = maxPrice - price[i];
+            int remCut = length - i;
+
+            //best price for rem cut == rem price
+            if(dp[remCut] == remPrice) {
+                System.out.print(i + " ");
+                printPaths(dp, price, length - i);
+                break; //print only one path
+            }
+        }
     }
 
     public static void main(String[] args) {

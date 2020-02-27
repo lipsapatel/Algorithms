@@ -1,143 +1,196 @@
+import java.util.ArrayList;
 import java.util.HashSet;
+import java.util.List;
 
 /**
- * Given a string and dictionary of words, find out if the input string can be broken into space
- * separated sequence of one or more dictionary words.
+ * Word Break
  *
- * Example:
- * dictionary = ["I", "am", "Lipsa", "This", "is", "dog"];
- * String = "IamLipsa";
+ * You are given a dictionary set dictionary that contains dictionaryCount distinct words and another string txt.
+ * Your task is to segment the txt string in such a way that all the segments occur in a continuous manner in the
+ * original txt string and all these segments (or words) exists in our dictionary set dictionary.
+ * In short you have to split the string txt using ‘ ‘(single white space delimiter) in such a way that
+ * every segment(or word exists in our dictionary.
+
+ * Same word from the dictionary can be used multiple times when splitting the given string.
+ * Example: Suppose our Dictionary is {“to”, “do”, “todo”}
+ * and txt is “totodo” then it can also be segmented as
  *
- * Output: String can be broken - true
+ * “to to do”. Here the word “to” from the dictionary is being used twice.
+
+ * Output Format:
+ * Return array of strings containing all different possible segmentation arrangements for the txt string.
  *
- * String = "Thisisadog";
+ * Constraints:
+ * 1 <= dictionaryCount <= 500
+ * 1 <= |txt| <= 19
+ * 1<= lengths of words in dictionary <= 19
+ * All the characters in txt and words in dictionary are lower case English alphabets.
+
+ * Sample Test Case:
+ * 7
+ * kick
+ * start
+ * kickstart
+ * is
+ * awe
+ * some
+ * awesome
+ * txt = kickstartisawesome
  *
- * Output: String can be broken - false
+ * Sample Output:
+ * kick start is awe some
+ * kick start is awesome
+ * kickstart is awe some
+ * kickstart is awesome
  *
- * Approach: Backtracking
+ * Explanation:
+ * There are only 4 possible segmentations possible for the given txt. All of which are mentioned above.
+ * Consider first segmented string: “kick start is awe some”
+ * Here all the words: kick, start, is, awe and some exists in our dictionary and these words are continuous substrings
+ * of the txt string “kickstartisawesome”.
+ * Similarly, other three segmentations satisfy the same conditions and hence are valid segmentations of the given string.
  *
- * 1) Take blank string and add one character at time
- * 2) Check if dictionary contains word
- * 3) If yes then add that word to the answer string and make a recursive call
- * 4) If any of the recursive call return false, then backtrack and remove word from answer string
+ * Recursion:
  *
- * resources/WordBreakProblem.png
+ * 1) Cut the txt at different position
+ * 2) If that cut is present is dictionary, repeat the cutting for the rest of the string
  *
- * We are solving many sub-problems recursively
+ * Time Complexity: L = length of txt, n = number of words in dictionary, Len = len of words in dictionary
+ * O(2^L * L * n + n * Len)
  *
- * Dynamic Programming
+ * 2^L arrangements
+ * L*n for contains
+ * n * Len - populate dictionary set
  *
- * 1) Top-Down approach
- * 2) Before solving for any string check if we have already solved it
- * 3) Another HashSet to store the result of already solved string
- * 4) Whenever any recursive call returns false, store it in hashset
+ * Space Complexity: O(n * Len + 2^L * L)
+ *
+ * 2^L = arrangements - each arrangement is of size L
+ * n * Len - dictionary set
+ *
+ * DP:
+ *
+ * 1) dp[i] means the different splits for substring starting at index i and ending in end
+ *
+ * Time Complexity: O(L^2 * L + n * len)
+ * where L = generate substring
+ * n * len for dictionary set
+ *
+ * Space Complexity: O(L^2 + n * len)
+ * where L^2 = DP
+ * n * len = dictionary set
+ *
+ * resources/WorkBreakRecursion.jpg
+ * resources/WordBreakDP.jpg
  *
  */
 public class WordBreakProblem {
 
-    private static void wordBreakProblem_UsingRecursion(String s, HashSet<String> dictionary) {
-        if (isWorkBreak(s, dictionary, "")) {
+    private static List<String> wordBreak(List<String> dictionary, String txt) {
+        //Create set for dictionary contains operation
+        HashSet<String> dictSet = new HashSet<>();
 
-        } else {
-            System.out.println("Can't break the string");
+        for(String word: dictionary) {
+            dictSet.add(word);
         }
 
+        List<String> result = new ArrayList<>();
+        wordBreakRecursion(dictSet, txt, result, 0, "");
+        return result;
     }
 
-    private static boolean isWorkBreak(String s, HashSet<String> dictionary, String answer) {
+    private static void wordBreakRecursion(HashSet<String> dictSet, String txt, List<String> result, int i, String soFar) {
 
-        if (s.length() == 0) {
-            System.out.println(answer);
-            return true;
-        } else {
-            int index = 0;
-            String word = "";
+        //Base Case
+        if(i == txt.length()) {
+            result.add(soFar);
+            return;
+        }
 
-            while(index < s.length()) {
+        //For all possible cuts
+        for(int k = i; k < txt.length(); k++) {
+            String substr = txt.substring(i, k + 1);
 
-                //One character at a time
-                word = word + s.charAt(index);
-
-                //If dictionary contains word
-                if (dictionary.contains(word)) {
-
-                    //add word to the answer and make recursive call
-                    if (isWorkBreak(s.substring(index+1), dictionary, answer + word + " ")) {
-                        return true;
-                    } else {
-                        index++;
-                    }
+            if(dictSet.contains(substr)) {
+                if(soFar.isEmpty()) {
+                    wordBreakRecursion(dictSet, txt, result, k + 1, substr);
                 } else {
-                    index++;
+                    wordBreakRecursion(dictSet, txt, result,k + 1, soFar + " " + substr);
                 }
             }
-            return false;
         }
     }
 
-    private static void wordBreakProblem_UsingDynamicProgramming(String s, HashSet<String> dictionary) {
+    private static List<String> wordBreakDp(List<String> dictionary, String txt) {
 
-        HashSet<String> memory = new HashSet<String>();
+        //Create dictionary set for contains operation
+        HashSet<String> dict = new HashSet<>();
 
-        if (isWordBreak(s, dictionary, "", memory)) {
-
-        } else {
-            System.out.println("Can't break the string");
+        for(String word: dictionary) {
+            dict.add(word);
         }
-    }
 
-    private static boolean isWordBreak(String s, HashSet<String> dictionary, String answer,
-                                       HashSet<String> memory) {
+        //Identify dp table
+        //2 changing params i and soFar
+        List<String>[] dp = new ArrayList[txt.length() + 1];
 
-        if (s.length() == 0) {
-            System.out.println(answer);
-            return true;
-        } else if (memory.contains(s)) {
-            return false;
-        } else {
+        //Initialize dp table
+        //Base case
+        for(int i = 0; i <= txt.length(); i++) {
+            dp[i] = new ArrayList<>();
+        }
+        dp[txt.length()].add("");
 
-            int index = 0;
-            String word = "";
+        //Traversal direction
+        //i = 0 to txt.length in recursion
+        //txt.length() - 1 to 0
+        for(int i = txt.length() - 1; i >= 0; i++) {
+            //Populate dp table
 
-            while(index < s.length()) {
+            //For all posssible cuts
+            for(int k = i; k < txt.length(); k++) {
+                String substr = txt.substring(i, k + 1);
 
-                //One character at a time
-                word = word + s.charAt(index);
+                if(dict.contains(substr)) {
 
-                //Check the dictionary
-                if (dictionary.contains(word)) {
+                    for(String s: dp[k + 1]) {
+                        if(s.isEmpty()) {
+                            dp[i].add(substr);
+                        } else {
+                            dp[i].add(substr + " " + s);
+                        }
 
-                    //Make recursive call
-                    if (isWordBreak(s.substring(index + 1), dictionary, answer + word + " ", memory)) {
-                        return true;
-                    } else {
-                        index++;
                     }
-                } else {
-                    index++;
                 }
             }
-            memory.add(s);
-            return false;
         }
+        return dp[0]; //Recursion started from i = 0
     }
 
     public static void main(String[] args) {
-
-        String s = "IamLipsa";
-        String s1 = "Thisisadog";
-        HashSet<String> dictionary = new HashSet<String>();
-        dictionary.add("I");
-        dictionary.add("am");
-        dictionary.add("Lipsa");
-        dictionary.add("This");
+        List<String> dictionary = new ArrayList<>();
+        dictionary.add("kick");
+        dictionary.add("start");
+        dictionary.add("kickstart");
         dictionary.add("is");
-        dictionary.add("dog");
+        dictionary.add("awe");
+        dictionary.add("some");
+        dictionary.add("awesome");
 
-        wordBreakProblem_UsingRecursion(s, dictionary);
-        wordBreakProblem_UsingRecursion(s1, dictionary);
+        String txt = "kickstartisawesome";
 
-        wordBreakProblem_UsingDynamicProgramming(s, dictionary);
-        wordBreakProblem_UsingDynamicProgramming(s1, dictionary);
+        List<String> result = wordBreak(dictionary, txt);
+
+        System.out.println("The possible word break are ");
+        for(String word: result) {
+            System.out.println(word);
+        }
+
+        List<String> result1 = wordBreakDp(dictionary, txt);
+
+        System.out.println("The possible word break are ");
+        for(String word: result) {
+            System.out.println(word);
+        }
     }
+
 }
