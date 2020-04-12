@@ -1,4 +1,3 @@
-import Node.BinaryTreeNode;
 import Node.SinglyLinkedListNode;
 
 /**
@@ -18,6 +17,7 @@ import Node.SinglyLinkedListNode;
  * 4) At the end set head = previousNode
  *
  * resources/ReverseLinkedList.png
+ * resources/ReverseLinkedList1.jpg
  */
 public class ReverseLinkedList {
 
@@ -29,12 +29,11 @@ public class ReverseLinkedList {
 
         SinglyLinkedListNode currentNode = head;
         SinglyLinkedListNode previousNode = null;
-        SinglyLinkedListNode nextNode = null;
 
         //3 variables
         while(currentNode != null) {
 
-            nextNode = currentNode.next;
+            SinglyLinkedListNode nextNode = currentNode.next;
 
             currentNode.next = previousNode;
 

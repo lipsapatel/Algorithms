@@ -1,60 +1,132 @@
-// Complete the maxWin function below.
-static int maxWin(int[] v) {
-    // return maxWinRec(v, 0, v.length-1);
-    return maxWinDP(v);
-}
 
-static int maxWinDP(int[] v) {
-    int length = v.length;
-    int[][] dp = new int[length][length];
-    //init dp table filled lower bottom left with zero and diagonals with the corresponding value in v i.e. dp(1,1) --> v[1] etc
-    /**
-     *      8 -  - -
-     *      0 15 - -
-     *      0 0  3 -
-     *      0 0  0 7
-     */
-    for(int start=0; start<length; start++) {
-        for(int end=0; end<=start; end++) {
-            if(start == end) {
-                dp[start][end] = v[start];
-            } else {
-                dp[start][end] = 0;
-            }
+/*
+ * Complete the function below.
+ */
+static Map<Integer, DLLNode> cache;
+static int maxCap;
+static int currCap;
+static DLLNode head;
+static DLLNode tail;
+
+static int[] implement_LRU_cache(int capacity, int[] query_types, int[] keys, int[] values) {
+
+    init(capacity);
+    List<Integer> list = new ArrayList<>();
+
+    for(int i=0; i<query_types.length; i++) {
+        if(query_types[i] == 0) {
+            list.add(get(keys[i]));
+        } else {
+            put(keys[i], values[i]);
         }
     }
 
-    //upper right diagonal in diagonal order i.e. first round [0,1] [1,2] [2,3]
-    for(int i=1; i<length; i++) {
-        for (int start=0, end=i; start<length-1 && end<length; start++, end++) {
-            int includeStartSum = v[start] + Math.min(getFromDPTable(dp, start+2, end), getFromDPTable(dp,start+1,end-1));
-            int includeEndSum = v[end] + Math.min(getFromDPTable(dp, start,end-2), getFromDPTable(dp, start+1, end-1));
-            dp[start][end] = Math.max(includeStartSum, includeEndSum);
-        }
+    int[] result = new int[list.size()];
+    for(int j=0; j<list.size(); j++) {
+        result[j] = list.get(j);
     }
-    return dp[0][length-1];
+    return result;
 }
 
-static int getFromDPTable(int[][] dp, int start, int end) {
-    int length = dp.length;
-    if(start < 0 || start>=length || end < 0 || end >=length)
-        return 0;
-    return dp[start][end];
+static void init(int capacity) {
+    cache = new HashMap<>();
+    maxCap = capacity;
+    currCap = 0;
 }
 
-static int maxWinRec(int[] v, int start, int end) {
-    if(start > end)
-        return 0;
-
-    if(start == end)
-        return v[start];
-
-    // If I choose start then opponent can select start+1 or end --> and I pick min from both in worst case
-    int includeStartSum = v[start] + Math.min(maxWinRec(v, start+2, end), maxWinRec(v, start+1, end-1));
-    // If I choose end then opponent can select start or end-1 --> and I pick min from both in worst case
-    int includeEndSum = v[end] + Math.min(maxWinRec(v, start, end-2), maxWinRec(v, start+1, end-1));
-
-    return Math.max(includeStartSum, includeEndSum);
+static int get(int key) {
+    if(cache.containsKey(key)) {
+        DLLNode node = cache.get(key);
+        unlink(node);
+        moveFront(node);
+        return node.value;
+    }
+    return -1;
 }
+
+static void put(int key, int value) {
+    if(cache.containsKey(key)) {
+        DLLNode node = cache.get(key);
+        unlink(node);
+        moveFront(node);
+        node.value = value;
+        return;
+    }
+    if(currCap == maxCap) {
+        evict();
+    }
+    currCap++;
+    DLLNode node = new DLLNode(key, value);
+    moveFront(node);
+    cache.put(key, node);
+}
+
+static void evict() {
+    if(tail == null)
+        return;
+    cache.remove(tail.key);
+    if(head == tail) {
+        head = null;
+        tail = null;
+        currCap--;
+        return;
+    }
+    DLLNode newTail = tail.prev;
+    tail.prev = null;
+    if(newTail != null) {
+        newTail.next = null;
+    }
+    tail = newTail;
+    currCap--;
+}
+
+static void unlink(DLLNode node) {
+    DLLNode p = node.prev;
+    DLLNode n = node.next;
+
+    if(p != null) {
+        p.next = n;
+    }
+    if(n != null) {
+        n.prev = p;
+    }
+
+    if(node == tail) {
+        tail = tail.prev;
+    }
+    if(node == head) {
+        head = head.next;
+    }
+
+    node.next = null;
+    node.prev = null;
+
+}
+
+static void moveFront(DLLNode node) {
+    if(head == null) {
+        head = node;
+        tail = node;
+        return;
+    }
+    node.next = head;
+    head.prev = node;
+    head = node;
+}
+
+//MAP DLL
+static class DLLNode {
+    int key;
+    int value;
+    DLLNode prev;
+    DLLNode next;
+    DLLNode(int k, int v) {
+    key = k;
+    value = v;
+}
+}
+
+
+
 
 

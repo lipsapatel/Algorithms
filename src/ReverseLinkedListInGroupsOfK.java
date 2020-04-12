@@ -24,6 +24,10 @@ import Node.SinglyLinkedListNode;
  * 2) currentNode = head, previousNode = null and nextNode = null
  * 3) while currentNode != null and k > 0
  * 4) At the end set head = previousNode
+ *
+ * Time Complexity: O(n)
+ * Space Complexity: O(n/k) recursive call stack
+ * If k = 1 then its O(n)
  */
 public class ReverseLinkedListInGroupsOfK {
 
@@ -94,6 +98,5 @@ public class ReverseLinkedListInGroupsOfK {
 
         System.out.println("Reversed Linked List: ");
         displayLinkedList(node);
-
     }
 }

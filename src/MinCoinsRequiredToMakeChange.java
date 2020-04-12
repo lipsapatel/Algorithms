@@ -1,5 +1,3 @@
-import java.util.Arrays;
-
 /**
  * Find the minimum number of coins required to make the change
  * Input:
@@ -44,16 +42,10 @@ public class MinCoinsRequiredToMakeChange {
             return 0;
         }
 
-        if (amount < 0) {
-            return Integer.MAX_VALUE;
-        }
-
         int minCoins = Integer.MAX_VALUE;
         for(int i = 0; i < coins.length; i++) {
-            int coinsCount = minCoins(coins, amount - coins[i]);
-
-            if(coinsCount < minCoins) {
-                minCoins = coinsCount;
+            if (amount >= coins[i]) {
+                minCoins = Math.min(minCoins, minCoins(coins, amount - coins[i]));
             }
         }
 
@@ -68,7 +60,7 @@ public class MinCoinsRequiredToMakeChange {
     private static int minCoinsDp(int[] coins, int amount) {
         int[] dp = new int[amount + 1];
 
-        Arrays.fill(dp, Integer.MAX_VALUE);
+        //Arrays.fill(dp, Integer.MAX_VALUE);
         dp[0] = 0;
 
         for(int i = 1; i < dp.length; i++) {
@@ -76,17 +68,15 @@ public class MinCoinsRequiredToMakeChange {
 
             for(int j = 0; j < coins.length; j++) {
                 if(coins[j] <= i) {
-                    int count = dp[i - coins[j]];
-
-                    if(count < minCount) {
-                        minCount = count;
-                    }
+                    minCount = Math.min(minCount, dp[i - coins[j]]);
                 }
             }
 
             //To avoid overflow
             if(minCount != Integer.MAX_VALUE) {
                 dp[i] = 1 + minCount;
+            } else {
+                dp[i] = minCount;
             }
         }
 
@@ -148,5 +138,9 @@ public class MinCoinsRequiredToMakeChange {
 
         System.out.println("The minimum number of coins required to make the change is " + minCoins(coins, amount));
         System.out.println("The minimum number of coins required to make the change using dp is " + minCoinsDp(coins, amount));
+
+        int[] coins1 = {1, 3, 5};
+        int amount1 = 9;
+        System.out.println("The minimum number of coins required to make the change using dp is * " + minCoinsDp(coins1, amount1));
     }
 }

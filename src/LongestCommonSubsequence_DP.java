@@ -42,8 +42,10 @@
  * LCS("ABCDE", "AEBDF") = Max(LCS("ABCDE", "AEBD"), LCS("ABCD", "AEBDF"))
  *
  * Recursion
- * Time Complexity: O(2 ^ (max(m,n)))
- * Space Complexity: O(max(m, n))
+ * Time Complexity: O(2 ^ (m + n))
+ * Space Complexity: O(m + n)
+ *
+ * resources/LongestCommonSubsequenceRecursion.jpg
  *
  * DP Approach
  *
@@ -104,7 +106,7 @@ public class LongestCommonSubsequence_DP {
         //Print LCS
         StringBuilder result = new StringBuilder();
         printLCS(dp, s1, s2, 0, 0, result);
-        System.out.println(result.toString());
+        System.out.println(result.toString()); //You can also return string
 
         //return the position where it started the recursion
         return dp[0][0];
@@ -145,6 +147,11 @@ public class LongestCommonSubsequence_DP {
 
         String s1 = "abracadabra";
         String s2 = "bradcar";
+
+        System.out.println("The length of longest common subsequence using DP is " + LCSDP(s1, s2));
+
+        s1 = "ABC";
+        s2 = "DEF";
 
         System.out.println("The length of longest common subsequence using DP is " + LCSDP(s1, s2));
     }
