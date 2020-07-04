@@ -6,7 +6,8 @@ import java.util.List;
  *
  * It divides input array in two halves, calls itself for the two halves and then merges the two sorted halves.
  * The merge() function is used for merging two halves.
- * The merge(arr, l, m, r) is key process that assumes that arr[l..m] and arr[m+1..r] are sorted and merges the two sorted sub-arrays into one.
+ * The merge(arr, l, m, r) is key process that assumes that arr[l..m] and arr[m+1..r] are sorted and
+ * merges the two sorted sub-arrays into one.
  *
  * Time Complexity: For all cases O(nlogn)
  * Space Complexity: O(n) Recursive call Stack space: O(logn)
@@ -27,7 +28,8 @@ import java.util.List;
  * 2) Merge left and right
  *    1) create third sorted array
  *
- *    Merge Sort is useful in sorting Linkedlist in O(nlogn) time. elements are not contiguous in linked list, and merge is done with out extra
+ *    Merge Sort is useful in sorting Linkedlist in O(nlogn) time. elements
+ *    are not contiguous in linked list, and merge is done with out extra
  *    space since we can insert items in middle.
  *
  *    Merge Sort is stable sorting algorithm only because of <= condition.

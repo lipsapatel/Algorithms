@@ -49,6 +49,7 @@
  *
  * DP Approach
  *
+ * resources/LongestCommonSubsequenceDP1.jpg
  * resources/LongestCommonSubsequenceDP.jpg
  *
  * 1) Identify the DP table (type, size) - changing params

@@ -1,5 +1,6 @@
 /**
- * Given a string s, find the longest palindromic substring in s. You may assume that the maximum length of s is 1000.
+ * Given a string s, find the longest palindromic substring in s.
+ * You may assume that the maximum length of s is 1000.
 
  Example 1:
 
@@ -23,6 +24,25 @@ Approach
 
  Linear approach is manacher's algorithm. O(n)
 
+ **********************************************
+ Suffix Trie Linear Approach
+
+ 1) In this approach you construct combined suffix trie for String S and
+ it's Reverse String R
+ 2) The logic is, longest common substring from this tree will be the
+ longest palindrome in String S
+ 3) But if the String S also contains the substring and it's reverse,
+ then that will be returned as longest common substring even though it's not palindrome.
+ 4) To handle this case, we maintain the forward and reverse indexes and if they are same then
+ that common substring is also palindrome
+
+ LPS in S is same as LCS in S and R given that LCS in R and S must be from same position in S.
+
+ Time Complexity: Linear - Construct Suffix trie using Ukonnen's Algorithm and find LCS
+ Good to mention this in interview.
+
+ resources/LongestPalindromicSubstringUsingSuffixTrie1.jpg
+ resources/LongestPalindromicSubstringUsingSuffixTrie2.jpg
  */
 public class LongestPalindromicSubstring {
 
@@ -38,6 +58,7 @@ public class LongestPalindromicSubstring {
 
         for(int i = 0; i < s.length(); i++) {
 
+            //Consider each index as the center of odd and even palindrome.
             int oddLength = findMaxLength(s, i, i);
             int evenLength = findMaxLength(s, i, i + 1);
 

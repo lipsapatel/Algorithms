@@ -11,6 +11,12 @@
  * 3) If they are same, remove the first and last character and make recursive call.
  *
  * Time complexity: O(n)
+ * Space Complexity: O(n)
+ *
+ * Non Recursive Approach
+ *
+ * Time Complexity: O(n)
+ * Space Complexity: O(1)
  *
  * Example:
  *
@@ -78,7 +84,7 @@ public class WhetherStringIsPalindromeOrNot {
     public static void main(String[] args) {
 
         String inputString = "LipsaPatel";
-        String S1 = "Sumit";
+        String S1 = "";
         String S2 = "Sumus";
         String S3 = "ABCDEFGHGFEDCBA";
         String S4 = "Jain niaJ";

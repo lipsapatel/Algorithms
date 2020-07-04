@@ -1,113 +1,121 @@
 import Node.SinglyLinkedListNode;
 
 /**
- * Given a Linked List, sort it using merge sort
+ * Merge Sort A Linked List
+ * Given a singly linked list, sort it in the ascending order using the Merge Sort algorithm.
  *
- * 9 --> 3 --> 4 --> 2 --> 5 --> 1
+ * Example One
+ * Input:
+ * 0
+ * 1
+ * 10
+ * 7
  *
- * Sorted List: 1 --> 2 --> 3 --> 4 --> 5 --> 9
+ * Output:
+ * 0
+ * 1
+ * 7
+ * 10
  *
+ * Example Two
+ * Input:
+ * 1
+ * 2
+ * 3
+ *
+ * Output:
+ * 1
+ * 2
+ * 3
+ *
+ * Here the input is already sorted.
+ *
+ * Notes
+ * Output: Return the head of the sorted linked list.
+ *
+ * Constraints:
+ *     1 <= n <= 10^5
+ *     -10^9 <= value of each node of linked list <= 10^9
+ ***************************************************************
  * Approach:
  *
- * 1) Divide and Conquer
- * 2) Find the length of the linked list
- * 3) Mid = length/2;
- * 4) Now divide the list into two equal parts
- * 5) Take pointer old head and move it by mid
- * 6) This will give you newHead = oldHead.next
- * 7) oldHead.next = null
- * 8) oldHead = head
- * 9) Now recursively solve these two parts
- * 10) Merge them into single sorted list.
+ * 1) Find the middle element using fast and slow pointer.
+ * 2) Split the linked list and recursively call merge sort on left half and right half.
+ * 3) Merge the linked list.
+ *
+ * Time Complexity: O(nlogn) - logn time for recursive call and n time for merge
+ * Space Complexity: O(logn) - call stack
+ * It's a stable sorting algorithm. Merge sort has sequential acess which is possible in linked list.
+ * In linked list random access is not possible.
+ *
+ * Merge operation can be implemented without requiring extra space in linked list because items can be
+ * inserted in linked list in middle.
+ *
+ * resources/MergeSortLinkedList1.jpg
+ * resources/MergeSortLinkedList2.jpg
  */
 public class MergeSortLinkedList {
 
-    private static SinglyLinkedListNode mergeLinkedListsRecursively(SinglyLinkedListNode headA, SinglyLinkedListNode headB) {
-
-        SinglyLinkedListNode result = null;
-
-        if (headA == null) {
-            return headB;
+    private static SinglyLinkedListNode mergeSort(SinglyLinkedListNode head) {
+        if(head == null || head.next == null) { //This is important to break the recursive call
+            return head;
         }
 
-        if (headB == null) {
-            return headA;
+        SinglyLinkedListNode middle = split(head);
+        SinglyLinkedListNode middleNext = middle.next;
+
+        middle.next = null;
+        SinglyLinkedListNode left = mergeSort(head);
+        SinglyLinkedListNode right = mergeSort(middleNext);
+
+        SinglyLinkedListNode sortedList = merge(left, right);
+        return sortedList;
+    }
+
+    private static SinglyLinkedListNode merge(SinglyLinkedListNode list1, SinglyLinkedListNode list2) {
+        SinglyLinkedListNode result;
+        if(list1 == null) {
+            return list2;
         }
 
-        if (headA.data < headB.data) {
-            result = headA;
-            result.next = mergeLinkedListsRecursively(headA.next, headB);
+        if(list2 == null) {
+            return list1;
+        }
+
+        if(list1.data <= list2.data) {
+            result = list1;
+            result.next = merge(list1.next, list2);
         } else {
-            result = headB;
-            result.next = mergeLinkedListsRecursively(headA, headB.next);
+            result = list2;
+            result.next = merge(list1, list2.next);
         }
         return result;
     }
 
-    private static int getLinkedListLength(SinglyLinkedListNode node) {
-        int count = 0;
+    private static SinglyLinkedListNode split(SinglyLinkedListNode head) {
+        SinglyLinkedListNode slow = head;
+        SinglyLinkedListNode fast = head.next;
 
-        SinglyLinkedListNode currentNode = node;
-
-        while (currentNode != null) {
-            count++;
-            currentNode = currentNode.next;
+        while(fast != null && fast.next != null) {
+            slow = slow.next;
+            fast = fast.next.next;
         }
-        return count;
-    }
-
-    private static SinglyLinkedListNode mergeSortLinkedList(SinglyLinkedListNode node) {
-
-        SinglyLinkedListNode oldHead = node;
-
-        int mid = getLinkedListLength(node)/2;
-
-        if (oldHead.next == null) {
-            return oldHead;
-        }
-
-        //Set one pointer at the beginning of the list
-        //Another pointer to the next element after mid
-
-        while (mid - 1 > 0) {
-            oldHead = oldHead.next;
-            mid--;
-        }
-
-        SinglyLinkedListNode newHead = oldHead.next;
-        oldHead.next = null; //Break the list
-
-        oldHead = node;
-
-        //Make recursive call
-        SinglyLinkedListNode sortedList1 = mergeSortLinkedList(oldHead);
-        SinglyLinkedListNode sortedList2 = mergeSortLinkedList(newHead);
-
-        return mergeLinkedListsRecursively(sortedList1, sortedList2);
-
-    }
-
-    private static void display(SinglyLinkedListNode head) {
-        SinglyLinkedListNode currentNode = head;
-
-        while (currentNode != null) {
-            System.out.print("-->" + currentNode.data);
-            currentNode = currentNode.next;
-        }
-        System.out.println();
+        return slow;
     }
 
     public static void main(String[] args) {
-        SinglyLinkedListNode a = new SinglyLinkedListNode(9);
-        a.next = new SinglyLinkedListNode(3);
-        a.next.next = new SinglyLinkedListNode(4);
-        a.next.next.next = new SinglyLinkedListNode(2);
-        a.next.next.next.next = new SinglyLinkedListNode(5);
-        a.next.next.next.next.next = new SinglyLinkedListNode(1);
+        SinglyLinkedListNode head = new SinglyLinkedListNode(4);
+        head.next = new SinglyLinkedListNode(0);
+        head.next.next = new SinglyLinkedListNode(1);
+        head.next.next.next = new SinglyLinkedListNode(10);
+        head.next.next.next.next = new SinglyLinkedListNode(7);
 
-        display(a);
-        SinglyLinkedListNode node = mergeSortLinkedList(a);
-        System.out.println("\n Sorted List: ");
-        display(node);
+        SinglyLinkedListNode result = mergeSort(head);
+
+        while(result != null) {
+            System.out.print(result.data + " ");
+            result = result.next;
+        }
     }
+
 }

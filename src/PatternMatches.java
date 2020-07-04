@@ -69,9 +69,16 @@ public class PatternMatches {
         if (pattern.charAt(pi) == str.charAt(si) || pattern.charAt(pi) == '.') {
             return patternMatches(pattern, pi + 1, str, si + 1);
         } else if (pattern.charAt(pi) == '?') { //If it's ? then exclude or include
-            //return patternMatches(pattern, pi + 1, str, si) || patternMatches(pattern, pi + 1, str, si + 1);
+            //return patternMatches(pattern, pi + 1, str, si) ||
+             //patternMatches(pattern, pi + 1, str, si + 1);
+            //Matches zero or one character
+
             //return patternMatches(pattern, pi + 1, str, si) || matchAsterik(pattern, pi, str, si);
-            return patternMatches(pattern, pi + 1, str, si) || patternMatches(pattern, pi, str, si + 1); //This will match in the skip part; This is consume and stay in the pattern where ever you are.
+
+            return patternMatches(pattern, pi + 1, str, si) ||
+                    patternMatches(pattern, pi, str, si + 1);
+            //Matches zero or more characters. This will match in the skip part; This is consume and stay in the
+            // pattern where ever you are.
         }
 
         //when both char doesn't match
@@ -80,7 +87,7 @@ public class PatternMatches {
     }
 
     //Include si to str.length() - 1 char for *
-    private static boolean matchAsterik(String pattern, int pi, String str, int si) {
+    /*private static boolean matchAsterik(String pattern, int pi, String str, int si) {
 
         for (int i = si; i < str.length(); i++) {
             if (patternMatches(pattern, pi + 1, str, i + 1)) {
@@ -88,7 +95,7 @@ public class PatternMatches {
             }
         }
         return false;
-    }
+    }*/
 
     public static void main(String[] args) {
         String pattern = "a?b";
@@ -107,7 +114,7 @@ public class PatternMatches {
         System.out.println("Pattern matches: " + patternMatches(pattern2, 0, input3, 0));
 
         String input4 = "aabcd";
-        System.out.println("Pattern matches: " + patternMatches(pattern2, 0, input4, 0));
+        System.out.println("aabcd and a?b? Pattern matches: " + patternMatches(pattern2, 0, input4, 0));
 
         String pattern3 = "a?c";
         String input5 = "aacdc";

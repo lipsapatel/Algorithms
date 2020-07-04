@@ -1,4 +1,5 @@
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashSet;
 import java.util.List;
 
@@ -143,7 +144,7 @@ public class WordBreakProblem {
         //Traversal direction
         //i = 0 to txt.length in recursion
         //txt.length() - 1 to 0
-        for(int i = txt.length() - 1; i >= 0; i++) {
+        for(int i = txt.length() - 1; i >= 0; i--) {
             //Populate dp table
 
             //For all posssible cuts
@@ -163,6 +164,7 @@ public class WordBreakProblem {
                 }
             }
         }
+        System.out.println(Arrays.toString(dp));
         return dp[0]; //Recursion started from i = 0
     }
 

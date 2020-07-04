@@ -1,70 +1,113 @@
-    /*
-     * Complete the dutch_flag_sort function below.
-     */
-    static String dutch_flag_sort(String balls) {
-        /*
-         * Write your code here.
-         */
-         if(balls == null || balls.isEmpty()) {
-             return "";
+class AutocompleteSystem {
+
+    TrieNode root = null;
+    StringBuilder sofar = new StringBuilder();
+    TrieNode current = null;
+    public AutocompleteSystem(String[] sentences, int[] times) {
+        root = new TrieNode();
+        for(int i=0; i<sentences.length; i++) {
+            addSentence(sentences[i], times[i], 0);
+        }
+        current = root;
+    }
+
+    public List<String> input(char c) {
+        if(c == '#') {
+            addSentence(sofar.toString(), 0, 1);
+            sofar = new StringBuilder();
+            current = root;
+            return Collections.EMPTY_LIST;
+        }
+        sofar = sofar.append(c);
+        current = current.children.get(c);
+        List<PQNode> top3 = searchTop3(current, sofar.toString());
+
+        List<String> result = new ArrayList<>();
+        for(PQNode pqNode : top3) {
+            result.add(pqNode.sentence);
+        }
+        if(result.isEmpty()) {
+            current = root;
+        }
+        return result;
+    }
+
+    List<PQNode> searchTop3(TrieNode node, String sofar) {
+
+        if(node == null) {
+            return new ArrayList<PQNode>();
+        }
+
+        PriorityQueue<PQNode> pq = new PriorityQueue(new Comparator<PQNode>() {
+           public int compare(PQNode a, PQNode b) {
+               if(a.hotCount != b.hotCount)
+                   return b.hotCount - a.hotCount;
+
+               return a.sentence.compareTo(b.sentence);
+           }
+        });
+
+         if(node.isEndOfWord) {
+            pq.offer(new PQNode(node.hotCount, sofar));
          }
-         char[] arr = balls.toCharArray();
-         int p = partition(arr, 0, arr.length-1, 'R');
 
-         partition(arr, p+1, arr.length-1, 'G');
-
-         //dualPartition(arr, 0, arr.length-1, 'R', 'B');
-
-         return new String(arr);
-
-    }
-
-    static int partition(char[] arr, int start, int end, char pivot) {
-        int j = start-1;
-        if(start < end) {
-
-            for(int i=start; i<=end; i++) {
-                if(pivot == arr[i]) {
-                    j++;
-                    char tmp = arr[i];
-                    arr[i] = arr[j];
-                    arr[j] = tmp;
-                }
+        for(Map.Entry<Character, TrieNode> entry : node.children.entrySet()) {
+            char c = entry.getKey();
+            TrieNode child = entry.getValue();
+            List<PQNode> top3 = searchTop3(child, sofar + c);
+            for(PQNode pqNode : top3) {
+                pq.offer(pqNode);
             }
-
         }
-        return j;
 
+        List<PQNode> result = new ArrayList<>();
+        int i=0;
+        while(i < 3 && !pq.isEmpty()) {
+            result.add(pq.poll());
+            i++;
+        }
+        return result;
     }
 
-    static void dualPartition(char[] arr, int start, int end, char lp, char rp) {
-        int lo = start-1;
-        int hi = end+1;
+    void addSentence(String s, int times, int inputCnt) {
+        TrieNode curr = root;
+        int i = 0;
 
-        if(start < end) {
-
-            for(int i=start; i<=end; i++) {
-                if(lo <= hi) {
-                    if(lp == arr[i]) {
-                        lo++;
-                        char tmp = arr[i];
-                        arr[i] = arr[lo];
-                        arr[lo] = tmp;
-                    } else if(rp == arr[i]) {
-                        hi--;
-                        char tmp = arr[i];
-                        arr[i] = arr[hi];
-                        arr[hi] = tmp;
-                        while(arr[hi] == rp) {
-                            hi--;
-                        }
-
-                    }
-                }
+        while(i < s.length()) {
+            char c = s.charAt(i);
+            i++;
+            if(curr.children.containsKey(c)) {
+                curr = curr.children.get(c);
+            } else {
+                TrieNode node = new TrieNode();
+                curr.children.put(c, node);
+                curr = node;
             }
-
         }
-        //return j;
-
+        curr.isEndOfWord = true;
+        curr.hotCount = curr.hotCount + times + inputCnt;
     }
 
+    class PQNode {
+        int hotCount;
+        String sentence;
+        PQNode(int cnt, String s) {
+            hotCount = cnt;
+            sentence = s;
+        }
+    }
+    class TrieNode {
+        Map<Character, TrieNode> children;
+        boolean isEndOfWord = false;
+        int hotCount = 0;
+        TrieNode() {
+            children = new HashMap<>();
+        }
+    }
+}
+
+/**
+ * Your AutocompleteSystem object will be instantiated and called as such:
+ * AutocompleteSystem obj = new AutocompleteSystem(sentences, times);
+ * List<String> param_1 = obj.input(c);
+ */
