@@ -17,7 +17,7 @@
  *
  * Recursion:
  *
- * Start by comparing the string in reverse order, one character at a time.
+ * Start by comparing the string, one character at a time.
  *
  * Now we have two cases:
  *

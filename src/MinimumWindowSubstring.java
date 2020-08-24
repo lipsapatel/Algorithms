@@ -32,7 +32,7 @@ import java.util.HashSet;
  * 6) Repeat step 3, to increase right window.
  *
  * Time Complexity: O(s + t)
- * Space Complexity: O(s + t)
+ * Space Complexity: O(1) Because the hashmap for t and s will be of fixed size 128.
  *
  * resources/MinimumWindowSubstring1.jpg
  * resources/MinimumWindowSubstring2.jpg
@@ -84,6 +84,8 @@ import java.util.HashSet;
  * Space Complexity: O(s + t)
  *
  * The above mentioned brute force can be optimized to O(s^2)
+ * by maintaining set at each starting index of substring.
+ *
  * hello, hellow If you set is empty at hello, then all later substring will be greater
  * starting from h.
  *

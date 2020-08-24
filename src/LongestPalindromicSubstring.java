@@ -13,6 +13,12 @@
  Input: "cbbd"
  Output: "bb"
 
+ Brute Force Approach
+ 1) Find all substrings
+ 2) Check if it's palindrome or not
+
+ Time Complexity: O(n^3)
+
 Approach
 
  1) Expand around the center.

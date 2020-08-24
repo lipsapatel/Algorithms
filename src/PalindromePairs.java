@@ -2,6 +2,7 @@ import Node.TrieNode;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.HashSet;
 import java.util.List;
 
 /**
@@ -38,57 +39,31 @@ import java.util.List;
  *
  * Using Trie:
  *
- * There are 3 cases
- *
- * 1) Case 1: Same length, reverse of each other
- *            Example: cat - tac
- *
- * 2) Case 2: when first word length is greater than second word
- *            Example: Banana - nab
- *            In trie it should match the end of word
- *            Remaining string should be palindrome - ana
- *
- * 3) Case 3: When second word length is greater than first word.
- *            Example: Tac - lolcat
- *            In trie, remaining should be palindrome - lol
- *
  * Approach:
  *
- * 1) Reverse each word and build trie.
- * 2) Trie will store endOfWord and list of indexes which include index at the end and
- *    at every node after which the remaining is palindrome.
- * 3) While adding trie node, check if remaining string is palindrome. If it is
- *    palindrome, add the word index to palindromePrefixRemaining.
+ * 1) Build regular trie
+ * 2) Check the reverse word in regular trie
+ * 3) If at any point you find endOfWord in trie, check if remaining is palindrome
+ *    in reverse word.
+ * 4) If it does, the add to set
  *
- *  Find Palindrome pairs.
+ * 5) Build reverse trie
+ * 6) Repeat step 2 to 4
  *
- * 1) If all characters of word are matched, Case 1 and 3
- *     Then create pair of index and palindromePrefixRemaining.
- * 2) If all characters matched till the end of the word, Case 3
- *    then check if remaining string is palindrome.
- *    If it is palindrome, the create pair of index and palindromePrefixRemaining
- *    Banana - nab
+ * Time Complexity: O(nk) where n are the number of words and
+ *                              k = max length of word
+ * Build regular trie = O(nk)
+ * Build reverse trie = O(nk)
+ * Search in regular trie = O(nk)
+ * Search in reverse trie = O(nk)
  *
- * Time Complexity:
- *
- * O(n * k^2)
- *
- * Building Trie and find pairs: O(n * k)
- * Has palindrome remaining : O(k^2)
- *
- * Space Complexity: O(n^2 * k)
- * If there are n^2 pairs, then each node will have upto n indexes
- * Each word will form pair with all words.
- *
- * O(n * k) - Trie space
+ * Space Complexity = O(nk)
  *
  * resources/PalindromePairs1.jpg
  * resources/PalindromePairs2.jpg
  * resources/PalindromePairs3.jpg
  * resources/PalindromePairs4.jpg
  * resources/PalindromePairs5.jpg
- * resources/PalindromePairs6.jpg
- * resources/PalindromePairs7.jpg
  */
 public class PalindromePairs {
 
@@ -128,20 +103,35 @@ public class PalindromePairs {
     private static TrieNode root;
 
     private static List<List<Integer>> palindromePairs(String[] words) {
-        //Build Trie of all reverse words
+        String[] reverseWords = new String[words.length];
+
+        for (int i = 0; i < words.length; i++) {
+            String reverse = new StringBuilder(words[i]).reverse().toString();
+            reverseWords[i] = reverse;
+        }
+
+        //Build regular trie
         buildTrie(words);
 
-        List<List<Integer>> pairs = new ArrayList<>();
-        findPalindromePairs(pairs, words);
-        return pairs;
+        HashSet<List<Integer>> set = new HashSet<>();
+
+        //Search palindrome pairs
+        search(set, reverseWords, true);
+
+        //Build reverse trie
+        buildTrie(reverseWords);
+
+        //Search palindrome pairs
+        search(set, words, false);
+
+        return new ArrayList<>(set);
     }
 
     private static void buildTrie(String[] words) {
         root = new TrieNode();
 
         for(int i = 0; i < words.length; i++) {
-            String word = new StringBuilder(words[i]).reverse().toString();
-            insert(word, i);
+            insert(words[i], i);
         }
     }
 
@@ -149,11 +139,6 @@ public class PalindromePairs {
         TrieNode current = root;
 
         for(int i = 0; i < word.length(); i++) {
-
-            //Check if the remaining is palindrome then store index.
-            if(remainingIsPalindrome(word, i)) {
-                current.palindromePrefixRemaining.add(index);
-            }
 
             char ch = word.charAt(i);
             TrieNode node = current.children.get(ch);
@@ -167,7 +152,6 @@ public class PalindromePairs {
 
         current.endOfWord = true; //Only do for nodes which are not root
         current.startIdx = index; //Adding the word index when it ends
-        current.palindromePrefixRemaining.add(index);//Adding word index to last node
     }
 
     private static boolean remainingIsPalindrome(String word, int index) {
@@ -184,7 +168,9 @@ public class PalindromePairs {
         return true;
     }
 
-    private static void findPalindromePairs(List<List<Integer>> pairs, String[] words) {
+    private static void search(HashSet<List<Integer>> set,
+                               String[] words, boolean reverseSearch) {
+
         for(int i = 0; i < words.length; i++) {
             TrieNode current = root;
             String word = words[i];
@@ -192,11 +178,12 @@ public class PalindromePairs {
             //Search
             for(int j = 0; j < word.length(); j++) {
 
-                //Case 3: Length of word > nodes
-                //banana - nab - forms palindrome with word ending here
-                if(current.endOfWord && remainingIsPalindrome(word, j)) {
-                    if(current.startIdx != i) {
-                        pairs.add(Arrays.asList(i, current.startIdx));
+                if(current.endOfWord && remainingIsPalindrome(word, j) &&
+                    current.startIdx != i) {
+                    if(reverseSearch) {
+                        set.add(Arrays.asList(current.startIdx, i));
+                    } else {
+                        set.add(Arrays.asList(i, current.startIdx));
                     }
                 }
 
@@ -208,21 +195,21 @@ public class PalindromePairs {
                 }
             }
 
-            //Case 1 (cat and tac) and Case 2 (tac - lolcat)
-            if(current != null) {
-                for(int index: current.palindromePrefixRemaining) {
-                    if(index != i) {
-                        pairs.add(Arrays.asList(i, index));
-                    }
+            //This is for last node for example BAN - NAB
+            if(current != null && current.endOfWord &&
+                    current.startIdx != i) {
+                if(reverseSearch) {
+                    set.add(Arrays.asList(current.startIdx, i));
+                } else {
+                    set.add(Arrays.asList(i, current.startIdx));
                 }
             }
-            //For current == null, go to next word
         }
     }
 
     public static void main(String[] args) {
         String[] words = {"A", "B", "BAN", "BANANA", "BAT", "LOLCAT", "MANA",
-                          "POPCAT", "CAT", "NAB", "NANA", "NOON", "ON", "TA", "TAC"};
+                          "NAB", "NANA", "NOON", "ON", "TA", "TAC"};
 
         List<List<Integer>> pairs = palindromePairsBruteForce(words);
 

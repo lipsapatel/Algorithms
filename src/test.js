@@ -1,132 +1,105 @@
 
-/*
- * Complete the function below.
- */
-static Map<Integer, DLLNode> cache;
-static int maxCap;
-static int currCap;
-static DLLNode head;
-static DLLNode tail;
+class Result {
 
-static int[] implement_LRU_cache(int capacity, int[] query_types, int[] keys, int[] values) {
+    /*
+     * Complete the solver function below.
+     *
+     * The function accepts STRING_ARRAY dictionary as parameter. and string array
+     * mat as input matrix. The function returns the list of all possible words from
+     * dictionary found in the matrix mat
+     */
 
-    init(capacity);
-    List<Integer> list = new ArrayList<>();
+    public static List<String> boggle_solver(List<String> dictionary, List<String> mat) {
+    int rows = mat.size();
+    //assuming all strings of same length in mat
+    int cols = mat.get(0).length();
+    char[][] arr = new char[rows][cols];
+    Set<String> set = new HashSet<>();
 
-    for(int i=0; i<query_types.length; i++) {
-        if(query_types[i] == 0) {
-            list.add(get(keys[i]));
-        } else {
-            put(keys[i], values[i]);
+    TrieNode root = buildTrie(dictionary);
+
+    buildMatrix(arr, mat);
+
+    for(int i=0; i<rows; i++) {
+    for(int j=0; j<cols; j++) {
+    //check if we have a word starting this char
+    if(root.children.containsKey(arr[i][j])) {
+    boolean[][] visited = new boolean[rows][cols];
+    visited[i][j] = true;
+    explore(i, j, arr, root.children.get(arr[i][j]), visited, set, "" + arr[i][j]);
+}
+}
+}
+return new ArrayList<>(set);
+}
+
+private static void buildMatrix(char[][] arr, List<String> mat) {
+    for(int i=0; i<mat.size(); i++) {
+        String word = mat.get(i);
+        for(int j=0; j<word.length(); j++) {
+            arr[i][j] = word.charAt(j);
         }
     }
-
-    int[] result = new int[list.size()];
-    for(int j=0; j<list.size(); j++) {
-        result[j] = list.get(j);
-    }
-    return result;
 }
 
-static void init(int capacity) {
-    cache = new HashMap<>();
-    maxCap = capacity;
-    currCap = 0;
+static void explore(int row, int col, char[][] arr, TrieNode root, boolean[][] visited, Set<String> set, String sofar) {
+
+
+    if(root.children.containsKey('$')) {
+        set.add(sofar);
+    }
+
+    int[] nextRows = new int[]{-1, -1, 0, 1, 1, 1, 0, -1};
+    int[] nextCols = new int[]{0, 1, 1, 1, 0, -1, -1, -1};
+
+    for(int k=0; k<8; k++) {
+        int nextRow = row + nextRows[k];
+        int nextCol = col + nextCols[k];
+
+        if(isSafe(arr, nextRow, nextCol) && !visited[nextRow][nextCol] && root.children.containsKey(arr[nextRow][nextCol])) {
+            visited[nextRow][nextCol] = true;
+            explore(nextRow, nextCol, arr, root.children.get(arr[nextRow][nextCol]), visited, set, sofar + arr[nextRow][nextCol]);
+            visited[nextRow][nextCol] = false;
+        }
+    }
 }
 
-static int get(int key) {
-    if(cache.containsKey(key)) {
-        DLLNode node = cache.get(key);
-        unlink(node);
-        moveFront(node);
-        return node.value;
+static TrieNode buildTrie(List<String> words) {
+    TrieNode root = new TrieNode();
+
+    for(String word : words) {
+        int i = 0;
+        TrieNode curr = root;
+        while(i < word.length()) {
+            if(curr.children.containsKey(word.charAt(i))) {
+                curr = curr.children.get(word.charAt(i));
+            } else {
+                TrieNode node = new TrieNode();
+                curr.children.put(word.charAt(i), node);
+                curr = node;
+            }
+            i++;
+        }
+        curr.children.put('$', null);
     }
-    return -1;
+    return root;
 }
 
-static void put(int key, int value) {
-    if(cache.containsKey(key)) {
-        DLLNode node = cache.get(key);
-        unlink(node);
-        moveFront(node);
-        node.value = value;
-        return;
+static boolean isSafe(char[][] arr, int i, int j) {
+    if(i<0 || i>=arr.length || j<0 || j>=arr[0].length) {
+        return false;
     }
-    if(currCap == maxCap) {
-        evict();
-    }
-    currCap++;
-    DLLNode node = new DLLNode(key, value);
-    moveFront(node);
-    cache.put(key, node);
+    return true;
 }
 
-static void evict() {
-    if(tail == null)
-        return;
-    cache.remove(tail.key);
-    if(head == tail) {
-        head = null;
-        tail = null;
-        currCap--;
-        return;
-    }
-    DLLNode newTail = tail.prev;
-    tail.prev = null;
-    if(newTail != null) {
-        newTail.next = null;
-    }
-    tail = newTail;
-    currCap--;
-}
+static class TrieNode {
+    Map<Character, TrieNode> children;
 
-static void unlink(DLLNode node) {
-    DLLNode p = node.prev;
-    DLLNode n = node.next;
-
-    if(p != null) {
-        p.next = n;
+    TrieNode() {
+        children = new HashMap<>();
     }
-    if(n != null) {
-        n.prev = p;
-    }
-
-    if(node == tail) {
-        tail = tail.prev;
-    }
-    if(node == head) {
-        head = head.next;
-    }
-
-    node.next = null;
-    node.prev = null;
-
-}
-
-static void moveFront(DLLNode node) {
-    if(head == null) {
-        head = node;
-        tail = node;
-        return;
-    }
-    node.next = head;
-    head.prev = node;
-    head = node;
-}
-
-//MAP DLL
-static class DLLNode {
-    int key;
-    int value;
-    DLLNode prev;
-    DLLNode next;
-    DLLNode(int k, int v) {
-    key = k;
-    value = v;
-}
 }
 
 
-
-
+}
 

@@ -123,37 +123,50 @@ public class PatternSearching {
             if(txt.charAt(i) == pattern.charAt(j)) { //Match move forward
                 i++;
                 j++;
-            }
-            //There's a match
-            if(j == m) {
-                result.add(i - j); //found the substring match
-                j = lps[j - 1];
-            } else if (i < n && txt.charAt(i) != pattern.charAt(j)) {
+
+                //There's a match
+                if (j == m) {
+                    result.add(i - j); //found the substring match
+                    j = lps[j - 1];
+                }
+            } else if (txt.charAt(i) != pattern.charAt(j)) {
 
                 if(j != 0) {
                     j = lps[j - 1];
                 } else {
-                    i = i + 1; //If j = 0 starting from first, move i forward to next position
+                    i++; //If j = 0 starting from first, move i forward to next position
                 }
             }
         }
-        return result;
+        if (result.isEmpty()) {
+            result.add(-1);
+            return result;
+        } else {
+            return result;
+        }
     }
 
+    //Longest proper prefix which is also a proper suffix
     private static void computeLPSTable(int[] lps, String pattern) {
 
-        for(int i = 1; i < pattern.length(); i++) {
+        int i = 1;
+        int j = 0;
 
-            int j = lps[i - 1]; //Update prefix boundary
-
-            //Move to the last prefix boundary match
-            while(j > 0 && pattern.charAt(i) != pattern.charAt(j)) {
-                j = lps[j - 1];
-            }
+        while(i < pattern.length()) {
 
             //If prefix boundary matches the suffix boundary, then increase the prefix length
-            if (pattern.charAt(i) == pattern.charAt(j)) {
+            if(pattern.charAt(i) == pattern.charAt(j)) {
                 lps[i] = j + 1;
+                i++;
+                j++;
+
+            } else {
+                if(j > 0) {
+                    j = lps[j - 1]; //Update prefix boundary,
+                    // Move to the last prefix boundary match
+                } else {
+                    i++;
+                }
             }
         }
     }

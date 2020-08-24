@@ -94,7 +94,7 @@ public class ImplementTrieDataStructure {
         if(shouldDeleteNode) {
             //Delete node
             current.children.remove(ch);
-            return current.children.size() == 0;
+            return current.children.size() == 0 && !current.endOfWord;
         }
         return false;
     }

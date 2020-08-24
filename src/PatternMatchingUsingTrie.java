@@ -35,6 +35,9 @@ import java.util.Map;
  * Time Complexity:
  * Build Trie: O(nk) if we have n words of k length
  * Search: O(mk) where m = number of words that matched the pattern
+ * Worst case Time Complexity when pattern is *
+ * so you traverse whole trie which O(nkp) where n = total number of words
+ * k = length of word and p = length of pattern
  *
  * Space Complexity: O(nk)
  */

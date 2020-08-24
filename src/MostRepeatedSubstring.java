@@ -5,28 +5,38 @@ import java.util.Map;
 /**
  * Most Repeated Substring
  * Example: "banana"
- * Output: "a"
+ * Output: "a" repeated 3 times
+ * "na" length > 1 repeated 2 times
  *
  * Approach
  *
  * 1) Construct suffix trie for all the suffixes.
  * 2) Root ask all it's children to collect dollars.
- * The child having maximum dollars is the most repeating substring.
+ * 3) Pass the prefix, the string till that prefix is repeated if dollar count > 1
+ * 4) Dollar count represent how many times it's repeated.
+ * 5) Keep the track of maximum repeated count and maximum repeated substring using
+ * global variables.
  *
  * Time Complexity: O(n^2) - Construction time and collecting dollars
  * Space Complexity: O(n^2)
  *
- * resources/MostRepeatedSubstring.jpg
+ * resources/MostRepeatedSubstring1.jpg
+ * resources/MostRepeatedSubstring2.jpg
  *
- * Least repeated substring will be the child with min dollar.
+ * Least repeated substring will be the child with min dollar greater than 1.
  */
 public class MostRepeatedSubstring {
 
     private static TrieNode root;
+    private static String mrs;
+    private static int mrc; //Anything greater than 1 is repeated.
 
     private static String mostRepeatedSubstring(String str) {
+        mrs = "";
+        mrc = 1;
         buildSuffixTrie(str);
-        return getMostRepeatedSubstring();
+        getMostRepeatedSubstring(root, ""); //node and prefix
+        return mrs;
     }
 
     private static void buildSuffixTrie(String str) {
@@ -56,44 +66,38 @@ public class MostRepeatedSubstring {
         current.children.put('$', new TrieNode());
     }
 
-    private static String getMostRepeatedSubstring() {
-        TrieNode current = root;
+    private static int getMostRepeatedSubstring(TrieNode current, String prefix) {
 
         //Get the count of all children. Collect dollars for all children
         //The child with maximum dollars is the most repeating
         int count = 0; //if least repeating substring Integer.MAX_VALUE;
-        String mostRepeatingSubstring = "";
 
         for(Map.Entry<Character, TrieNode> child: current.children.entrySet()) {
 
-            int dollar = collectDollars(child.getValue());
-
-            if (count < dollar) { //Change > for least repeating substring
-                count = dollar;
-                mostRepeatingSubstring = child.getKey().toString();
-            }
-        }
-        return mostRepeatingSubstring;
-    }
-
-    private static int collectDollars(TrieNode current) {
-        int count = 0;
-
-        for(Map.Entry<Character, TrieNode> child: current.children.entrySet()) {
-            if(child.getKey() == '$') {
+            if (child.getKey() == '$') {
                 count = count + 1;
             } else {
-                count = count + collectDollars(child.getValue());
+                count = count + getMostRepeatedSubstring(child.getValue(), prefix + child.getKey());
             }
         }
+
+        if (count > mrc && prefix.length() > 1) {
+                mrc = count;
+                mrs = prefix;
+        }
+
         return count;
     }
 
     public static void main(String[] args) {
         String str = "banana";
-        System.out.println("The most repeating substring is " + mostRepeatedSubstring(str));
+        System.out.println("The most repeating substring of length greater than 1 is " + mostRepeatedSubstring(str));
 
         str = "geeksgeeks";
-        System.out.println("The most repeating substring is " + mostRepeatedSubstring(str));
+        System.out.println("The most repeating substring is of length greater than 1 is " + mostRepeatedSubstring(str));
+
+        str = "mississippiss";
+        System.out.println("The most repeating substring is of length greater than 1 is " + mostRepeatedSubstring(str));
+
     }
 }

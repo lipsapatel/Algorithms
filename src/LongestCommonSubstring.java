@@ -11,8 +11,7 @@ import java.util.Map;
  * Approach
  * 1) Build generalized suffix trie for all the suffixes of x and y.
  * 2) Count the dollars and hash
- * 3) If there are more than 0 dollars and hash then I am common and I
- * will append myself to longest substring.
+ * 3) If there are more than 0 dollars and hash then I am common and I will check if I am longest
  *
  * Time Complexity: O(n^2 + m^2)
  * Construction time = O(n^2 + m^2)
@@ -25,15 +24,18 @@ import java.util.Map;
  *
  * resources/LongestCommonSubstring1.jpg
  * resources/LongestCommonSubstring2.jpg
+ * resources/LongestCommonSubstring3.jpg
  */
 public class LongestCommonSubstring {
 
     private static TrieNode root;
+    private static String lcs;
 
     private static String longestCommonSubstring(String s1, String s2) {
+        lcs = "";
         buildSuffixTrie(s1, s2);
-        return getLongestCommonSubstring(root, '*').getKey(); //No character to append
-        // for root, so using dummy character to identify the root
+        getLongestCommonSubstring(root, ""); //node, prefix
+        return lcs;
     }
 
     private static void buildSuffixTrie(String s1, String s2) {
@@ -67,10 +69,9 @@ public class LongestCommonSubstring {
         current.children.put(endChar, new TrieNode());
     }
 
-    private static Pair<String, int[]> getLongestCommonSubstring(TrieNode current, Character ch) {
+    private static int[] getLongestCommonSubstring(TrieNode current, String prefix) {
         int dollarCount = 0;
         int hashCount = 0;
-        String longestCommonSubstring = "";
 
         //DFS
         for(Map.Entry<Character, TrieNode> child: current.children.entrySet()) {
@@ -79,21 +80,17 @@ public class LongestCommonSubstring {
             } else if(child.getKey() == '#') {
                 hashCount = hashCount + 1;
             } else {
-                Pair<String, int[]> pair = getLongestCommonSubstring(child.getValue(), child.getKey());
-                dollarCount = dollarCount + pair.getValue()[0];
-                hashCount = hashCount + pair.getValue()[1];
-
-                if(pair.getKey().length() > longestCommonSubstring.length()) {
-                    longestCommonSubstring = pair.getKey();
-                }
+                int[] count = getLongestCommonSubstring(child.getValue(), prefix + child.getKey());
+                dollarCount = dollarCount + count[0];
+                hashCount = hashCount + count[1];
             }
         }
 
         //I am common if I have both dollar and hash and nothing to append for root
-        if(dollarCount > 0 && hashCount > 0 && ch != '*') {
-            longestCommonSubstring = ch + longestCommonSubstring;
+        if(dollarCount > 0 && hashCount > 0 && prefix.length() > lcs.length()) {
+            lcs = prefix;
         }
-        return new Pair<>(longestCommonSubstring, new int[]{dollarCount, hashCount});
+        return new int[]{dollarCount, hashCount};
     }
 
     public static void main(String[] args) {
