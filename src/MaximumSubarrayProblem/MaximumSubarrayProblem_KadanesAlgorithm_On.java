@@ -9,9 +9,11 @@ package MaximumSubarrayProblem;
  * Output: Contiguous subarray with largest sum is 2, 7, -2, 3 = 10
  *
  * Time Complexity: O(n)
+ * Space Complexity: O(1)
  *
  * Find the max_ending_here sum
- * If you get something greater then update that otherwise reset it to array[i]
+ * If you get something greater by adding max_ending_here + array[i]
+ * then update that otherwise reset it to array[i]
  *
  * update max_sum with maximum of two - max_end_here and max_sum
  */

@@ -65,8 +65,11 @@ import java.util.TreeMap;
  * Time Complexity: Sort(nlogn) and Add/Remove from priority queue(logn) = O(nlogn)
  *
  * We are using sorted tree map instead of priority queue because the
- * remove in priority queue is n instead of logn
+ * remove in priority queue is n because we need to search element which is n
+ * instead of logn
  * Tree map's remove is logn
+ *
+ * Remove and contains in priority queue is O(n)
  *
  * Space Complexity: O(n)
  */
@@ -154,6 +157,7 @@ public class SkylineProblem {
                 }
             }
 
+            //Get the highest key
             int currentMaxHeight = queue.lastKey();
 
             if(prevMaxHeight != currentMaxHeight) {

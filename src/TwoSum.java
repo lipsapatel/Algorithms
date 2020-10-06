@@ -1,4 +1,5 @@
 import java.util.Arrays;
+import java.util.HashSet;
 
 /**
  * Given an array of integers that is already sorted in ascending order,
@@ -39,9 +40,33 @@ public class TwoSum {
         return new int[] {-1, -1}; // never comes here if sum exists
     }
 
+    /**
+     * If the array a is not sorted
+     * TC: O(n)
+     * SC: O(n)
+     * @param a
+     * @param k
+     * @return boolean
+     */
+    private static boolean twoSumNotSorted(int[] a, int k) {
+        HashSet<Integer> set = new HashSet<>();
+
+        for(int i = 0; i < a.length; i++) {
+            if(set.contains(k - a[i])) {
+                return true;
+            }
+            set.add(a[i]);
+        }
+        return false;
+    }
+
     public static void main(String[] args) {
         int[] numbers = {0, 0, 3, 4};
         int target = 0;
         System.out.println("The indexes are: " + Arrays.toString(twoSum(numbers, target)));
+
+        int[] a = {-1, 4, 3, 7, 2, -5, 1};
+        int k = 4;
+        System.out.println("The two sum possible " + twoSumNotSorted(a, k));
     }
 }

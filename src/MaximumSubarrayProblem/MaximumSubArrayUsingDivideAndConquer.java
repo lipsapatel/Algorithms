@@ -1,3 +1,5 @@
+package MaximumSubarrayProblem;
+
 /**
  * Maximum Subarray or Largest Sum Contiguous Subarray problem - Divide and Conquer
  *
@@ -33,6 +35,8 @@
  *    5) Left half and right half of the array will be solved recursively
  *
  *    TC = O(nlogn)
+ *    There are logn levels and work at each level is n so nlogn
+ *    SC = O(logn) - recursive call stack
  */
 public class MaximumSubArrayUsingDivideAndConquer {
 
@@ -52,13 +56,17 @@ public class MaximumSubArrayUsingDivideAndConquer {
             return a[start];
         }
 
+        if(start > end) { //In case of one or 2 elements
+            return 0;
+        }
+
         int mid = start + (end - start)/2;
         int leftMaxSum = maxSubArrayDivideAndConquer(a, start, mid);
         int rightMaxSum = maxSubArrayDivideAndConquer(a, mid + 1, end);
 
         //Lets calculate the part in which subarray will start in left half and ends in right half
         int sum = 0;
-        int leftMidMax = 0;
+        int leftMidMax = Integer.MIN_VALUE;
         for (int i = mid; i >= start; i--) {
             sum += a[i];
             if (sum > leftMidMax) {
@@ -67,7 +75,7 @@ public class MaximumSubArrayUsingDivideAndConquer {
         }
 
         sum = 0;
-        int rightMidMax = 0;
+        int rightMidMax = Integer.MIN_VALUE;
         for (int i = mid + 1; i <= end; i++) {
             sum += a[i];
             if (sum > rightMidMax) {

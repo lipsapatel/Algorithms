@@ -41,7 +41,7 @@ import java.util.TreeSet;
  *       with ending time of current interval.
  * 4) At the end stack contains merged intervals.
  *
- * Time Complexity: O(nlogn)
+ * Time Complexity: O(nlogn + n) = O(nlogn) where nlogn is for sort and n for merge.
  * Space Complexity: O(n)
  *
  * You can also use queue/Linked list
@@ -77,6 +77,8 @@ public class MergeIntervals {
                                                         interval[1]);
             }
         }
+        Arrays.copyOfRange(intervals, 0, 1);
+
         return mergedIntervals.toArray(new int[mergedIntervals.size()][]);
     }
 

@@ -14,6 +14,8 @@ package MaximumSubarrayProblem;
  * MS(i) = Math.max(solution(i-1)+array[i], array[i]) = solution[i]
  *
  * Return the maximum value for solution array
+ *
+ * resources/MaximumSubarrayProblemUsingDynamicProgramming.jpg
  */
 public class MaximumSubarrayProblem_DynamicProgramming_On {
 
