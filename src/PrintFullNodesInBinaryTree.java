@@ -1,5 +1,4 @@
 import Node.BinaryTreeNode;
-import com.sun.org.apache.xpath.internal.SourceTree;
 
 /**
  * Given a binary tree, print all the nodes which are full nodes.

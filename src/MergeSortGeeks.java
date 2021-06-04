@@ -4,10 +4,11 @@ import java.util.List;
 /**
  * Merge Sort is a divide and conquer algorithm.
  *
- * It divides input array in two halves, calls itself for the two halves and then merges the two sorted halves.
+ * It divides input array in two halves, calls itself for the two halves and
+ * then merges the two sorted halves.
  * The merge() function is used for merging two halves.
- * The merge(arr, l, m, r) is key process that assumes that arr[l..m] and arr[m+1..r] are sorted and
- * merges the two sorted sub-arrays into one.
+ * The merge(arr, l, m, r) is key process that assumes that arr[l..m] and arr[m+1..r]
+ * are sorted and merges the two sorted sub-arrays into one.
  *
  * Time Complexity: For all cases O(nlogn)
  * Space Complexity: O(n) Recursive call Stack space: O(logn)
@@ -15,11 +16,12 @@ import java.util.List;
  *
  *
  * Useful for sorting linked list.
- * In linked list random access is not possible like in array and moreover they are not stored
- * in contiguous memory location.
+ * In linked list random access is not possible like in array and
+ * moreover they are not stored in contiguous memory location.
  *
  * The items can be inserted in linked list in middle in O(1) time.
- * There fore merge operation of mergesort can be implement without extra space for linked list.
+ * There fore merge operation of mergesort can be implement without extra space
+ * for linked list.
  *
  * Quick sort needs random access therefore good in array
  * Merge sort is sequential access so linked list is good.

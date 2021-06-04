@@ -1,5 +1,4 @@
 import Node.BinaryTreeNode;
-import javafx.util.Pair;
 
 /**
  * In a Binary Tree, Check if two nodes are cousins.

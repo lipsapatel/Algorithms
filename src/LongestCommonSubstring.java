@@ -1,6 +1,4 @@
 import Node.TrieNode;
-import javafx.util.Pair;
-
 import java.util.Map;
 
 /**

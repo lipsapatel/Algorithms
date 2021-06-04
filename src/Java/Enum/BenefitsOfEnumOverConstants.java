@@ -1,7 +1,5 @@
 package Java.Enum;
 
-import sun.awt.windows.ThemeReader;
-
 /**
  * Both enum and constants in usage
  * This method shows the benefit of using Enum over Constants

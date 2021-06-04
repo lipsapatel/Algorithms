@@ -1,7 +1,8 @@
 import java.util.Arrays;
 
 /**
- * The selection sort algorithm sorts an array by repeatedly finding the minimum element (considering ascending order)
+ * The selection sort algorithm sorts an array by repeatedly finding the
+ * minimum element (considering ascending order)
  * from unsorted part and putting it at the beginning
  *
  * arr[] = 64 25 12 22 11
@@ -25,7 +26,8 @@ import java.util.Arrays;
  Time Complexity: O(n2) as there are two nested loops.
 
  Space Complexity: O(1)
- The good thing about selection sort is it never makes more than O(n) swaps and can be useful when memory write is a costly operation.
+ The good thing about selection sort is it never makes more than O(n)
+ swaps and can be useful when memory write is a costly operation.
 
  In Place : Yes, it does not require extra space.
  */
