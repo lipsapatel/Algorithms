@@ -1,3 +1,5 @@
+package IK.Sorting;
+
 import java.util.Arrays;
 
 /**
@@ -46,13 +48,14 @@ public class QuickSort {
     //Place the pivot at it's right position and return it's index
     //Smaller elements placed to left of pivot
     //Larger elements to it's right
-    //is partition stable - yes
+    //is partition stable - No
+    //Time Complexity of Partition: n
     private static int partition(int[] array, int low, int high) {
 
         //Lomuto's partition
         //Swap array[pi] with array[end]; pivot = array[end]
         int pivot = array[high]; //fixed index not good idea, random pivot is overkill, median of 3- 5 values.
-        int i = low - 1;
+        int i = low - 1; //This is less than equal to field, because all elements before i including i itself is less than equal to pivot. All elements to right of i is greater than pivot
 
         for (int j = low; j < high; j++) {
 
