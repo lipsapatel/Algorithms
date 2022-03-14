@@ -46,7 +46,7 @@ import java.util.Random;
  * Time Complexity: O(n)
  * Space Complexity: O(n)
  *
- * Using QuickSort:
+ * Using IK.Sorting.QuickSort:
  *
  * 1) Pick last element as pivot in bolts
  * 2) Partition nuts based on that pivot

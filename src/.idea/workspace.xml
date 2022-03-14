@@ -1,53 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="f7eab500-f522-4c50-83e9-ec3abefe5f94" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/../CourseMaterial/GreenSheetLipsa.xlsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../out/production/Algorithms/Algorithms.iml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../out/production/Algorithms/Google.iml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../out/production/Algorithms/out/production/Algorithms/Algorithms.iml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../out/production/Algorithms/out/production/Algorithms/Google.iml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/inspectionProfiles/profiles_settings.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Pair.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/chartest.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/resources/DivideWithoutOperators1.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/resources/DivideWithoutOperators2.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/resources/DivideWithoutOperators4.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/resources/DivideWithoutOperators5.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/resources/DivideWithoutOperators6.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/resources/DivideWithoutOperators7.jpg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../AlgorithmsAndDataStructuresCheatSheet.docx" beforeDir="false" afterPath="$PROJECT_DIR$/../AlgorithmsAndDataStructuresCheatSheet.docx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../IKVideos/Adhoc/Test.docx" beforeDir="false" afterPath="$PROJECT_DIR$/../IKVideos/Adhoc/Test.docx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../IKVideos/Adhoc/~$Test.docx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/modules.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/vcs.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
+    <list default="true" id="bd87e751-52fe-4c85-917f-6fcbafdf3016" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/.idea/uiDesigner.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Algorithms.iml" beforeDir="false" afterPath="$PROJECT_DIR$/Algorithms.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/BellmanFordShortestPath.java" beforeDir="false" afterPath="$PROJECT_DIR$/BellmanFordShortestPath.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/BubbleSort.java" beforeDir="false" afterPath="$PROJECT_DIR$/BubbleSort.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/CheckIfTwoNodesAreCousins.java" beforeDir="false" afterPath="$PROJECT_DIR$/CheckIfTwoNodesAreCousins.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/CircularLinkedListImplementation.java" beforeDir="false" afterPath="$PROJECT_DIR$/CircularLinkedListImplementation.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/CreateMaximumNumber.java" beforeDir="false" afterPath="$PROJECT_DIR$/CreateMaximumNumber.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/DijkstraAdjacencyListPriorityQueue.java" beforeDir="false" afterPath="$PROJECT_DIR$/DijkstraAdjacencyListPriorityQueue.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/DijkstraAdjacencyListTreeSet.java" beforeDir="false" afterPath="$PROJECT_DIR$/DijkstraAdjacencyListTreeSet.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/DivideWithShiftAndSubtraction.java" beforeDir="false" afterPath="$PROJECT_DIR$/DivideWithoutOperators.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/GraphDepthFirstTraversal.java" beforeDir="false" afterPath="$PROJECT_DIR$/GraphDepthFirstTraversal.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/InsertionSort.java" beforeDir="false" afterPath="$PROJECT_DIR$/InsertionSort.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Java/Enum/BenefitsOfEnumOverConstants.java" beforeDir="false" afterPath="$PROJECT_DIR$/Java/Enum/BenefitsOfEnumOverConstants.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/KnightTourOnAChessBoard.java" beforeDir="false" afterPath="$PROJECT_DIR$/KnightTourOnAChessBoard.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/LongestCommonSubstring.java" beforeDir="false" afterPath="$PROJECT_DIR$/LongestCommonSubstring.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/LongestPathInDAG.java" beforeDir="false" afterPath="$PROJECT_DIR$/LongestPathInDAG.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/LongestPathInWeightedDAG.java" beforeDir="false" afterPath="$PROJECT_DIR$/LongestPathInWeightedDAG.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/MergeSortGeeks.java" beforeDir="false" afterPath="$PROJECT_DIR$/MergeSortGeeks.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/OverlappingRectangles.java" beforeDir="false" afterPath="$PROJECT_DIR$/OverlappingRectangles.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/PairClass.java" beforeDir="false" afterPath="$PROJECT_DIR$/PairClass.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/PermutationOfString.java" beforeDir="false" afterPath="$PROJECT_DIR$/PermutationOfString.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/PrimsMSTUsingAdjacencyListAndPriorityQueueWithoutDecreaseKey.java" beforeDir="false" afterPath="$PROJECT_DIR$/PrimsMSTUsingAdjacencyListAndPriorityQueueWithoutDecreaseKey.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/PrintFullNodesInBinaryTree.java" beforeDir="false" afterPath="$PROJECT_DIR$/PrintFullNodesInBinaryTree.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/SelectionSort.java" beforeDir="false" afterPath="$PROJECT_DIR$/SelectionSort.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ShortestPathInDAG.java" beforeDir="false" afterPath="$PROJECT_DIR$/ShortestPathInDAG.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Algorithms/Algorithms.iml" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Algorithms/Algorithms.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/HeapSort.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/NutsAndBoltsProblem.java" beforeDir="false" afterPath="$PROJECT_DIR$/NutsAndBoltsProblem.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -57,7 +15,6 @@
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
   </component>
-  <component name="ProjectId" id="1tUFoSTvXSbzVcyRNrFAwUdzaqJ" />
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
@@ -66,16 +23,44 @@
   </component>
   <component name="PropertiesComponent">
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
+    <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
   </component>
-  <component name="RunManager">
+  <component name="RecentsManager">
+    <key name="MoveClassesOrPackagesDialog.RECENTS_KEY">
+      <recent name="IK.Sorting" />
+    </key>
+  </component>
+  <component name="RunManager" selected="Application.HeapSort">
     <configuration default="true" type="Applet" factoryName="Applet">
       <option name="WIDTH" value="400" />
       <option name="HEIGHT" value="300" />
       <option name="POLICY_FILE" value="$APPLICATION_HOME_DIR$/bin/appletviewer.policy" />
       <module />
       <method />
+    </configuration>
+    <configuration name="HeapSort" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="IK.Sorting.HeapSort" />
+      <module name="Algorithms" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="QuickSort" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="IK.Sorting.QuickSort" />
+      <module name="Algorithms" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="IK.Sorting.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
     </configuration>
     <configuration default="true" type="Application" factoryName="Application">
       <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
@@ -108,18 +93,24 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="Application.HeapSort" />
+        <item itemvalue="Application.QuickSort" />
+      </list>
+    </recent_temporary>
   </component>
   <component name="SvnConfiguration">
     <configuration />
   </component>
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
-      <changelist id="f7eab500-f522-4c50-83e9-ec3abefe5f94" name="Default Changelist" comment="" />
-      <created>1622815935747</created>
+      <changelist id="bd87e751-52fe-4c85-917f-6fcbafdf3016" name="Default Changelist" comment="" />
+      <created>1646867229051</created>
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
-      <updated>1622815935747</updated>
-      <workItem from="1622815938917" duration="328000" />
+      <updated>1646867229051</updated>
+      <workItem from="1646867231919" duration="23690000" />
     </task>
     <servers />
   </component>
@@ -127,9 +118,53 @@
     <option name="version" value="1" />
   </component>
   <component name="WindowStateProjectService">
-    <state x="92" y="92" width="1736" height="976" key="DiffContextDialog" timestamp="1622816122566">
+    <state x="761" y="471" width="397" height="221" key="#com.intellij.refactoring.move.moveClassesOrPackages.MoveClassesOrPackagesDialog.classes" timestamp="1647097396503">
       <screen x="0" y="0" width="1920" height="1160" />
     </state>
-    <state x="92" y="92" width="1736" height="976" key="DiffContextDialog/0.0.1920.1160@0.0.1920.1160" timestamp="1622816122566" />
+    <state x="761" y="471" width="397" height="221" key="#com.intellij.refactoring.move.moveClassesOrPackages.MoveClassesOrPackagesDialog.classes/0.0.1920.1160@0.0.1920.1160" timestamp="1647097396503" />
+    <state x="740" y="284" key="FileChooserDialogImpl" timestamp="1647216141347">
+      <screen x="0" y="0" width="1920" height="1160" />
+    </state>
+    <state x="740" y="284" key="FileChooserDialogImpl/0.0.1920.1160@0.0.1920.1160" timestamp="1647216141347" />
+    <state width="1877" height="314" key="GridCell.Tab.0.bottom" timestamp="1647195126645">
+      <screen x="0" y="0" width="1920" height="1160" />
+    </state>
+    <state width="1877" height="314" key="GridCell.Tab.0.bottom/0.0.1920.1160@0.0.1920.1160" timestamp="1647195126645" />
+    <state width="1877" height="314" key="GridCell.Tab.0.center" timestamp="1647195126645">
+      <screen x="0" y="0" width="1920" height="1160" />
+    </state>
+    <state width="1877" height="314" key="GridCell.Tab.0.center/0.0.1920.1160@0.0.1920.1160" timestamp="1647195126645" />
+    <state width="1877" height="314" key="GridCell.Tab.0.left" timestamp="1647195126645">
+      <screen x="0" y="0" width="1920" height="1160" />
+    </state>
+    <state width="1877" height="314" key="GridCell.Tab.0.left/0.0.1920.1160@0.0.1920.1160" timestamp="1647195126645" />
+    <state width="1877" height="314" key="GridCell.Tab.0.right" timestamp="1647195126645">
+      <screen x="0" y="0" width="1920" height="1160" />
+    </state>
+    <state width="1877" height="314" key="GridCell.Tab.0.right/0.0.1920.1160@0.0.1920.1160" timestamp="1647195126645" />
+    <state width="1877" height="386" key="GridCell.Tab.1.bottom" timestamp="1647195097637">
+      <screen x="0" y="0" width="1920" height="1160" />
+    </state>
+    <state width="1877" height="386" key="GridCell.Tab.1.bottom/0.0.1920.1160@0.0.1920.1160" timestamp="1647195097637" />
+    <state width="1877" height="386" key="GridCell.Tab.1.center" timestamp="1647195097637">
+      <screen x="0" y="0" width="1920" height="1160" />
+    </state>
+    <state width="1877" height="386" key="GridCell.Tab.1.center/0.0.1920.1160@0.0.1920.1160" timestamp="1647195097637" />
+    <state width="1877" height="386" key="GridCell.Tab.1.left" timestamp="1647195097637">
+      <screen x="0" y="0" width="1920" height="1160" />
+    </state>
+    <state width="1877" height="386" key="GridCell.Tab.1.left/0.0.1920.1160@0.0.1920.1160" timestamp="1647195097637" />
+    <state width="1877" height="386" key="GridCell.Tab.1.right" timestamp="1647195097637">
+      <screen x="0" y="0" width="1920" height="1160" />
+    </state>
+    <state width="1877" height="386" key="GridCell.Tab.1.right/0.0.1920.1160@0.0.1920.1160" timestamp="1647195097637" />
+    <state x="627" y="285" key="NewModule_or_Project.wizard" timestamp="1647216157586">
+      <screen x="0" y="0" width="1920" height="1160" />
+    </state>
+    <state x="627" y="285" key="NewModule_or_Project.wizard/0.0.1920.1160@0.0.1920.1160" timestamp="1647216157586" />
+    <state x="623" y="255" width="672" height="678" key="search.everywhere.popup" timestamp="1647134812264">
+      <screen x="0" y="0" width="1920" height="1160" />
+    </state>
+    <state x="623" y="255" width="672" height="678" key="search.everywhere.popup/0.0.1920.1160@0.0.1920.1160" timestamp="1647134812264" />
   </component>
 </project>
