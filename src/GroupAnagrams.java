@@ -1,7 +1,7 @@
 import java.util.*;
 
 /*
-Given list of works, group all the anagrams and print it.
+Given list of words, group all the anagrams and print it.
 For example:
 
 later, alter, alert
@@ -10,21 +10,41 @@ allergy, gallery, largely
 mean, name
 aligned, dealing, leading
 
-Approach:
+Approach1:
 
-1) Create a signature for a word.
-2) Store the signature and all the anagrams in the map
-3) Print the anagrams
+N = number of words
+K = length of each word
 
-Time Complexity: nlogn to sort
-For M words with N chars = MNlog(N) + M(to iterate words)
+1) Iterate all words O(N)
+2) For each word, sort all the letters in the word. This will be the key in HashMap. O(KlogK)
+3) Check if that sorted work exists in HashMap
+4) If it does then add or append word
+5) If it does not exist in hash map then create new entry with key and anagram(word)
+
+TC: O(NKlogK)
+SC: O(NK)
+
+**************************************************************************************
+
+Approach 2:
+
+1) Iterate all words O(N)
+2) For each word, create map of character and its count. This will be key in HashMap. O(K)
+3) Check if that key exists in HashMap
+4) If it does then add or append word
+5) If it does not exist in hash map then create new entry with key and anagram (word)
+
+TC: O(NK)
+SC: O(NK)
+
  */
 public class GroupAnagrams {
 
-    private static String getSignature(String word) {
+    private static String getSortedKey(String word) {
 
         //Convert work to lowercase
-        String lowerCaseWord = word.toLowerCase();
+        String lowerCaseWord = word.toLowerCase(); //This makes it case insensitive
+
         //Convert it to char array and sort char
         char[] chars = lowerCaseWord.toCharArray();
 
@@ -37,26 +57,62 @@ public class GroupAnagrams {
 
         String[] words = {"later", "alter", "alert", "angle", "angel", "allergy", "gallery", "largely"};
 
+        //Approach 1 - Sorted Key
         Map<String, List<String>> map = new HashMap<>();
 
         for (int i = 0; i < words.length; i++) {
 
-            String signature = getSignature(words[i]);
+            String signature = getSortedKey(words[i]);
 
             if (map.containsKey(signature)) {
                 List<String> anagrams = map.get(signature);
-
                 anagrams.add(words[i]);
-                map.put(signature, anagrams);
             } else {
                 List<String> anagrams = new ArrayList<>();
                 anagrams.add(words[i]);
                 map.put(signature, anagrams);
             }
         }
-        System.out.println("The anagrams are: ");
-        for (Map.Entry<String, List<String>> entry: map.entrySet()) {
-            System.out.println(entry.getValue());
+        System.out.println("Approach1");
+        for (List<String> entry: map.values()) {
+            System.out.println(entry);
         }
+
+        //Approach 2:
+        HashMap<HashMap<Character, Integer>, ArrayList<String>> map1 = new HashMap<>();
+
+        for(String word: words) {
+            HashMap<Character, Integer> key = getKeyByCharCount(word);
+
+            if(map1.containsKey(key)) {
+                ArrayList<String> anagrams = map1.get(key);
+                anagrams.add(word);
+            } else {
+                ArrayList<String> anagrams = new ArrayList<>();
+                anagrams.add(word);
+                map1.put(key, anagrams);
+            }
+        }
+
+        System.out.println("Approach2");
+        for(ArrayList<String> anagrams: map1.values()) {
+            System.out.println(anagrams);
+        }
+    }
+
+    private static HashMap<Character, Integer> getKeyByCharCount(String word) {
+        HashMap<Character, Integer> map = new HashMap<>();
+
+        for(int i = 0; i < word.length(); i++) {
+            char c = word.charAt(i);
+
+            if(map.containsKey(c)) {
+                int count = map.get(c) + 1;
+                map.put(c, count);
+            } else {
+                map.put(c, 1);
+            }
+        }
+        return map;
     }
 }

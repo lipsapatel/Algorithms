@@ -1,3 +1,5 @@
+package IK.Sorting;
+
 import java.util.Arrays;
 
 /**
@@ -30,6 +32,8 @@ import java.util.Arrays;
  swaps and can be useful when memory write is a costly operation.
 
  In Place : Yes, it does not require extra space.
+
+ Selection sort is stable sorting algorithm - which means that in case of duplicate the order is maintained.
  */
 public class SelectionSort {
 
@@ -38,7 +42,7 @@ public class SelectionSort {
         //Find min from rest of element
         //If found swap
 
-        for (int i = 0; i < array.length - 1; i++) {
+        for (int i = 0; i < array.length; i++) {
             //Select
             int minIndex = i;
 

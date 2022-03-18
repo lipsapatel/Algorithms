@@ -1,11 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="bd87e751-52fe-4c85-917f-6fcbafdf3016" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/uiDesigner.xml" afterDir="false" />
+    <list default="true" id="584dcdbc-5d62-45c9-8dfc-8775c05f8478" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/HeapSort.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/NutsAndBoltsProblem.java" beforeDir="false" afterPath="$PROJECT_DIR$/NutsAndBoltsProblem.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/BubbleSort.java" beforeDir="false" afterPath="$PROJECT_DIR$/BubbleSort.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/GroupAnagrams.java" beforeDir="false" afterPath="$PROJECT_DIR$/GroupAnagrams.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/SelectionSort.java" beforeDir="false" afterPath="$PROJECT_DIR$/IK/Sorting/SelectionSort.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -15,6 +16,7 @@
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
   </component>
+  <component name="ProjectId" id="26M1iDJ9T1VdrH2oc9DENtrmZ7J" />
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
@@ -23,16 +25,10 @@
   </component>
   <component name="PropertiesComponent">
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
-    <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
   </component>
-  <component name="RecentsManager">
-    <key name="MoveClassesOrPackagesDialog.RECENTS_KEY">
-      <recent name="IK.Sorting" />
-    </key>
-  </component>
-  <component name="RunManager" selected="Application.HeapSort">
+  <component name="RunManager" selected="Application.BubbleSort">
     <configuration default="true" type="Applet" factoryName="Applet">
       <option name="WIDTH" value="400" />
       <option name="HEIGHT" value="300" />
@@ -40,16 +36,24 @@
       <module />
       <method />
     </configuration>
-    <configuration name="HeapSort" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="IK.Sorting.HeapSort" />
+    <configuration name="BubbleSort" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="IK.Sorting.BubbleSort" />
       <module name="Algorithms" />
       <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="QuickSort" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="IK.Sorting.QuickSort" />
+    <configuration name="GroupAnagrams" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="GroupAnagrams" />
+      <module name="Algorithms" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="SelectionSort" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="IK.Sorting.SelectionSort" />
       <module name="Algorithms" />
       <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
       <extension name="coverage">
@@ -95,8 +99,9 @@
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="Application.HeapSort" />
-        <item itemvalue="Application.QuickSort" />
+        <item itemvalue="Application.BubbleSort" />
+        <item itemvalue="Application.GroupAnagrams" />
+        <item itemvalue="Application.SelectionSort" />
       </list>
     </recent_temporary>
   </component>
@@ -105,12 +110,12 @@
   </component>
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
-      <changelist id="bd87e751-52fe-4c85-917f-6fcbafdf3016" name="Default Changelist" comment="" />
-      <created>1646867229051</created>
+      <changelist id="584dcdbc-5d62-45c9-8dfc-8775c05f8478" name="Default Changelist" comment="" />
+      <created>1647218765892</created>
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
-      <updated>1646867229051</updated>
-      <workItem from="1646867231919" duration="23690000" />
+      <updated>1647218765892</updated>
+      <workItem from="1647218768975" duration="11733000" />
     </task>
     <servers />
   </component>
@@ -118,53 +123,41 @@
     <option name="version" value="1" />
   </component>
   <component name="WindowStateProjectService">
-    <state x="761" y="471" width="397" height="221" key="#com.intellij.refactoring.move.moveClassesOrPackages.MoveClassesOrPackagesDialog.classes" timestamp="1647097396503">
+    <state width="1877" height="314" key="GridCell.Tab.0.bottom" timestamp="1647645687371">
       <screen x="0" y="0" width="1920" height="1160" />
     </state>
-    <state x="761" y="471" width="397" height="221" key="#com.intellij.refactoring.move.moveClassesOrPackages.MoveClassesOrPackagesDialog.classes/0.0.1920.1160@0.0.1920.1160" timestamp="1647097396503" />
-    <state x="740" y="284" key="FileChooserDialogImpl" timestamp="1647216141347">
+    <state width="1877" height="314" key="GridCell.Tab.0.bottom/0.0.1920.1160@0.0.1920.1160" timestamp="1647645687371" />
+    <state width="1877" height="314" key="GridCell.Tab.0.center" timestamp="1647645687371">
       <screen x="0" y="0" width="1920" height="1160" />
     </state>
-    <state x="740" y="284" key="FileChooserDialogImpl/0.0.1920.1160@0.0.1920.1160" timestamp="1647216141347" />
-    <state width="1877" height="314" key="GridCell.Tab.0.bottom" timestamp="1647195126645">
+    <state width="1877" height="314" key="GridCell.Tab.0.center/0.0.1920.1160@0.0.1920.1160" timestamp="1647645687371" />
+    <state width="1877" height="314" key="GridCell.Tab.0.left" timestamp="1647645687371">
       <screen x="0" y="0" width="1920" height="1160" />
     </state>
-    <state width="1877" height="314" key="GridCell.Tab.0.bottom/0.0.1920.1160@0.0.1920.1160" timestamp="1647195126645" />
-    <state width="1877" height="314" key="GridCell.Tab.0.center" timestamp="1647195126645">
+    <state width="1877" height="314" key="GridCell.Tab.0.left/0.0.1920.1160@0.0.1920.1160" timestamp="1647645687371" />
+    <state width="1877" height="314" key="GridCell.Tab.0.right" timestamp="1647645687371">
       <screen x="0" y="0" width="1920" height="1160" />
     </state>
-    <state width="1877" height="314" key="GridCell.Tab.0.center/0.0.1920.1160@0.0.1920.1160" timestamp="1647195126645" />
-    <state width="1877" height="314" key="GridCell.Tab.0.left" timestamp="1647195126645">
+    <state width="1877" height="314" key="GridCell.Tab.0.right/0.0.1920.1160@0.0.1920.1160" timestamp="1647645687371" />
+    <state width="1877" height="386" key="GridCell.Tab.1.bottom" timestamp="1647627636443">
       <screen x="0" y="0" width="1920" height="1160" />
     </state>
-    <state width="1877" height="314" key="GridCell.Tab.0.left/0.0.1920.1160@0.0.1920.1160" timestamp="1647195126645" />
-    <state width="1877" height="314" key="GridCell.Tab.0.right" timestamp="1647195126645">
+    <state width="1877" height="386" key="GridCell.Tab.1.bottom/0.0.1920.1160@0.0.1920.1160" timestamp="1647627636443" />
+    <state width="1877" height="386" key="GridCell.Tab.1.center" timestamp="1647627636442">
       <screen x="0" y="0" width="1920" height="1160" />
     </state>
-    <state width="1877" height="314" key="GridCell.Tab.0.right/0.0.1920.1160@0.0.1920.1160" timestamp="1647195126645" />
-    <state width="1877" height="386" key="GridCell.Tab.1.bottom" timestamp="1647195097637">
+    <state width="1877" height="386" key="GridCell.Tab.1.center/0.0.1920.1160@0.0.1920.1160" timestamp="1647627636442" />
+    <state width="1877" height="386" key="GridCell.Tab.1.left" timestamp="1647627636442">
       <screen x="0" y="0" width="1920" height="1160" />
     </state>
-    <state width="1877" height="386" key="GridCell.Tab.1.bottom/0.0.1920.1160@0.0.1920.1160" timestamp="1647195097637" />
-    <state width="1877" height="386" key="GridCell.Tab.1.center" timestamp="1647195097637">
+    <state width="1877" height="386" key="GridCell.Tab.1.left/0.0.1920.1160@0.0.1920.1160" timestamp="1647627636442" />
+    <state width="1877" height="386" key="GridCell.Tab.1.right" timestamp="1647627636442">
       <screen x="0" y="0" width="1920" height="1160" />
     </state>
-    <state width="1877" height="386" key="GridCell.Tab.1.center/0.0.1920.1160@0.0.1920.1160" timestamp="1647195097637" />
-    <state width="1877" height="386" key="GridCell.Tab.1.left" timestamp="1647195097637">
+    <state width="1877" height="386" key="GridCell.Tab.1.right/0.0.1920.1160@0.0.1920.1160" timestamp="1647627636442" />
+    <state x="623" y="255" width="672" height="678" key="search.everywhere.popup" timestamp="1647645190999">
       <screen x="0" y="0" width="1920" height="1160" />
     </state>
-    <state width="1877" height="386" key="GridCell.Tab.1.left/0.0.1920.1160@0.0.1920.1160" timestamp="1647195097637" />
-    <state width="1877" height="386" key="GridCell.Tab.1.right" timestamp="1647195097637">
-      <screen x="0" y="0" width="1920" height="1160" />
-    </state>
-    <state width="1877" height="386" key="GridCell.Tab.1.right/0.0.1920.1160@0.0.1920.1160" timestamp="1647195097637" />
-    <state x="627" y="285" key="NewModule_or_Project.wizard" timestamp="1647216157586">
-      <screen x="0" y="0" width="1920" height="1160" />
-    </state>
-    <state x="627" y="285" key="NewModule_or_Project.wizard/0.0.1920.1160@0.0.1920.1160" timestamp="1647216157586" />
-    <state x="623" y="255" width="672" height="678" key="search.everywhere.popup" timestamp="1647134812264">
-      <screen x="0" y="0" width="1920" height="1160" />
-    </state>
-    <state x="623" y="255" width="672" height="678" key="search.everywhere.popup/0.0.1920.1160@0.0.1920.1160" timestamp="1647134812264" />
+    <state x="623" y="255" width="672" height="678" key="search.everywhere.popup/0.0.1920.1160@0.0.1920.1160" timestamp="1647645190999" />
   </component>
 </project>
