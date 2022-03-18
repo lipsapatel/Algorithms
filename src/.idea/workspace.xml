@@ -2,11 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="584dcdbc-5d62-45c9-8dfc-8775c05f8478" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../IKVideos/DynamicProgramming/DPTest.docx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/BubbleSort.java" beforeDir="false" afterPath="$PROJECT_DIR$/BubbleSort.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/GroupAnagrams.java" beforeDir="false" afterPath="$PROJECT_DIR$/GroupAnagrams.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/SelectionSort.java" beforeDir="false" afterPath="$PROJECT_DIR$/IK/Sorting/SelectionSort.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -27,6 +24,7 @@
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
   </component>
   <component name="RunManager" selected="Application.BubbleSort">
     <configuration default="true" type="Applet" factoryName="Applet">
@@ -115,14 +113,34 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1647218765892</updated>
-      <workItem from="1647218768975" duration="11733000" />
+      <workItem from="1647218768975" duration="11997000" />
     </task>
+    <task id="LOCAL-00001" summary="Algorithms">
+      <created>1647645758153</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1647645758153</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="1" />
   </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="Algorithms" />
+    <option name="LAST_COMMIT_MESSAGE" value="Algorithms" />
+  </component>
   <component name="WindowStateProjectService">
+    <state x="495" y="179" key="CommitChangelistDialog2" timestamp="1647645756671">
+      <screen x="0" y="0" width="1920" height="1160" />
+    </state>
+    <state x="495" y="179" key="CommitChangelistDialog2/0.0.1920.1160@0.0.1920.1160" timestamp="1647645756671" />
+    <state x="740" y="338" key="FileChooserDialogImpl" timestamp="1647645912390">
+      <screen x="0" y="0" width="1920" height="1160" />
+    </state>
+    <state x="740" y="338" key="FileChooserDialogImpl/0.0.1920.1160@0.0.1920.1160" timestamp="1647645912390" />
     <state width="1877" height="314" key="GridCell.Tab.0.bottom" timestamp="1647645687371">
       <screen x="0" y="0" width="1920" height="1160" />
     </state>
@@ -155,6 +173,14 @@
       <screen x="0" y="0" width="1920" height="1160" />
     </state>
     <state width="1877" height="386" key="GridCell.Tab.1.right/0.0.1920.1160@0.0.1920.1160" timestamp="1647627636442" />
+    <state x="807" y="504" key="VCS.ChangelistChooser" timestamp="1647645847490">
+      <screen x="0" y="0" width="1920" height="1160" />
+    </state>
+    <state x="807" y="504" key="VCS.ChangelistChooser/0.0.1920.1160@0.0.1920.1160" timestamp="1647645847490" />
+    <state x="552" y="316" key="Vcs.Push.Dialog.v2" timestamp="1647645767006">
+      <screen x="0" y="0" width="1920" height="1160" />
+    </state>
+    <state x="552" y="316" key="Vcs.Push.Dialog.v2/0.0.1920.1160@0.0.1920.1160" timestamp="1647645767006" />
     <state x="623" y="255" width="672" height="678" key="search.everywhere.popup" timestamp="1647645190999">
       <screen x="0" y="0" width="1920" height="1160" />
     </state>
