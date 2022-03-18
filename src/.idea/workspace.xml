@@ -2,7 +2,9 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="584dcdbc-5d62-45c9-8dfc-8775c05f8478" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/../IKVideos/DynamicProgramming/DPTest.docx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../AlgorithmsAndDataStructuresCheatSheet.docx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../AlgorithmsIIT.docx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../IKVideos/DynamicProgramming/DPTest.docx" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -113,7 +115,7 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1647218765892</updated>
-      <workItem from="1647218768975" duration="11997000" />
+      <workItem from="1647218768975" duration="12293000" />
     </task>
     <task id="LOCAL-00001" summary="Algorithms">
       <created>1647645758153</created>
@@ -122,7 +124,14 @@
       <option name="project" value="LOCAL" />
       <updated>1647645758153</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="Algorithms">
+      <created>1647645946299</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1647645946299</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -133,10 +142,10 @@
     <option name="LAST_COMMIT_MESSAGE" value="Algorithms" />
   </component>
   <component name="WindowStateProjectService">
-    <state x="495" y="179" key="CommitChangelistDialog2" timestamp="1647645756671">
+    <state x="495" y="179" key="CommitChangelistDialog2" timestamp="1647645944997">
       <screen x="0" y="0" width="1920" height="1160" />
     </state>
-    <state x="495" y="179" key="CommitChangelistDialog2/0.0.1920.1160@0.0.1920.1160" timestamp="1647645756671" />
+    <state x="495" y="179" key="CommitChangelistDialog2/0.0.1920.1160@0.0.1920.1160" timestamp="1647645944997" />
     <state x="740" y="338" key="FileChooserDialogImpl" timestamp="1647645912390">
       <screen x="0" y="0" width="1920" height="1160" />
     </state>
@@ -177,10 +186,10 @@
       <screen x="0" y="0" width="1920" height="1160" />
     </state>
     <state x="807" y="504" key="VCS.ChangelistChooser/0.0.1920.1160@0.0.1920.1160" timestamp="1647645847490" />
-    <state x="552" y="316" key="Vcs.Push.Dialog.v2" timestamp="1647645767006">
+    <state x="552" y="316" key="Vcs.Push.Dialog.v2" timestamp="1647645958097">
       <screen x="0" y="0" width="1920" height="1160" />
     </state>
-    <state x="552" y="316" key="Vcs.Push.Dialog.v2/0.0.1920.1160@0.0.1920.1160" timestamp="1647645767006" />
+    <state x="552" y="316" key="Vcs.Push.Dialog.v2/0.0.1920.1160@0.0.1920.1160" timestamp="1647645958097" />
     <state x="623" y="255" width="672" height="678" key="search.everywhere.popup" timestamp="1647645190999">
       <screen x="0" y="0" width="1920" height="1160" />
     </state>
