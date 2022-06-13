@@ -9,6 +9,9 @@
  * 2) if both strings are equal lexicographically, (string1 == string2) it returns 0
  * 3) if (string1 < string2) it returns a negative value.
  *
+ * TC: O(Min(n, m)) - where n = String1 length and m = String2 length
+ * SC: O(1)
+ *
  */
 public class CompareStringLexicographically {
 
@@ -25,13 +28,10 @@ public class CompareStringLexicographically {
         }
 
         //Edge cases for string like string1 = "Geeks"; string2 = "Geeksy";
-        if (string1.length() < string2.length()) {
+        if (string1.length() != string2.length()) {
 
             return string1.length() - string2.length();
 
-        } else if (string1.length() > string2.length()) {
-
-            return string1.length() - string2.length();
         } else {
             return 0;
         }
@@ -39,11 +39,11 @@ public class CompareStringLexicographically {
 
     public static void main(String[] args) {
 
-        String string1 = new String("Geeks");
-        String string2 = new String("Practice");
-        String string3 = new String("Geeks");
-        String string4 = new String("Geeksy");
-        String string5 = new String("Geekb");
+        String string1 = "Geeks";
+        String string2 = "Practice";
+        String string3 = "Geeks";
+        String string4 = "Geeksy";
+        String string5 = "Geekb";
 
         System.out.println(string1 + " " + string2 + " " + compareStringLexicographically(string1, string2));
         System.out.println(string3 + " " + string3 + " " + compareStringLexicographically(string3, string3));

@@ -1,4 +1,5 @@
 import java.util.ArrayList;
+import java.util.List;
 
 /**
  * You are given "Pictures of cats"
@@ -13,6 +14,11 @@ import java.util.ArrayList;
  * There are 3 approaches:
  *
  * Brute force approach
+ *
+ * 1) Take one document in cats
+ * 2) Search for matching document id in pictures
+ * 3) Repeat step 1 and 2 for all documents ids in cats array.
+ *
  * Time Complexity: O(m * n)
  *
  * 1) Two for loops and construct result array
@@ -35,7 +41,7 @@ import java.util.ArrayList;
  *  Binary Search:
  *  Time Complexity: O(mlogn)
  *
- *  1) Take log of smaller array
+ *  1) Take log of larger array
  *  2) Take first element in cats and binary search in pictures. If found add to result
  *
  *  Binary search is good if the input size vary very largely
@@ -44,13 +50,13 @@ import java.util.ArrayList;
  *  n = 1B
  *
  *  Merge approach: m + n ~ 1B
- *  Binary Approach: 10k * 30 = 300k
+ *  Binary Approach: 10k * log 2^30 = 10K * 30 = 300k
  *
  */
 public class SearchWordsInBillionOfDocuments {
 
     //Time Complexity: O(m + n)
-    public static ArrayList<Integer> merge(int[] cats, int[] pictures) {
+    public static List<Integer> merge(int[] cats, int[] pictures) {
         ArrayList<Integer> result = new ArrayList<>();
 
         int i = 0;

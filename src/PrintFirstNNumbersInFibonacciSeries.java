@@ -3,10 +3,10 @@
  *
  * Write a program to print first n numbers in fibonacci series
  *
- * Fibonacci number: First two Fibonacci numbers are defined as 0 and 1 and every number after the first
+ * IK.Recursion.PreClass.Fibonacci number: First two IK.Recursion.PreClass.Fibonacci numbers are defined as 0 and 1 and every number after the first
  * tow is the sum of the two preceding ones.
  *
- * Fibonacci Sequence: 0 1 1 2 3 5 8 13 21 34 ...
+ * IK.Recursion.PreClass.Fibonacci Sequence: 0 1 1 2 3 5 8 13 21 34 ...
  *
  * Time Complexity: O(n)
  * Space Complexity: O(1)

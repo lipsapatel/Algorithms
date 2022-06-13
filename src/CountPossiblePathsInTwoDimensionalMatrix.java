@@ -108,12 +108,11 @@ public class CountPossiblePathsInTwoDimensionalMatrix {
             return 0;
         }
 
-        return countPathsThatSumToKOrLess(array, currentRow, currentColumn + 1, k, sum + array[currentRow][currentColumn]) +        //Down
-                countPathsThatSumToKOrLess(array, currentRow + 1, currentColumn, k, sum + array[currentRow][currentColumn]);
-    }
+        sum = sum + array[currentRow][currentColumn];
 
-    //Return the maximum sum of path
-    private static int maxSum = Integer.MIN_VALUE;
+        return countPathsThatSumToKOrLess(array, currentRow, currentColumn + 1, k, sum) +        //Down
+                countPathsThatSumToKOrLess(array, currentRow + 1, currentColumn, k, sum);
+    }
 
     private static int maxSumPath(int[][] array, int currentRow, int currentCol) {
 

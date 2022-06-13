@@ -71,8 +71,11 @@ public class MedianOfTwoSortedArrayOfSameSize {
         //If there are only two elements left
         if (enda - starta + 1 == 2 && endb - startb + 1 ==2) {
 
-            float x = Math.max(a[starta], b[startb]);
-            float y = Math.min(a[enda], b[endb]);
+            float x;
+            float y;
+            x = Math.max(a[starta], b[startb]);
+            y = Math.min(a[enda], b[endb]);
+
             return (x+y)/2;
         }
 
@@ -82,6 +85,9 @@ public class MedianOfTwoSortedArrayOfSameSize {
         int mida = (starta + enda)/2;
         int midb = (startb + endb)/2;
 
+        if(mediana == medianb) {
+            return mediana;
+        }
         if (mediana > medianb) {
             return findMedianOfSortedArray(a, starta, mida, b, midb, endb);
         } else {
@@ -92,7 +98,6 @@ public class MedianOfTwoSortedArrayOfSameSize {
     private static float findMedian(int[] x, int start, int end) {
 
         int size = end - start + 1;
-        double median;
 
         //If even
         if (size % 2 == 0) { //Middle two elements
@@ -105,8 +110,21 @@ public class MedianOfTwoSortedArrayOfSameSize {
     }
 
     public static void main(String[] args) {
-        int[] a = {1, 3};
-        int[] b = {2};
+       int[] a = {1, 3, 5, 7};
+        int[] b = {2, 4, 6, 8};
+
+       // int[] a = {1,3, 5};
+      // int[] b ={2, 4, 6};
+
+        //int[] a = {1, 2};
+       // int[] b = {3, 4};
+
+        //int[] a = {1, 3};
+        //int[] b = {2};
+
+
+        //int[] a = {1, 2, 3, 4, 5, 6};
+        //int[] b = {2,3, 4, 5};
 
         float median = findMedianOfSortedArray(a, 0, a.length - 1, b, 0, b.length - 1);
         System.out.println("Median of combined sorted array is: " + median);

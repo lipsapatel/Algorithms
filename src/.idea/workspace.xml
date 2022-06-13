@@ -2,15 +2,83 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="584dcdbc-5d62-45c9-8dfc-8775c05f8478" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/../AlgorithmsAndDataStructuresCheatSheet.docx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../AlgorithmsIIT.docx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../IKVideos/DynamicProgramming/DPTest.docx" beforeDir="false" />
+      <change afterPath="$PROJECT_DIR$/IK/Recursion/Class/CountAndPrintPathsWithObstruction.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/IK/Recursion/Class/CountPathsWhoseSumLessThanEqualK.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/IK/Recursion/Class/MaximumSumPath.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/IK/Recursion/PreClass/BinaryString.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/IK/Recursion/PreClass/CalculatePower.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/IK/Recursion/PreClass/FindnChoosek.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/IK/Sorting/Class/FindKthLargestElementUsingHeapAndQuickSelect.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/IK/Sorting/Class/MergeKSortedArrays.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/IK/Sorting/HomeWork1/TopkLargest.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/IK/Sorting/HomeWork2/FindIntegerNotIn4Billion.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/IK/Sorting/PreClass/CountingSort.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/IK/Sorting/PreClass/FindKthSmallestElementQuickSelect.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/IK/Sorting/PreClass/InsertionSort.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../out/production/Algorithms/Algorithms.iml" beforeDir="false" afterPath="$PROJECT_DIR$/../out/production/Algorithms/Algorithms.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../out/production/Algorithms/out/production/Algorithms/Algorithms.iml" beforeDir="false" afterPath="$PROJECT_DIR$/../out/production/Algorithms/out/production/Algorithms/Algorithms.iml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/BinarySearch.java" beforeDir="false" afterPath="$PROJECT_DIR$/IK/Recursion/PreClass/BinarySearch.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/CalculatePower_Ologn.java" beforeDir="false" afterPath="$PROJECT_DIR$/IK/Recursion/PreClass/CalculatePower_Ologn.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/CompareStringLexicographically.java" beforeDir="false" afterPath="$PROJECT_DIR$/CompareStringLexicographically.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/CountPaths.java" beforeDir="false" afterPath="$PROJECT_DIR$/IK/Recursion/PreClass/CountPaths.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/CountPathsWithObstruction.java" beforeDir="false" afterPath="$PROJECT_DIR$/IK/Recursion/Class/CountPathsWithObstruction.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/CountPossiblePathsInTwoDimensionalMatrix.java" beforeDir="false" afterPath="$PROJECT_DIR$/CountPossiblePathsInTwoDimensionalMatrix.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/CountingSort.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/DutchNationalFlag.java" beforeDir="false" afterPath="$PROJECT_DIR$/IK/Sorting/Class/DutchNationalFlag.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/DynamicProgrammingFibonacciSeries.java" beforeDir="false" afterPath="$PROJECT_DIR$/IK/Recursion/PreClass/DynamicProgrammingFibonacciSeries.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Fibonacci.java" beforeDir="false" afterPath="$PROJECT_DIR$/IK/Recursion/PreClass/Fibonacci.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/FindFactorial.java" beforeDir="false" afterPath="$PROJECT_DIR$/IK/Recursion/PreClass/FindFactorial.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/FindIntegerNotIn4Billion.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/FindKthLargestElement_Ologn.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/FindKthSmallestElement_Ologn.java" beforeDir="false" afterPath="$PROJECT_DIR$/IK/Sorting/PreClass/FindKthSmallestElementUsingHeap.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/FindSubset.java" beforeDir="false" afterPath="$PROJECT_DIR$/IK/Recursion/PreClass/FindSubset.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/HoareAlgorithm.java" beforeDir="false" afterPath="$PROJECT_DIR$/IK/Sorting/PreClass/HoareAlgorithm.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/IK/Sorting/BubbleSort.java" beforeDir="false" afterPath="$PROJECT_DIR$/IK/Sorting/PreClass/BubbleSort.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/IK/Sorting/HeapSort.java" beforeDir="false" afterPath="$PROJECT_DIR$/IK/Sorting/PreClass/HeapSort.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/IK/Sorting/MergeSortGeeks.java" beforeDir="false" afterPath="$PROJECT_DIR$/IK/Sorting/PreClass/MergeSortGeeks.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/IK/Sorting/QuickSort.java" beforeDir="false" afterPath="$PROJECT_DIR$/IK/Sorting/PreClass/QuickSort.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/IK/Sorting/SelectionSort.java" beforeDir="false" afterPath="$PROJECT_DIR$/IK/Sorting/PreClass/SelectionSort.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/InsertionSort.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/IsArraySubsetOfAnother.java" beforeDir="false" afterPath="$PROJECT_DIR$/IK/Sorting/Class/IsArraySubsetOfAnother.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/KthClosestPoint.java" beforeDir="false" afterPath="$PROJECT_DIR$/IK/Sorting/Class/KthClosestPoint.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/LexicographicalOrder.java" beforeDir="false" afterPath="$PROJECT_DIR$/IK/Sorting/HomeWork1/LexicographicalOrder.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/MedianFromDataStream.java" beforeDir="false" afterPath="$PROJECT_DIR$/IK/Sorting/Class/MedianFromDataStream.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/MedianOfTwoSortedArray.java" beforeDir="false" afterPath="$PROJECT_DIR$/IK/Sorting/Class/MedianOfTwoSortedArray.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/MedianOfTwoSortedArrayOfSameSize.java" beforeDir="false" afterPath="$PROJECT_DIR$/MedianOfTwoSortedArrayOfSameSize.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/MergeFirstSortedArrayIntoSecond.java" beforeDir="false" afterPath="$PROJECT_DIR$/IK/Sorting/Test/MergeFirstSortedArrayIntoSecond.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/MergeKSortedArrays.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/NutsAndBoltsProblem.java" beforeDir="false" afterPath="$PROJECT_DIR$/IK/Sorting/Class/NutsAndBoltsProblem.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/PalindromicDecompositionOfString.java" beforeDir="false" afterPath="$PROJECT_DIR$/IK/Recursion/Class/PalindromicDecompositionOfString.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/PascalTriangle.java" beforeDir="false" afterPath="$PROJECT_DIR$/IK/Recursion/PreClass/PascalTriangle.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/PatternMatches.java" beforeDir="false" afterPath="$PROJECT_DIR$/IK/Recursion/Class/PatternMatches.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/PermutationOfString.java" beforeDir="false" afterPath="$PROJECT_DIR$/IK/Recursion/PreClass/PermutationOfString.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/PermuteWhereOddAndEvenAlternateWithOddFirst.java" beforeDir="false" afterPath="$PROJECT_DIR$/IK/Recursion/PreClass/PermuteWhereOddAndEvenAlternateWithOddFirst.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/PrintAllSubsetsWhoseSumEqualsToCertainSum.java" beforeDir="false" afterPath="$PROJECT_DIR$/IK/Recursion/PreClass/PrintAllSubsetsWhoseSumEqualsToCertainSum.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/PrintDecimalOfLength.java" beforeDir="false" afterPath="$PROJECT_DIR$/IK/Recursion/PreClass/PrintDecimalOfLength.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/PrintFirstNNumbersInFibonacciSeries.java" beforeDir="false" afterPath="$PROJECT_DIR$/PrintFirstNNumbersInFibonacciSeries.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/PrintKthLargestInTheOrderSeen.java" beforeDir="false" afterPath="$PROJECT_DIR$/IK/Sorting/Class/PrintKthLargestInTheOrderSeen.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/PrintOneValidWordInDictionaryPermutation.java" beforeDir="false" afterPath="$PROJECT_DIR$/IK/Recursion/PreClass/PrintOneValidWordInDictionaryPermutation.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/RadixSort.java" beforeDir="false" afterPath="$PROJECT_DIR$/IK/Sorting/PreClass/RadixSort.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/SearchWordsInBillionOfDocuments.java" beforeDir="false" afterPath="$PROJECT_DIR$/SearchWordsInBillionOfDocuments.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/SeparateEvenAndOdd.java" beforeDir="false" afterPath="$PROJECT_DIR$/IK/Sorting/HomeWork1/SeparateEvenAndOdd.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/SortCharacters.java" beforeDir="false" afterPath="$PROJECT_DIR$/IK/Sorting/HomeWork2/SortCharacters.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ThreeElementSumToZero.java" beforeDir="false" afterPath="$PROJECT_DIR$/IK/Sorting/HomeWork1/ThreeElementSumToZero.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/TowerOfHanoi.java" beforeDir="false" afterPath="$PROJECT_DIR$/IK/Recursion/PreClass/TowerOfHanoi.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/CountingSort.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/test.js" beforeDir="false" afterPath="$PROJECT_DIR$/test.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Class" />
+      </list>
+    </option>
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
@@ -28,7 +96,16 @@
     <property name="aspect.path.notification.shown" value="true" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
   </component>
-  <component name="RunManager" selected="Application.BubbleSort">
+  <component name="RecentsManager">
+    <key name="MoveClassesOrPackagesDialog.RECENTS_KEY">
+      <recent name="IK.Recursion.Class" />
+      <recent name="IK.Recursion.PreClass" />
+      <recent name="IK.Sorting.Test" />
+      <recent name="IK.Sorting.HomeWork2" />
+      <recent name="IK.Sorting.HomeWork1" />
+    </key>
+  </component>
+  <component name="RunManager" selected="Application.PalindromicDecompositionOfString">
     <configuration default="true" type="Applet" factoryName="Applet">
       <option name="WIDTH" value="400" />
       <option name="HEIGHT" value="300" />
@@ -36,29 +113,57 @@
       <module />
       <method />
     </configuration>
-    <configuration name="BubbleSort" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="IK.Sorting.BubbleSort" />
-      <module name="Algorithms" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="GroupAnagrams" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="GroupAnagrams" />
-      <module name="Algorithms" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="SelectionSort" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="IK.Sorting.SelectionSort" />
+    <configuration name="CountAndPrintPathsWithObstruction" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="IK.Recursion.Class.CountAndPrintPathsWithObstruction" />
       <module name="Algorithms" />
       <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="IK.Sorting.*" />
+          <option name="PATTERN" value="IK.Recursion.Class.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="CountPathsWhoseSumLessThanEqualK" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="IK.Recursion.Class.CountPathsWhoseSumLessThanEqualK" />
+      <module name="Algorithms" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="IK.Recursion.Class.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="CountPossiblePathsInTwoDimensionalMatrix" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="CountPossiblePathsInTwoDimensionalMatrix" />
+      <module name="Algorithms" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="PalindromicDecompositionOfString" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="IK.Recursion.Class.PalindromicDecompositionOfString" />
+      <module name="Algorithms" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="PatternMatches" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="IK.Recursion.Class.PatternMatches" />
+      <module name="Algorithms" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="IK.Recursion.Class.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
@@ -99,9 +204,11 @@
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="Application.BubbleSort" />
-        <item itemvalue="Application.GroupAnagrams" />
-        <item itemvalue="Application.SelectionSort" />
+        <item itemvalue="Application.PalindromicDecompositionOfString" />
+        <item itemvalue="Application.CountAndPrintPathsWithObstruction" />
+        <item itemvalue="Application.PatternMatches" />
+        <item itemvalue="Application.CountPathsWhoseSumLessThanEqualK" />
+        <item itemvalue="Application.CountPossiblePathsInTwoDimensionalMatrix" />
       </list>
     </recent_temporary>
   </component>
@@ -115,7 +222,8 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1647218765892</updated>
-      <workItem from="1647218768975" duration="12293000" />
+      <workItem from="1647218768975" duration="303759000" />
+      <workItem from="1651413544093" duration="67965000" />
     </task>
     <task id="LOCAL-00001" summary="Algorithms">
       <created>1647645758153</created>
@@ -131,7 +239,14 @@
       <option name="project" value="LOCAL" />
       <updated>1647645946299</updated>
     </task>
-    <option name="localTasksCounter" value="3" />
+    <task id="LOCAL-00003" summary="Algorithms">
+      <created>1647646241786</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1647646241786</updated>
+    </task>
+    <option name="localTasksCounter" value="4" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -142,57 +257,112 @@
     <option name="LAST_COMMIT_MESSAGE" value="Algorithms" />
   </component>
   <component name="WindowStateProjectService">
-    <state x="495" y="179" key="CommitChangelistDialog2" timestamp="1647645944997">
+    <state x="690" y="363" key="#com.intellij.ide.util.PackageChooserDialog" timestamp="1652887399894">
       <screen x="0" y="0" width="1920" height="1160" />
     </state>
-    <state x="495" y="179" key="CommitChangelistDialog2/0.0.1920.1160@0.0.1920.1160" timestamp="1647645944997" />
+    <state x="690" y="363" key="#com.intellij.ide.util.PackageChooserDialog/0.0.1920.1160@0.0.1920.1160" timestamp="1652887399894" />
+    <state x="761" y="471" width="422" height="221" key="#com.intellij.refactoring.move.moveClassesOrPackages.MoveClassesOrPackagesDialog.classes" timestamp="1652887401487">
+      <screen x="0" y="0" width="1920" height="1160" />
+    </state>
+    <state x="761" y="471" width="422" height="221" key="#com.intellij.refactoring.move.moveClassesOrPackages.MoveClassesOrPackagesDialog.classes/0.0.1920.1160@0.0.1920.1160" timestamp="1652887401487" />
+    <state x="495" y="179" key="CommitChangelistDialog2" timestamp="1647646240255">
+      <screen x="0" y="0" width="1920" height="1160" />
+    </state>
+    <state x="495" y="179" key="CommitChangelistDialog2/0.0.1920.1160@0.0.1920.1160" timestamp="1647646240255" />
+    <state x="92" y="92" width="1736" height="976" key="DiffContextDialog" timestamp="1649373837444">
+      <screen x="0" y="0" width="1920" height="1160" />
+    </state>
+    <state x="92" y="92" width="1736" height="976" key="DiffContextDialog/0.0.1920.1160@0.0.1920.1160" timestamp="1649373837444" />
     <state x="740" y="338" key="FileChooserDialogImpl" timestamp="1647645912390">
       <screen x="0" y="0" width="1920" height="1160" />
     </state>
     <state x="740" y="338" key="FileChooserDialogImpl/0.0.1920.1160@0.0.1920.1160" timestamp="1647645912390" />
-    <state width="1877" height="314" key="GridCell.Tab.0.bottom" timestamp="1647645687371">
+    <state width="1877" height="384" key="GridCell.Tab.0.bottom" timestamp="1653343925364">
       <screen x="0" y="0" width="1920" height="1160" />
     </state>
-    <state width="1877" height="314" key="GridCell.Tab.0.bottom/0.0.1920.1160@0.0.1920.1160" timestamp="1647645687371" />
-    <state width="1877" height="314" key="GridCell.Tab.0.center" timestamp="1647645687371">
+    <state width="1237" height="194" key="GridCell.Tab.0.bottom/0.0.1280.680@0.0.1280.680" timestamp="1649113352784" />
+    <state width="1877" height="384" key="GridCell.Tab.0.bottom/0.0.1920.1160@0.0.1920.1160" timestamp="1653343925364" />
+    <state width="1877" height="384" key="GridCell.Tab.0.center" timestamp="1653343925364">
       <screen x="0" y="0" width="1920" height="1160" />
     </state>
-    <state width="1877" height="314" key="GridCell.Tab.0.center/0.0.1920.1160@0.0.1920.1160" timestamp="1647645687371" />
-    <state width="1877" height="314" key="GridCell.Tab.0.left" timestamp="1647645687371">
+    <state width="1237" height="194" key="GridCell.Tab.0.center/0.0.1280.680@0.0.1280.680" timestamp="1649113352784" />
+    <state width="1877" height="384" key="GridCell.Tab.0.center/0.0.1920.1160@0.0.1920.1160" timestamp="1653343925364" />
+    <state width="1877" height="384" key="GridCell.Tab.0.left" timestamp="1653343925364">
       <screen x="0" y="0" width="1920" height="1160" />
     </state>
-    <state width="1877" height="314" key="GridCell.Tab.0.left/0.0.1920.1160@0.0.1920.1160" timestamp="1647645687371" />
-    <state width="1877" height="314" key="GridCell.Tab.0.right" timestamp="1647645687371">
+    <state width="1237" height="194" key="GridCell.Tab.0.left/0.0.1280.680@0.0.1280.680" timestamp="1649113352783" />
+    <state width="1877" height="384" key="GridCell.Tab.0.left/0.0.1920.1160@0.0.1920.1160" timestamp="1653343925364" />
+    <state width="1877" height="384" key="GridCell.Tab.0.right" timestamp="1653343925364">
       <screen x="0" y="0" width="1920" height="1160" />
     </state>
-    <state width="1877" height="314" key="GridCell.Tab.0.right/0.0.1920.1160@0.0.1920.1160" timestamp="1647645687371" />
-    <state width="1877" height="386" key="GridCell.Tab.1.bottom" timestamp="1647627636443">
+    <state width="1237" height="194" key="GridCell.Tab.0.right/0.0.1280.680@0.0.1280.680" timestamp="1649113352784" />
+    <state width="1877" height="384" key="GridCell.Tab.0.right/0.0.1920.1160@0.0.1920.1160" timestamp="1653343925364" />
+    <state width="1877" height="384" key="GridCell.Tab.1.bottom" timestamp="1653343925364">
       <screen x="0" y="0" width="1920" height="1160" />
     </state>
-    <state width="1877" height="386" key="GridCell.Tab.1.bottom/0.0.1920.1160@0.0.1920.1160" timestamp="1647627636443" />
-    <state width="1877" height="386" key="GridCell.Tab.1.center" timestamp="1647627636442">
+    <state width="1237" height="194" key="GridCell.Tab.1.bottom/0.0.1280.680@0.0.1280.680" timestamp="1649113352784" />
+    <state width="1877" height="384" key="GridCell.Tab.1.bottom/0.0.1920.1160@0.0.1920.1160" timestamp="1653343925364" />
+    <state width="1877" height="384" key="GridCell.Tab.1.center" timestamp="1653343925364">
       <screen x="0" y="0" width="1920" height="1160" />
     </state>
-    <state width="1877" height="386" key="GridCell.Tab.1.center/0.0.1920.1160@0.0.1920.1160" timestamp="1647627636442" />
-    <state width="1877" height="386" key="GridCell.Tab.1.left" timestamp="1647627636442">
+    <state width="1237" height="194" key="GridCell.Tab.1.center/0.0.1280.680@0.0.1280.680" timestamp="1649113352784" />
+    <state width="1877" height="384" key="GridCell.Tab.1.center/0.0.1920.1160@0.0.1920.1160" timestamp="1653343925364" />
+    <state width="1877" height="384" key="GridCell.Tab.1.left" timestamp="1653343925364">
       <screen x="0" y="0" width="1920" height="1160" />
     </state>
-    <state width="1877" height="386" key="GridCell.Tab.1.left/0.0.1920.1160@0.0.1920.1160" timestamp="1647627636442" />
-    <state width="1877" height="386" key="GridCell.Tab.1.right" timestamp="1647627636442">
+    <state width="1237" height="194" key="GridCell.Tab.1.left/0.0.1280.680@0.0.1280.680" timestamp="1649113352784" />
+    <state width="1877" height="384" key="GridCell.Tab.1.left/0.0.1920.1160@0.0.1920.1160" timestamp="1653343925364" />
+    <state width="1877" height="384" key="GridCell.Tab.1.right" timestamp="1653343925364">
       <screen x="0" y="0" width="1920" height="1160" />
     </state>
-    <state width="1877" height="386" key="GridCell.Tab.1.right/0.0.1920.1160@0.0.1920.1160" timestamp="1647627636442" />
+    <state width="1237" height="194" key="GridCell.Tab.1.right/0.0.1280.680@0.0.1280.680" timestamp="1649113352784" />
+    <state width="1877" height="384" key="GridCell.Tab.1.right/0.0.1920.1160@0.0.1920.1160" timestamp="1653343925364" />
+    <state x="735" y="294" key="RollbackChangesDialog" timestamp="1648589272509">
+      <screen x="0" y="0" width="1920" height="1160" />
+    </state>
+    <state x="735" y="294" key="RollbackChangesDialog/0.0.1920.1160@0.0.1920.1160" timestamp="1648589272509" />
     <state x="807" y="504" key="VCS.ChangelistChooser" timestamp="1647645847490">
       <screen x="0" y="0" width="1920" height="1160" />
     </state>
     <state x="807" y="504" key="VCS.ChangelistChooser/0.0.1920.1160@0.0.1920.1160" timestamp="1647645847490" />
-    <state x="552" y="316" key="Vcs.Push.Dialog.v2" timestamp="1647645958097">
+    <state x="552" y="316" key="Vcs.Push.Dialog.v2" timestamp="1647646253098">
       <screen x="0" y="0" width="1920" height="1160" />
     </state>
-    <state x="552" y="316" key="Vcs.Push.Dialog.v2/0.0.1920.1160@0.0.1920.1160" timestamp="1647645958097" />
-    <state x="623" y="255" width="672" height="678" key="search.everywhere.popup" timestamp="1647645190999">
+    <state x="552" y="316" key="Vcs.Push.Dialog.v2/0.0.1920.1160@0.0.1920.1160" timestamp="1647646253098" />
+    <state x="92" y="92" width="1736" height="976" key="com.intellij.history.integration.ui.views.FileHistoryDialog" timestamp="1651613050867">
       <screen x="0" y="0" width="1920" height="1160" />
     </state>
-    <state x="623" y="255" width="672" height="678" key="search.everywhere.popup/0.0.1920.1160@0.0.1920.1160" timestamp="1647645190999" />
+    <state x="92" y="92" width="1736" height="976" key="com.intellij.history.integration.ui.views.FileHistoryDialog/0.0.1920.1160@0.0.1920.1160" timestamp="1651613050867" />
+    <state x="661" y="336" width="597" height="488" key="find.popup" timestamp="1650319587192">
+      <screen x="0" y="0" width="1920" height="1160" />
+    </state>
+    <state x="661" y="336" width="597" height="488" key="find.popup/0.0.1920.1160@0.0.1920.1160" timestamp="1650319587192" />
+    <state x="623" y="255" width="672" height="678" key="search.everywhere.popup" timestamp="1652885202715">
+      <screen x="0" y="0" width="1920" height="1160" />
+    </state>
+    <state x="415" y="149" width="672" height="398" key="search.everywhere.popup/0.0.1280.680@0.0.1280.680" timestamp="1649112136294" />
+    <state x="623" y="255" width="672" height="678" key="search.everywhere.popup/0.0.1920.1160@0.0.1920.1160" timestamp="1652885202715" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/GroupAnagrams.java</url>
+          <line>86</line>
+          <option name="timeStamp" value="11" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/MedianOfTwoSortedArrayOfSameSize.java</url>
+          <line>76</line>
+          <option name="timeStamp" value="17" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
+    <watches-manager>
+      <configuration name="Application">
+        <watch expression="lexi.highestLexi.compareTo(value)" language="JAVA" />
+        <watch expression="String.join(&quot;,&quot;, Arrays.toString(A))" language="JAVA" />
+      </configuration>
+    </watches-manager>
   </component>
 </project>

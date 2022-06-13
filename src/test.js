@@ -1,30 +1,36 @@
 /*
- * Complete the detect_primes function below.
+ * Complete the merger_first_into_second function below.
  */
-static String detect_primes(int[] a) {
-    StringBuilder sb = new StringBuilder();
+static int[] merger_first_into_second(int[] arr1, int[] arr2) {
 
-    for(int i=0; i<a.length; i++) {
-        if(isPrime(a[i]))
-            sb = sb.append("1");
-        else
-            sb = sb.append("0");
-    }
-    return sb.toString();
-}
+    int n1 = arr1.length-1;
+    int n2 = arr1.length-1;
+    int k = arr2.length-1;
 
-static boolean isPrime(int num) {
-
-    if(num == 1)
-        return false;
-    if(num == 2)
-        return true;
-
-    for(int i=2; i<=Math.sqrt(num); i++) {
-        if((num % i) == 0)
-            return false;
+    while(n1>= 0 && n2>=0) {
+        if(arr1[n1] >= arr2[n2]) {
+            arr2[k] = arr1[n1];
+            n1--;
+            k--;
+        } else {
+            arr2[k] = arr2[n2];
+            n2--;
+            k--;
+        }
     }
 
-    return true;
+    while(n1 >= 0) {
+        arr2[k] = arr1[n1];
+        n1--;
+        k--;
+    }
+
+    while(n2 >= 0) {
+        arr2[k] = arr2[n2];
+        n2--;
+        k--;
+    }
+    return arr2;
+
 }
 
