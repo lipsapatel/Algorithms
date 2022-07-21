@@ -1,6 +1,7 @@
 package IK.Recursion.PreClass;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 /**
@@ -37,21 +38,40 @@ import java.util.List;
  * 3) Call Recursive function with strSoFar + "1" and n - 1
  *
  * Time Complexity: O(2^n)
- * Space Complexity: O(n)
+ * Space Complexity: O(n^2)
  */
 public class BinaryString {
 
+    //TC: O(2^n)
+    //SC: O(n^2)
     private static void binaryStringsOptimal(String strSoFar, int n) {
 
         //Base Case
         if(n == 0) {
             System.out.println(strSoFar);
         } else {
-            binaryStringsOptimal(strSoFar + "0", n - 1);
+            binaryStringsOptimal(strSoFar + "0", n - 1); //This creates new string of size n. This will create n such strings of size (1 to n), so space complexity is O(n^2)
             binaryStringsOptimal(strSoFar + "1", n - 1);
         }
     }
 
+    //SC = O(n)
+    //TC = O(2^n)
+    private static void binaryStringRecursiveOptimal(char[] strSoFar, int n) {
+        //Base Case
+        if (n == 0) {
+            System.out.println(new String(strSoFar));
+        } else {
+            strSoFar[n-1] = '0'; //Because the index goes from 0 to n - 1
+            binaryStringRecursiveOptimal(strSoFar, n - 1);
+
+            strSoFar[n-1] = '1';
+            binaryStringRecursiveOptimal(strSoFar, n - 1);
+        }
+    }
+
+    //TC: O(2^n)
+    //SC: O(2^n)
     private static List<String> binaryStrings(int n) {
 
         List<String> result = new ArrayList<>();
@@ -70,6 +90,8 @@ public class BinaryString {
         }
     }
 
+    //TC: O(2^n)
+    //SC: O(2^n)
     private static List<String> iterativeBinaryStrings(int n) {
         List<String> result = new ArrayList<>();
         result.add("0");
@@ -99,5 +121,8 @@ public class BinaryString {
         binaryStringsOptimal("", 2);
         binaryStringsOptimal("", 3);
         binaryStringsOptimal("", 4);
+
+        System.out.println("Binary String Recursive Optimal");
+        binaryStringRecursiveOptimal(new char[3], 3);
     }
 }

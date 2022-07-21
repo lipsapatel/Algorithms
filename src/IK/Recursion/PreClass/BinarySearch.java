@@ -22,7 +22,7 @@ public class BinarySearch {
             return -1;
         } else {
 
-            int mid = (low + high)/2;
+            int mid = low + (high - low)/2;
 
             if (k == array[mid]) {
                 return mid;
@@ -41,7 +41,7 @@ public class BinarySearch {
 
         while (low <= high) {
 
-            int mid = (low + high)/2;
+            int mid = low + (high - low)/2;
 
             if (array[mid] == k) {
                 return mid;

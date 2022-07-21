@@ -1,5 +1,7 @@
 package IK.Sorting.PreClass;
 
+import java.util.Random;
+
 /**
  * Given an array of integers, find the kth smallest element in array.
  *

@@ -12,7 +12,7 @@ package IK.Recursion.PreClass;
  fibonacci(2) → 1
 
  Time Complexity: O(2 ^ (n - 1))
- Constant work in single instance of function
+ Constant work in single insta  nce of function
  So time complexity = no of nodes = O(2 ^ height)
 
  If there is O(K) work in base case then all leaf will do O(K) work and non leaf node will do O(1) work
