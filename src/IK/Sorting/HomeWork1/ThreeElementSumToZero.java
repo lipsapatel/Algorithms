@@ -1,7 +1,9 @@
 package IK.Sorting.HomeWork1;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashSet;
+import java.util.List;
 
 /**
  * 3 Sum
@@ -131,6 +133,8 @@ import java.util.HashSet;
  7) If sum of two pointers == b + c then increment left pointer and decrement right pointer. Add a, b and c as comma separated string in set
  8) If sum of two pointers > b + c then decrement right pointer
  9) If sum of two pointers < b + c then increment left pointer
+ 10) If we have input {0, 0, 0, 0, 0, 0} then the two pointer approach will give duplicates. So we need to use set.
+ 11) To avoid using set for avoiding duplicates, we need to check for duplicates
 
  Time Complexity: O(nlogn) + O(n^2)
  Space Complexity: O(n)
@@ -142,13 +146,14 @@ public class ThreeElementSumToZero {
 
         int size = arr.length;
 
-        Arrays.sort(arr);
+        Arrays.sort(arr); //IMP to sort
 
-        HashSet<String> set = new HashSet<>();
+        HashSet<String> set = new HashSet<>(); //- One way to avoid duplicates
 
         for (int i = 0; i < size; i++) {
 
             int a = arr[i];
+
             int sum = -a;
 
             int start = i + 1;

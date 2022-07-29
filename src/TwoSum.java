@@ -20,6 +20,9 @@ import java.util.HashSet;
  Explanation: The sum of 2 and 7 is 9. Therefore index1 = 1, index2 = 2.
 
  Time Complexity: O(n)
+
+ If we need to return the index, then we cannot sort the array because the indices are lost. In that case HashMap approach is better because we can store the value and index.
+ If you need to return indices and not allowed to use extra memory use brute force approach.
  */
 public class TwoSum {
 

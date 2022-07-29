@@ -1,5 +1,6 @@
 package IK.Sorting.PreClass;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 
 /**
@@ -84,7 +85,8 @@ public class HeapSort {
             bubbleUp(a, i); //O(logn)
         }
 
-        //This builds the heap in O(n) time instead of O(nlogn)
+        //Always use amortized way to build heap
+        // This builds the heap in O(n) time instead of O(nlogn)
         //There are n/2 nodes at last level and n/4 nodes at h - 1 level.
         //So we start at n/2 -1 and perform sink down which by mathematical proof gives O(n) TC for build heap of n elements
         //Transforming it to min heap

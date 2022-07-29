@@ -115,7 +115,7 @@ public class MergeFirstSortedArrayIntoSecond {
             n1--;
         }
 
-        while(n2 >= 0) { //a1 exhausted
+        while(n2 >= 0) { //a1 exhausted, This is not needed because a2 already has those elements.
             a2[k] = a2[n2];
             k--;
             n2--;

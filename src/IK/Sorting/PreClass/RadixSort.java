@@ -53,7 +53,14 @@ import java.util.Arrays;
  6) Create result array and copy that into the original array
 
  Time Complexity: O(d * (n + k)) where k = count array in base 10
- Space Complexity: O(d * (n + k))
+ Space Complexity: O(n + k)
+
+ If we have 32 bit number represented in base 2, our d = 32
+ But by increasing the base we can have less d. 8 bit is 1 byte so we can use 4 byte which base 256 and our d = 4
+ So by increasing the base we can reduce time complexity of radix sort.
+
+ You can also sort strings using LSD radix sort.
+ Radix sort with base 256 performed better than merge sort to sort 1 million 32-bit integers.
 
  */
 public class RadixSort {
@@ -84,9 +91,9 @@ public class RadixSort {
             count[i] = count[i] + count[i - 1];
         }
 
-        //Now traverse the input array
+        //Now traverse the input array from right to left
         //Get index from count and create result
-        //This needs to be reversed order because 100's and 10's position are empty
+        //This needs to be reversed order because 2a should come before 2b - for stability
         for (int i = n - 1; i >= 0; i--) {
             int index = count[(array[i]/exp) % 10];
             result[index - 1] = array[i];
@@ -120,5 +127,9 @@ public class RadixSort {
         System.out.println("After sort");
         radixSort(array);
         System.out.println(Arrays.toString(array));
+
+        int[] array1 = {100000001, 0, 1000000000};
+        radixSort(array1);
+        System.out.println(Arrays.toString(array1));
     }
 }

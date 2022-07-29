@@ -197,6 +197,7 @@ public class DutchNationalFlag {
         a[j] = temp;
     }
 
+    //Use this hoare's partitioning
     public static void dutchNationalFlagChar(char[] a) {
 
         int low = 0;
@@ -206,13 +207,38 @@ public class DutchNationalFlag {
         while (mid <= high) {
             if (a[mid] == 'R') {
                 swap(a, mid, low);
-                mid++;
+                mid++; //Do mid++ because the swap will bring 'G' at mid position
                 low++;
             } else if (a[mid] == 'G') {
                 mid++;
             } else if (a[mid] == 'B') {
                 swap(a, mid, high);
                 high--;
+            }
+        }
+    }
+
+    //Lomuto's Partitioning - We need to perform 2 swaps if it's red or first partitioning
+    //For 4 way partitioning, we need to perform 3 swaps
+    //This is easy to extend to 4 way partitioning or 5 way partitioning
+    //This is good to know
+    private static void dutchNationalFlagLomuto(char[] a) {
+        int left = -1;
+        int mid = -1;
+
+        for(int i = 0; i < a.length; i++) { //If it's blue just increment pointer
+
+            if(a[i] == 'G') {
+                mid++;
+                swap(a, i, mid);
+            } else if(a[i] == 'R') {
+                //Swap red with green
+                mid++;
+                swap(a, i, mid);
+
+                //Swap with red
+                left++;
+                swap(a, mid, left);
             }
         }
     }
@@ -228,5 +254,9 @@ public class DutchNationalFlag {
         char[] a1 = {'G', 'B', 'G', 'G', 'R', 'B', 'R', 'G'};
         dutchNationalFlagChar(a1);
         System.out.println("After sorting: " + Arrays.toString(a1));
+
+        char[] a2 = {'G', 'B', 'G', 'G', 'R', 'B', 'R', 'G'};
+        dutchNationalFlagLomuto(a2);
+        System.out.println("DNF using Lomuto's Partitioning" + Arrays.toString(a2));
     }
 }

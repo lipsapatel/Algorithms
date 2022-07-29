@@ -20,6 +20,8 @@
  * else if a[x] > b[y], y++
  * If you are still not able to find the intersection point then return -1
  *
+ * Relative size of two arrays is important
+ *
  * Time complexity: O(n)
  */
 public class FindIntersectionPointBetweenTwoSortedArrays {

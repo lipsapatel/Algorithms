@@ -102,6 +102,9 @@ public class SeparateEvenAndOdd {
     }
 
     private static void hoarePartition(int[] a, int low, int high) {
+        //We can do hoare's partitioning here in which case we keep incrementing even pointer till we encounter odd.
+        //Then we keep decrementing odd pointer till we encounter even. Then we swap both. If the pointers cross each other we return. This might make fewer swaps than the
+        //approach done below but the TC stays the same. In case of swapping odd with odd we do more swaps with below approach.
         int left = low;
         int right = high;
 
