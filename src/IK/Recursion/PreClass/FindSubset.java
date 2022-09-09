@@ -141,24 +141,31 @@ public class FindSubset {
 
     //Print Subsets of certain size
     private static void findSubsetOfCertainSize(char[] array, int i, char[] subsetSoFar, int j, int k) {
-
+       //We need to have this case first because we could have subset of size 2 which will have both the condition true and if we have
+        //base case first then it will not print the partial solution because we will return.
+        //This will backtrack early and prune the tree early
+        //The TC: O(n*2^n)
+        //SC: O(n)
+        if (j == k) {
+            for (int x = 0; x < j; x++) {
+                System.out.print(subsetSoFar[x]);
+            }
+            System.out.println();
+            return;
+        }
         //Base Case
         if (i == array.length) {
-            if (j == k) {
-                for (int x = 0; x < j; x++) {
-                    System.out.print(subsetSoFar[x]);
-                }
-                System.out.println();
-            }
-        } else { //Recursive Case
-
-            //Don't include A
-            findSubsetOfCertainSize(array, i + 1, subsetSoFar, j, k);
-
-            //Include A
-            subsetSoFar[j] = array[i];
-            findSubsetOfCertainSize(array, i + 1, subsetSoFar, j + 1, k);
+            return;
         }
+
+        //Recursive Case
+
+        //Don't include A
+        findSubsetOfCertainSize(array, i + 1, subsetSoFar, j, k);
+
+        //Include A
+        subsetSoFar[j] = array[i];
+        findSubsetOfCertainSize(array, i + 1, subsetSoFar, j + 1, k);
     }
 
     private static String[] generate_all_subsets(String s) {

@@ -8,6 +8,11 @@ import java.util.Arrays;
  * Print only those permutations where odd and even integers alternate, starting with odd.
 Pause and write code for this problem. Possible code structure will be in next section.
 
+ Approach:
+ 1) Since odd and even alternate and it starts with odd, all even index will have odd numbers and all
+ odd index will have even numbers.
+ 2) In the code to find the permutation, in recursive case for loop add condition to check the left index and array element
+
  Time Complexity: O(n!)
  Space Complexity: O(n) - Call stack
 

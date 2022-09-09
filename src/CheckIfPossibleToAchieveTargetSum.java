@@ -234,7 +234,7 @@ public class CheckIfPossibleToAchieveTargetSum {
             return (checkIfSumPossibleHelper(array, k, i + 1, atLeastOneNumberIncluded) ||
 
                     //Include
-                    checkIfSumPossibleHelper(array, k - array[i], i + 1, true));
+                    checkIfSumPossibleHelper(array, k - array[i], i + 1, true)); //If we are doing include before then we need to revert the minus that is add it again and then do exclude.
         }
         return false;
     }

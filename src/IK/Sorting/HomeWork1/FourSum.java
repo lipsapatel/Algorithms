@@ -140,6 +140,8 @@ import java.util.Collections;
  *
  * TC:O(n^3)
  * SC: O(n^4) because In the worst case, there can be O(n^4) number of output quadruples each of size 4
+ * There are n^4 combinations. For first blank there are n numbers to choose from, for second blank there are n - 1 number to choose from and so on
+ * so its n * (n - 1) * (n - 2) * (n - 4)
  *
  */
 public class FourSum {

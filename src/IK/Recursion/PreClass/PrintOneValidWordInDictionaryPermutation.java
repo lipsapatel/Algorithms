@@ -13,7 +13,10 @@ import java.util.Arrays;
  Pause to write the code. Possible code structure will be in next section.
 
  Approach: Recursion
- Time Complexity: O(n) Because we are not going in recursive branch which is not in dictionary
+ Time Complexity: O(n!) Because we could go all permutation of length n - 1 which is valid prefix in dictionary but only not valid word because the nth character is different
+ //so we going across all n! permutation. We are going to print only one permutation which is valid word in dictionary. And that permutation is the last one.
+ So TC = O(n! + n) = O(n!)
+
  Space Complexity: O(n)
  */
 public class PrintOneValidWordInDictionaryPermutation {

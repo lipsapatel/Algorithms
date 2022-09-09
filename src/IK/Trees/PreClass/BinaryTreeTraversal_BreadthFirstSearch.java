@@ -1,3 +1,5 @@
+package IK.Trees.PreClass;
+
 import Node.BinaryTreeNode;
 
 import java.util.Collection;
@@ -16,7 +18,7 @@ import java.util.Queue;
  * It starts at the tree root and explores the neighbour nodes first,
  * before moving to the next level neighbours.
  *
- * images/BinaryTreeTraversal_BreadthFirstSearch.png
+ * images/IK.Trees.PreClass.BinaryTreeTraversal_BreadthFirstSearch.png
  *
  * Take Queue
  * Insert root node in the Queue
@@ -28,6 +30,8 @@ import java.util.Queue;
  * Time Complexity: O(n)
  * Space Complexity: O(n/2) for worst case/Average Case n/2 is the max total leaf nodes which will be in queue
  *  O(1) in best case - Tree is like linked list
+ *
+ *  Application: 1 level connection, 2 level connection on social connection
  */
 public class BinaryTreeTraversal_BreadthFirstSearch {
 

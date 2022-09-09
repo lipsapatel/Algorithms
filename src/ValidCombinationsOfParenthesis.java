@@ -131,22 +131,21 @@ public class ValidCombinationsOfParenthesis {
         printValidCombinationsOfParenthesis(n, n, "");
     }
 
-    //TC = O(2 ^ 2n) = (degree) ^ height loose upper bound
-    //TC = O(catalanNumber(n) * 2n)
-    //SC = O(catalanNumber(n) * 2n)
+    //TC = O(2 ^ n) = (degree) ^ height loose upper bound
+    //SC = O(n) Recursive call stack but we could also have O(2^n) possible outcomes in worst case
     private static String[] find_all_well_formed_brackets(int n) {
 
         List<String> result = new ArrayList<String>();
 
-        findAllWellFormedBrackets(n, 0, 0, result, "");
+        findAllWellFormedBrackets(n, 0, 0, result, new StringBuilder());
         return result.toArray(new String[0]);
     }
 
-    private static void findAllWellFormedBrackets(int n, int open, int close, List<String> result, String soFar) {
+    private static void findAllWellFormedBrackets(int n, int open, int close, List<String> result, StringBuilder soFar) {
 
         //Base Case
         if (open == n && close == n) {
-            result.add(soFar);
+            result.add(soFar.toString());
             return;
         }
 
@@ -161,10 +160,12 @@ public class ValidCombinationsOfParenthesis {
         }
 
         //(
-        findAllWellFormedBrackets(n, open + 1, close, result, soFar + '(');
+        findAllWellFormedBrackets(n, open + 1, close, result, soFar.append('('));
+        soFar.deleteCharAt(soFar.length() - 1);
 
         //)
-        findAllWellFormedBrackets(n, open, close + 1, result, soFar + ')');
+        findAllWellFormedBrackets(n, open, close + 1, result, soFar.append(')'));
+        soFar.deleteCharAt(soFar.length() - 1);
     }
 
     public static void main(String[] args) {

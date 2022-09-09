@@ -14,24 +14,28 @@ public class PrintAllSubsetsWhoseSumEqualsToCertainSum {
 
     private static void findSubsets(int[] array, int i, int[] subsetSoFar, int j, int sumSoFar, int sum) {
 
-        //Base Case
-        if (i == array.length) {
-            if(sum == sumSoFar) {
-                //Print
-                for (int x = 0; x < j; x++) {
-                    System.out.print(subsetSoFar[x] + " ");
-                }
-                System.out.println();
+        if(sum == sumSoFar) { //This check needs to be before base case because this will prune the tree or backtrack early when we have subset whose sum is equal to target sum
+            //Print
+            for (int x = 0; x < j; x++) {
+                System.out.print(subsetSoFar[x] + " ");
             }
-        } else { //Recursive Case
-
-            //Don't include A
-            findSubsets(array, i + 1, subsetSoFar, j, sumSoFar, sum);
-
-            //Include A
-            subsetSoFar[j] = array[i];
-            findSubsets(array, i + 1, subsetSoFar, j + 1, sumSoFar + array[i], sum);
+            System.out.println();
+            return;
         }
+        //Base Case
+        if (i == array.length || sumSoFar > sum) { //Do sumSoFar > sum check only if there are not negatives
+
+            return;
+        }
+        //Recursive Case
+
+        //Don't include A
+        findSubsets(array, i + 1, subsetSoFar, j, sumSoFar, sum);
+
+        //Include A
+        subsetSoFar[j] = array[i];
+        findSubsets(array, i + 1, subsetSoFar, j + 1, sumSoFar + array[i], sum);
+
     }
 
     /**
@@ -40,19 +44,22 @@ public class PrintAllSubsetsWhoseSumEqualsToCertainSum {
     static int count = 0;
     private static void findSubsets(int[] array, int i, int sumSoFar, int sum  ) {
 
-        //Base Case
-        if (i == array.length) {
-            if (sum == sumSoFar) {
-                count++;
-            }
-        } else { //Recursive Case
-
-            //Don't Include A
-            findSubsets(array, i + 1, sumSoFar, sum);
-
-            //Include A
-            findSubsets(array, i + 1, sumSoFar + array[i], sum);
+        if (sum == sumSoFar) {
+            count++;
+            return;
         }
+
+        //Base Case
+        if (sumSoFar > sum || i == array.length) { //If we have negative values then remove sumSoFar > sum
+            return;
+        }
+        //Recursive Case
+
+        //Don't Include A
+        findSubsets(array, i + 1, sumSoFar, sum);
+
+        //Include A
+        findSubsets(array, i + 1, sumSoFar + array[i], sum);
     }
 
     //Backtracking where it return 1 if sum = 0 or 0 if sum < 0
@@ -84,5 +91,6 @@ public class PrintAllSubsetsWhoseSumEqualsToCertainSum {
         int[] array2 = {5, -3, -2, 4, 1, 7};
 
         System.out.println("The number of subsets with sum 5 is: " + findSubsets(array2, 0, 5));
+        System.out.println("The number of subsets with sum 13 is: " + findSubsets(array, 0, 13));
     }
 }
