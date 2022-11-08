@@ -64,10 +64,18 @@ import java.util.Queue;
  * 8) If neighbor is 100 or target, return distance.
  *
  *
- * Time Complexity: O(V) for BFS and O(V + E) for graph Here V = number of cells which 100 and edges are 6
+ * Time Complexity: O(V + E) for BFS and O(V + E) for graph Here V = number of cells which 100 and edges are 6
  * for each vertex so the time complexity is n - number of cells.
+ * TC = O(V + E) = O(V + 6V) = O(7V) = O(V)
  *
  * Space Complexity: O(V + E) or O(n + m) for graph and O(V) for queue
+ * Here E = 6V, so SC = O(V + 6V) = O(V)
+ * Same applies to TC.
+ *
+ * You can avoid constructing the graph and save the space.
+ * Instead you can return the neighbors using getNeighbors function.
+ *
+ * In that case Space Complexity: O(V) for queue, visited and distance array
  *
  */
 public class SnakeAndLadderProblem {
@@ -126,7 +134,8 @@ public class SnakeAndLadderProblem {
         while(!queue.isEmpty()) {
             int v = queue.remove();
 
-            for(int w: graph[v]) {
+            //for(int w: graph[v]) {
+            for(int w: getNeighbors(v)) {
                 if(!visited[w]) {
                     visited[w] = true;
                     distance[w] = distance[v] + 1;
@@ -139,6 +148,17 @@ public class SnakeAndLadderProblem {
             }
         }
         return -1;
+    }
+
+    private static ArrayList<Integer> getNeighbors(int v) {
+        ArrayList<Integer> neighbors = new ArrayList<>();
+
+        for(int j = 1; j <= 6; j++) {
+            if(v + j <= 100) {
+                neighbors.add(board.get(v + j));
+            }
+        }
+        return neighbors;
     }
 
     public static void main(String[] args) {

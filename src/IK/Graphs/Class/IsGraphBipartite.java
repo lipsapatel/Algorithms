@@ -1,6 +1,7 @@
 package IK.Graphs.Class;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.LinkedList;
 import java.util.Queue;
 
@@ -32,6 +33,8 @@ import java.util.Queue;
  * 5) The outer for loop, calls BFS which returns true if there is odd cycle
  * 6) If it returns true, then return false
  * 7) Outside outer for loop return true
+ * 8) If you are asked to create two sets A and B, then level 0 goes in set A, level 1 goes in set B, level 2 goes in set A
+ * 9) Levels goes in set A and B alternatively. If you find odd cycle then return true. At that point the set don't matter because the graph cannot be bipartite.
  *
  * In a bipartite graph, all cycles must be of even length.
  * If the graph is not bipartite then the cycle is of odd length.
@@ -73,30 +76,50 @@ public class IsGraphBipartite {
         int[] parent = new int[n];
         int[] distance = new int[n];
 
+        //Two set a and b
+        ArrayList<Integer> a = new ArrayList<>();
+        ArrayList<Integer> b = new ArrayList<>();
+
         for(int i = 0; i < n; i++) {
             if(!visited[i]) {
-                if (bfsOddCycle(i, visited, parent, distance)) {
+                if (bfsOddCycle(i, visited, parent, distance, a, b)) {
                     return false;
                 }
             }
         }
+
+        System.out.println(a.toString());
+        System.out.println(b.toString());
+
         return true;
     }
 
-    private static boolean bfsOddCycle(int start, boolean[] visited, int[] parent, int[] distance) {
+    private static boolean bfsOddCycle(int start, boolean[] visited, int[] parent, int[] distance, ArrayList<Integer> a, ArrayList<Integer> b) {
         Queue<Integer> queue = new LinkedList<>();
         queue.add(start);
         visited[start] = true;
         distance[start] = 0;
 
+        boolean isSetA = true;
+        a.add(start);
+
         while(!queue.isEmpty()) {
             int v = queue.remove();
+
+            isSetA = !isSetA; //This is for alternating the levels in set
 
             for(int w: graph[v]) {
                 if(!visited[w]) {
                     visited[w] = true;
                     parent[w] = v;
                     distance[w] = distance[v] + 1;
+
+                    if(isSetA) { //Levels alternate and goes in set a and b
+                        a.add(w);
+                    } else {
+                        b.add(w);
+                    }
+
                 } else {
                     //cycle
                     if(distance[w] == distance[v]) {

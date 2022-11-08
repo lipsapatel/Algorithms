@@ -1,6 +1,7 @@
 package IK.Graphs.PreClass;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Collections;
 import java.util.LinkedList;
 import java.util.Queue;
@@ -134,6 +135,7 @@ public class IsGraphAValidTree {
 
         boolean[] visited = new boolean[n];
         int[] parent = new int[n];
+
         int count = 0;
 
         for(int i = 0; i < n; i++) {

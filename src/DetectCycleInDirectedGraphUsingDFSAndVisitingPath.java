@@ -5,7 +5,7 @@ import java.util.*;
  *
  * Given a directed graph, write an algorithm to detect if the graph contains cycle or not.
  *
- * resources/DetectCycleInDirectedGraphUsingDFS.jpg
+ * resources/IK.Graphs.Class.DetectCycleInDirectedGraphUsingDFS.jpg
  * resources/DetectCycleInDAGUsingVisitingPath.jpg
  *
  * Approach:
