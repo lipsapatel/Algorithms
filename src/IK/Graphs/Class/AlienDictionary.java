@@ -41,7 +41,8 @@ import java.util.Stack;
  * 1) Construct directed graph
  * 2) Do DFS with outer loop, cycle detection and topological sort
  * 3) Compare two adjacent words and determine the edge
- * 4) If first word followed by second word and second word is prefix of the first word then there is not valid alphabet because prefix always comes before
+ * 4) If first word followed by second word and second word is prefix of the
+ * first word then there is not valid alphabet because prefix always comes before
  * 5) Compare until we find mismatch and till minLength
  * 6) Return the topological order
  *
@@ -69,7 +70,7 @@ public class AlienDictionary {
         //Add all unique characters to graph
         for(String word: words) {
             for(int i =0; i < word.length(); i++) {
-                graph.put(word.charAt(i), new HashSet<>());
+                graph.putIfAbsent(word.charAt(i), new HashSet<>());
             }
         }
 

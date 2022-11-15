@@ -59,7 +59,7 @@ import java.util.Arrays;
  * If m = n, then nlogn with Path Compression n + 2m = n + m = n if the graph is sparse
  * So TC = O(n)
 
-
+     SC = O(n) for parent and size array
  */
 public class EveryoneBecomeFriends {
 

@@ -14,8 +14,8 @@ package IK.Graphs.Optional;
  * 9) Do path compression when finding the rootx. Amortize TC for find will be constant.
  *
  * TC: Union operations = O(n - 1) and it takes O(1) time
- * Find - O(logn) for 2m edges = 2mlogn With Path compression O(1) for 2m edges  = 2m
- * If m = n, then nlogn with Path Compression n + 2m = n + m = n if the graph is sparse
+ * Find - O(logn) for 2m edges = 2mlogn,  With Path compression O(1) for 2m edges  = 2m
+ * If m = n, then nlogn, with Path Compression n + 2m = n + m = n if the graph is sparse
  * So TC = O(n)
  *
  * SC: O(n) for parent and size

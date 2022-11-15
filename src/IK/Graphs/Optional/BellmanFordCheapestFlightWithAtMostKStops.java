@@ -65,7 +65,7 @@ import java.util.Arrays;
  * 9) Iterate col by col
  * 10) Copy the preceding col
  * 11) Iterate edges (u, v, w)
- * 12) dp[v][k] = Math.min(dp[v][k], dp[v][k - 1] + w)
+ * 12) dp[v][k] = Math.min(dp[v][k], dp[u][k - 1] + w)
  * 13) Return dp[dst][k + 1]
  *
  * TC: O((m + n) * k = O(mk) m > n
@@ -103,7 +103,7 @@ public class BellmanFordCheapestFlightWithAtMostKStops {
                 dp[v][k] = Math.min(dp[v][k], (dp[u][k - 1] == Integer.MAX_VALUE) ? dp[u][ k - 1] : dp[u][k - 1] + w); //u -> v
             }
         }
-        return dp[dst][k1 + 1];
+        return (dp[dst][k1 + 1] == Integer.MAX_VALUE) ? -1 : dp[dst][k1+1];
     }
 
     public static void main(String[] args) {

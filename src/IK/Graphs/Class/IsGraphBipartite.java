@@ -100,21 +100,23 @@ public class IsGraphBipartite {
         visited[start] = true;
         distance[start] = 0;
 
-        boolean isSetA = true;
-        a.add(start);
+        if(distance[start] % 2 == 0) {
+            a.add(start);
+        } else {
+            b.add(start);
+        }
 
         while(!queue.isEmpty()) {
             int v = queue.remove();
-
-            isSetA = !isSetA; //This is for alternating the levels in set
 
             for(int w: graph[v]) {
                 if(!visited[w]) {
                     visited[w] = true;
                     parent[w] = v;
+                    queue.add(w);
                     distance[w] = distance[v] + 1;
 
-                    if(isSetA) { //Levels alternate and goes in set a and b
+                    if(distance[w] % 2 == 0) { //Levels alternate and goes in set a and b
                         a.add(w);
                     } else {
                         b.add(w);

@@ -8,6 +8,7 @@ import java.util.Queue;
 
 /**
  * Given an n x n binary matrix grid, return the length of the shortest clear path in the matrix. If there is no clear path, return -1.
+ *  Each cell is empty(0) or blocked(1)
  *
  * A clear path in a binary matrix is a path from the top-left cell (i.e., (0, 0)) to the bottom-right cell (i.e., (n - 1, n - 1)) such that:
  *
@@ -78,13 +79,11 @@ public class ShortestPathInBinaryMatrix {
                 if(grid[w[0]][w[1]] == 0) {
                     //Mark visited
                     grid[w[0]][w[1]] = 1;
-                    int[] a = {w[0], w[1]};
-                    queue.add(a);
-
-                    distance.put(a, distance.get(v) + 1);
+                    queue.add(w);
+                    distance.put(w, distance.get(v) + 1);
 
                     if(w[0] == numRows - 1 && w[1] == numCols - 1) {
-                        return distance.get(a);
+                        return distance.get(w);
                     }
                 }
             }
