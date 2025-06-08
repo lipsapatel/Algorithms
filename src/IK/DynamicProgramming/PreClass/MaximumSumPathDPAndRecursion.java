@@ -1,7 +1,8 @@
 package IK.DynamicProgramming.PreClass;
 
 /**
- * Given a two dimensional grid of numbers. Find a path from top-left corner to bottom-right corner, which maximizes the sum of all numbers along its path.
+ * Given a two dimensional grid of numbers. Find a path from top-left corner to bottom-right corner,
+ * which maximizes the sum of all numbers along its path.
  *
  * You can only move either down or right from your current position.
  *

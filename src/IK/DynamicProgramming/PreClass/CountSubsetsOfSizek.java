@@ -75,7 +75,7 @@ public class CountSubsetsOfSizek {
         int[][] dp = new int[n + 1][k + 1];
 
         for(int row = 0; row <= n; row++) {
-            for(int col = 0; col <= row && col <= k; col++) {
+            for(int col = 0; col <= Math.min(row, k); col++) {
 
                 if(row == col || col == 0) {
                     dp[row][col] = 1;

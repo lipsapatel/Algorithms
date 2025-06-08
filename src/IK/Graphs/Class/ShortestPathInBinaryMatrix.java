@@ -1,6 +1,8 @@
 package IK.Graphs.Class;
 
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.List;
@@ -53,38 +55,45 @@ import java.util.Queue;
 public class ShortestPathInBinaryMatrix {
 
     private static int shortestPathBinaryMatrix(int[][] grid) {
-        //If the first cell is 1 then return -1
-        if(grid[0][0] == 1) {
-            return -1;
-        }
 
         int numRows = grid.length;
         int numCols = grid[0].length;
 
+        //If the first cell is 1 or dst cell is 1, then return -1
+        if(grid[0][0] == 1 || grid[numRows - 1][numCols - 1] == 1) {
+            return -1;
+        }
+
         Queue<int[]> queue = new LinkedList<>();
         HashMap<int[], Integer> distance = new HashMap<>();
+        HashMap<int[], int[]> parent = new HashMap<>();
 
         int[] start = {0, 0};
         queue.add(start);
         distance.put(start, 1);
 
-        if(numRows - 1 == 0 && numCols - 1 == 0) {
-            return distance.get(start);
-        }
-
         while(!queue.isEmpty()) {
             int[] v = queue.remove();
 
+            if(v[0] == numRows - 1 && v[1] == numCols - 1) {
+
+                //If it's asked to print path or return path
+                List<int[]> path = new ArrayList<>();
+                dfsPath(parent, v, path);
+                Collections.reverse(path);
+                for(int i = 0; i < path.size(); i++) {
+                    System.out.println(Arrays.toString(path.get(i)));
+                }
+
+                return distance.get(v);
+            }
             for(int[] w: getNeighbors(v, grid)) {
                 if(grid[w[0]][w[1]] == 0) {
                     //Mark visited
                     grid[w[0]][w[1]] = 1;
                     queue.add(w);
                     distance.put(w, distance.get(v) + 1);
-
-                    if(w[0] == numRows - 1 && w[1] == numCols - 1) {
-                        return distance.get(w);
-                    }
+                    parent.put(w, v);
                 }
             }
         }
@@ -98,48 +107,31 @@ public class ShortestPathInBinaryMatrix {
         int row = v[0];
         int col = v[1];
 
+        int[][] neighbors = {{-1, -1}, {-1, 0}, {-1, 1}, {0, -1}, {0, 1}, {1, -1}, {1, 0}, {1, 1}};
+
         List<int[]> list = new ArrayList<>();
 
-        if(row - 1 >= 0 && col - 1 >= 0) {
-            int[] a = {row - 1, col - 1};
-            list.add(a);
+        for(int i = 0; i < neighbors.length; i++) {
+            int r = row + neighbors[i][0];
+            int c = col + neighbors[i][1];
+
+            if(r >= 0 && r < numRows && c >= 0 && c < numCols) {
+                int[] a = {r, c};
+                list.add(a);
+            }
         }
 
-        if(row - 1 >= 0) {
-            int[] a = {row - 1, col};
-            list.add(a);
-        }
-
-        if(row - 1 >= 0 && col + 1 < numCols) {
-            int[] a = {row - 1, col + 1};
-            list.add(a);
-        }
-
-        if(col - 1 >= 0) {
-            int[] a = {row, col - 1};
-            list.add(a);
-        }
-
-        if(col + 1 >= 0) {
-            int[] a = {row, col + 1};
-            list.add(a);
-        }
-
-        if(row + 1 < numRows && col - 1 >= 0) {
-            int[] a = {row + 1, col - 1};
-            list.add(a);
-        }
-
-        if(row + 1 < numRows) {
-            int[] a = {row + 1, col};
-            list.add(a);
-        }
-
-        if(row + 1 < numRows && col + 1 < numCols) {
-            int[] a = {row + 1, col + 1};
-            list.add(a);
-        }
         return list;
+    }
+
+    //Do DFS
+    private static void dfsPath(HashMap<int[], int[]> parent, int[] start, List<int[]> path) {
+
+        path.add(start);
+
+        if(parent.containsKey(start)) {
+            dfsPath(parent, parent.get(start), path);
+        }
     }
 
     public static void main(String[] args) {

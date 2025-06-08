@@ -5,9 +5,12 @@ import java.util.Map;
 
 /**
  * Equal Sum Subset Partition
- * Given an array s of n integers. Your task is to partition the given set s into two non-empty subsets, say s1 and s2 such
- * that sum of all elements in s1 is equal to the sum of all elements in set s2. If it is not possible to partition the array s
- * then returns a blank array else return a boolean array of size n where i (0<=i<n) element is true if it is part of s1 and
+ * Given an array s of n integers. Your task is to partition the given set s
+ * into two non-empty subsets, say s1 and s2 such
+ * that sum of all elements in s1 is equal to the sum of all elements in set s2.
+ * If it is not possible to partition the array s
+ * then returns a blank array else return a boolean array of size n
+ * where i (0<=i<n) element is true if it is part of s1 and
  * false if it is part of s2.
  *
  * Any valid answer will be accepted.
@@ -52,7 +55,8 @@ import java.util.Map;
  * In all the above partitions, the sum of s1 is 10 and the sum of s2 is also 10.
  *
  *  The only twist here is it contains negatives as well as positives so our target sum can be 0 when we start.
- *  For that we keep extra variable length to make sure length is not 0 and also not equal to size of s in which case one subset is empty
+ *  For that we keep extra variable length to make sure length is not 0 and
+ *  also not equal to size of s in which case one subset is empty
  *  and other has all the elements.
  *
  *  Dp Approach:

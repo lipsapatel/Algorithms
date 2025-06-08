@@ -1,7 +1,8 @@
 package IK.DynamicProgramming.PreClass;
 
 /**
- * There are n stairs indexed 0 to n – 1. Each stair has a cost associated with it. After paying the cost, it's allowed either to climb one or two steps further. It's allowed to either start from the step with index 0, or the step with index 1.
+ * There are n stairs indexed 0 to n – 1. Each stair has a cost associated with it. After paying the cost, it's allowed either to
+ * climb one or two steps further. It's allowed to either start from the step with index 0, or the step with index 1.
  * Given the cost array, find the minimum cost to reach the top of the floor.
  * cost[i] represents the cost of i-th stair.
  *
@@ -11,7 +12,7 @@ package IK.DynamicProgramming.PreClass;
  * }
  * Output:
  *
- * 1
+ *
  * There are 5 ways to reach the top floor.
  *
  * step 0 → step 1 → step 2 → top floor.

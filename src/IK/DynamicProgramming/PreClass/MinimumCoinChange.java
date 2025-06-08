@@ -39,7 +39,8 @@ import java.util.Arrays;
  *
  * Recursive Approach
  *
- * 1) As a lazy manager, I will ask my subordinate to find the number coins required for amount n - 1, n - 2 and n -5 if the coins array has [1, 2, 5]
+ * 1) As a lazy manager, I will ask my subordinate to find the number coins required for amount n - 1, n - 2 and n -5
+ * if the coins array has [1, 2, 5]
  * 2) Base Case: If amount is 0, return 0
  * 3) If amount < 0 then return Integer.MAX_VALUE
  * 4) Recursive Function = 1 + Min(func(amt - coin[i]), func(amt - coin[i + 1]) ....)
@@ -82,7 +83,7 @@ public class MinimumCoinChange {
         for(int i = 0; i < coins.length; i++) {
             min = Math.min(min, minCoinChangeRecursive(coins, amt - coins[i]));
         }
-        return min + 1;
+        return min + 1; //Add 1 for my own coin
     }
 
     private static int minCoinChangeDP(int[] coins, int amt) {

@@ -40,6 +40,7 @@ import java.util.Arrays;
  * Cons: Main drawback of bubble sort is it's time complexity which is O(n2)
  * since all the pairs are compared
  * even when the original array is sorted
+ * In order to bubble up smaller element multiple swaps are performed.
  *
  * Optimized Bubble Sort
  *
@@ -62,7 +63,8 @@ import java.util.Arrays;
  * SC: O(1)
  * Stable: yes
  *
- * Bubble sort performs more swap than Selection sort. So even though bubble sort is a correct algorithm, selection sort performs better than bubble sort.
+ * Bubble sort performs more swap than Selection sort. So even though bubble sort is a correct algorithm,
+ * selection sort performs better than bubble sort.
  */
 public class BubbleSort {
 

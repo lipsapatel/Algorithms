@@ -77,6 +77,8 @@ import java.util.Queue;
  *
  * In that case Space Complexity: O(V) for queue, visited and distance array
  *
+ * It could be possible that we are not able to reach 100 because all snakes in 90s.
+ * In that case we return -1
  */
 public class SnakeAndLadderProblem {
 
@@ -159,6 +161,40 @@ public class SnakeAndLadderProblem {
             }
         }
         return neighbors;
+    }
+
+    //This is for leet code question where board is given starting from top and in zigzag manner
+    public void convertBoard(int[][] board, HashMap<Integer, Integer> map) {
+
+        boolean zeroStart = true;
+
+        int numRows = board.length;
+        int numCols = board[0].length;
+        int index = 1;
+
+        for(int i = numRows - 1; i >= 0; i--) {
+
+            if(zeroStart) {
+                for(int j = 0; j < numCols; j++) {
+                    int val = board[i][j];
+                    if(board[i][j] == -1) {
+                        val = index;
+                    }
+                    map.put(index, val);
+                    index++;
+                }
+            } else {
+                for(int j = numCols - 1; j >= 0; j--) {
+                    int val = board[i][j];
+                    if(board[i][j] == -1) {
+                        val = index;
+                    }
+                    map.put(index, val);
+                    index++;
+                }
+            }
+            zeroStart = !zeroStart;
+        }
     }
 
     public static void main(String[] args) {

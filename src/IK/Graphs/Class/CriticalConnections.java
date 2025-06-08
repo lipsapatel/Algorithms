@@ -123,7 +123,7 @@ public class CriticalConnections {
 
         //Critical connection
         if(dbe == arr[start]) {
-            if(parent[start] != -1) {
+            if(parent[start] != -1) { // for root node parent is -1 and there's no dbe
                 List<Integer> edge = new ArrayList<>();
                 edge.add(start);
                 edge.add(parent[start]);

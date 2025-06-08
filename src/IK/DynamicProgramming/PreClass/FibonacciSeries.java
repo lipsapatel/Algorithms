@@ -64,12 +64,12 @@ public class FibonacciSeries {
             fib[i % 3] = fib[(i - 1) % 3] + fib[(i - 2) % 3];
         }
 
-        return fib[n];
+        return fib[n % 3];
     }
 
     public static void main(String[] args) {
         System.out.println("The fibonacci of 6 is " + fibonacci(6));
-        System.out.println("The fibonacci of 6 with optimal space is " + fibonacci(6));
+        System.out.println("The fibonacci of 6 with optimal space is " + fibonacciOptimal(6));
     }
 
 }

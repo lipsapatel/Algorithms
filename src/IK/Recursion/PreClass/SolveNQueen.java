@@ -1,3 +1,5 @@
+package IK.Recursion.PreClass;
+
 import java.util.Arrays;
 import java.util.LinkedList;
 import java.util.Queue;
@@ -5,10 +7,12 @@ import java.util.Queue;
 /**
  * N Queen Problem - Backtracking
  *
- * The N Queen is the problem of placing N queens on N X N chess board so that no two queens attack each other.
+ * The N Queen is the problem of placing N queens on N X N chess board so
+ * that no two queens attack each other.
  * The queens can attack each other horizontally, vertically or diagonally.
  *
- * The idea is to place queens once by one in different columns starting from the leftmost column.
+ * The idea is to place queens one by one in different columns starting
+ * from the leftmost column.
  *
  * 1) Start in the left most column
  * 2) If all queens are placed return true
@@ -17,30 +21,42 @@ import java.util.Queue;
  *
  *    1) If queen can be placed safely, then place the queen
  *    2) Solve recursively for col + 1
- *    3) If it doesn't lead to solution then backtrack and go to step 3 to try other rows.
+ *    3) If it doesn't lead to solution then backtrack and go to
+ *    step 3 to try other rows.
  * 4) If all rows has been tried for this column return false
  *
- * Time Complexity: N (for all possible rows - degree or branching factor) ^ N X N(for all possible rows)
+ * Time Complexity: N (for all possible rows - degree or branching factor) ^ N X N(for all
+ * possible rows)
  * Space Complexity: N x N
  *
  * *****************************************************************************************************************
  * n Queen Problem
 
  Problem Statement:
- The n-queen problem is the problem of placing n chess queens on an n * n chessboard, so that no two queens attack each other.
+ The n-queen problem is the problem of placing n chess queens on an n * n
+ chessboard, so that no two queens attack each other.
  Your task is to find ALL possible arrangements for the n-queen problem.
- You have to solve this problem using recursion. (There may be other ways of solving this problem, but for the purpose of this exercise, please use recursion only).
+ You have to solve this problem using recursion. (There may be other ways of
+ solving this problem, but for the purpose of this exercise,
+ please use recursion only).
  A queen can move horizontally, vertically, or diagonally.
- The purpose of this problem is to learn recursion and not DP. So, you must write at least one recursive solution. After that, you can write a DP solution if you want.
+ The purpose of this problem is to learn recursion and not DP.
+ So, you must write at least one recursive solution.
+ After that, you can write a DP solution if you want.
 
  Input/Output Format For The Function:
  Input Format:
  There is only one argument denoting integer n.
 
  Output Format:
- Return 2D string array res, of size m * n, where length of each string is n and m is the total no. of distinct arrangements possible.
- Each character in res[i][j] describes a square on chessboard. So, any character in string should be one of {'q', '-'}. Character 'q' means queen is present on it and character '-' means it is empty.
- To be precise, character at kth position of string res[i][j] describes content of square in kth column of jth row of chessboard in ith arrangement.
+ Return 2D string array res, of size m * n, where length of each string is n
+ and m is the total no. of distinct arrangements possible.
+ Each character in res[i][j] describes a square on chessboard.
+ So, any character in string should be one of {'q', '-'}.
+ Character 'q' means queen is present on it and
+ character '-' means it is empty.
+ To be precise, character at kth position of string res[i][j] describes
+ content of square in kth column of jth row of chessboard in ith arrangement.
  (To be more clear about the output, look at the sample test case.)
 
  Input/Output Format For The Custom Input:
@@ -50,9 +66,14 @@ import java.util.Queue;
  4
 
  Output Format:
- There will be (m*(n+1)) lines of output, describing m different possible arrangements. Order of printing of arrangements will be as per order in res array, i.e. res[0], res[1], …, res[m-1].
+ There will be (m*(n+1)) lines of output,
+ describing m different possible arrangements.
+ Order of printing of arrangements will be as per order in res array,
+ i.e. res[0], res[1], …, res[m-1].
  For ith arrangement (described by res[i]):
- There will be total n + 1 lines. In first n lines, jth line contains a string res[i][j], denoting string at index j of res[i]. Last line will be an empty line.
+ There will be total n + 1 lines.
+ In first n lines, jth line contains a string res[i][j],
+ denoting string at index j of res[i]. Last line will be an empty line.
 
  For input n = 4, output will be:
  -q--
@@ -97,20 +118,10 @@ import java.util.Queue;
  ret [i][j][k] will denote kth character (if it is a queen or empty cell) of jth row in ith arrangement.
  You need not to worry about the order of arrangements in your returned. So output
  ret [0] =
- [
- "-q--",
- "---q",
- "q---",
- "--q-"
- ]
+ ["-q--","---q","q---","--q-"]
 
  ret [1] =
- [
- "--q-",
- "q---",
- "---q",
- "-q--"
- ]
+ ["--q-","q---","---q","-q--"]
 
  will also be considered as a valid answer.
  Notes:
@@ -211,6 +222,7 @@ public class SolveNQueen {
         //Base Case
         if (left == array.length - 1) {
 
+            //The content of array shows that the queen is placed at that column for the row indicated by index.
             if (isValid(array)) {
                 setBoard(array, board);
                 return true;
@@ -240,7 +252,10 @@ public class SolveNQueen {
     private static boolean isValid(int[] array) {
 
         //Diagonal is always at 45 degree angle to 135 degree angle
-        // y2 - y1/x2 - x1 = 1 or -1
+        // y2 - y1/x2 - x1 = 1 or -1 = the different between col index/row index is always 1 or -1
+        // 0 1 0 0
+        // 0 0 0 0
+        // 0 0 0 1 //Here the difference between col/difference between row = 1 or -1
 
         for (int i = 0; i < array.length; i++) {
 
@@ -297,7 +312,7 @@ public class SolveNQueen {
 
         //Base Case
         if (col >= board[0].length) {
-            buildStringForBoard(board, queue);
+            buildStringFromBoard(board, queue);
         } else { //Recursive Case
 
             //Consider this col and try to place queen in all rows
@@ -319,7 +334,7 @@ public class SolveNQueen {
         }
     }
 
-    private static void buildStringForBoard(char[][] board, Queue<String> queue) {
+    private static void buildStringFromBoard(char[][] board, Queue<String> queue) {
         StringBuilder row;
 
         for (int i = 0; i < board.length; i++) {

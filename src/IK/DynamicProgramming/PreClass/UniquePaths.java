@@ -2,7 +2,9 @@ package IK.DynamicProgramming.PreClass;
 
 /**
  * Unique Paths
- * Given a grid of size n x m and a robot initially staying at the top-left position, return the number of unique paths for the robot to reach the bottom-right corner of the grid. The robot is allowed to move either down or right at any point in time.
+ * Given a grid of size n x m and a robot initially staying at the top-left position, return the number of unique paths
+ *  for the robot to reach the bottom-right corner of the grid. The robot is allowed to move either down or right at any
+ *  point in time.
  *
  * Example One
  * {

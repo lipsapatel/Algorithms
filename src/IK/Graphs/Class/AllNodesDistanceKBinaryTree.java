@@ -90,24 +90,20 @@ public class AllNodesDistanceKBinaryTree {
         visited.add(start);
         distance.put(start, 0);
 
-        if(distance.get(start) == k) {
-            list.add(start);
-        }
-
         while(!queue.isEmpty()) {
             int v = queue.remove();
+
+            if(distance.get(v).equals(k)) {
+                list.add(v);
+            } else if(distance.get(v) > k) {
+                return list;
+            }
 
             for(int w: graph.get(v)) {
                 if(!visited.contains(w)) {
                     visited.add(w);
                     queue.add(w);
                     distance.put(w, distance.get(v) + 1);
-
-                    if(distance.get(w).equals(k)) {
-                        list.add(w);
-                    } else if(distance.get(w) > k) {
-                        return list;
-                    }
                 }
             }
         }

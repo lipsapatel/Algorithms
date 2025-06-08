@@ -11,11 +11,14 @@ import java.util.List;
  * 1) Scan the edges in increasing order of their weights.
  * 2) If adding edge creates cycle then drop it.
  * 3) Keep track of edges added and their cost.
- * 4) Kruskal's algorithm uses Union and Find to add edges in increasing order of their weight.
- * 5) If the graph is disconnected and number of components is not 1 then we cannot construct MST
+ * 4) Kruskal's algorithm uses Union and Find to add edges in increasing order of
+ * their weight.
+ * 5) If the graph is disconnected and number of components is not 1 then we
+ * cannot construct MST
  * 6) Return cost or edges in MST
  * 7) Do Quick Union with path compression
- * 8) Also keep track of connected components. If its not 1 then MST cannot be constructed.
+ * 8) Also keep track of connected components. If its not 1 then
+ * MST cannot be constructed.
  *
  * TC: O(n) - For Union and Find
  * O(nlogn) - For sorting

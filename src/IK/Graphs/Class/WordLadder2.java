@@ -135,9 +135,11 @@ public class WordLadder2 {
             char c = s[i];
 
             for(char ch = 'a'; ch <= 'z'; ch++) {
-                s[i] = ch;
-                String str = new String(s);
-                result.add(str);
+                if(c != ch) {
+                    s[i] = ch;
+                    String str = new String(s);
+                    result.add(str);
+                }
             }
             s[i] = c;
         }

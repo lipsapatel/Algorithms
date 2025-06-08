@@ -72,21 +72,13 @@ public class EvaluateDivision {
     }
 
     private static void addEdge(String start, String end, double weight) {
-        if(graph.containsKey(start)) {
-            graph.get(start).put(end, weight);
-        } else {
-            graph.put(start, new HashMap<>());
-            graph.get(start).put(end, weight);
-        }
+        graph.putIfAbsent(start, new HashMap<>());
+        graph.get(start).put(end, weight);
 
         double reverseWeight = 1/weight;
 
-        if(graph.containsKey(end)) {
-            graph.get(end).put(start, reverseWeight);
-        } else {
-            graph.put(end, new HashMap<>());
-            graph.get(end).put(start, reverseWeight);
-        }
+        graph.putIfAbsent(end, new HashMap<>());
+        graph.get(end).put(start, reverseWeight);
     }
 
     private static double[] calcEquation(List<List<String>> equations, double[] values, List<List<String>> queries) {
@@ -111,31 +103,30 @@ public class EvaluateDivision {
                 list[j] = 1;
             } else {
                 HashSet<String> visited = new HashSet<>();
-                list[j] = dfs(visited, query.get(0), query.get(1), 1);
+                list[j] = dfs(visited, query.get(0), query.get(1));
             }
             j++;
         }
         return list;
     }
 
-    private static double dfs(HashSet<String> visited, String start, String target, double product) {
+    private static double dfs(HashSet<String> visited, String start, String target) {
         visited.add(start);
-        double res = -1;
+
+        if(start.equals(target)) {
+            return 1;
+        }
 
         for(Map.Entry<String, Double> v: graph.get(start).entrySet()) {
 
-            if(v.getKey().equals(target)) {
-                res = product * v.getValue();
-            } else {
-                if(!visited.contains(v.getKey())) {
-                    res = dfs(visited, v.getKey(), target, product * v.getValue());
+            if(!visited.contains(v.getKey())) {
+                double product = dfs(visited, v.getKey(), target);
+                if(product != -1) {
+                    return product * v.getValue();
                 }
             }
-            if(res != -1) {
-                return res; //Found the target so no need to continue DFS
-            }
         }
-        return res;
+        return -1;
     }
 
     public static void main(String[] args) {

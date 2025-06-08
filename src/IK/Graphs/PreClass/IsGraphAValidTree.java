@@ -165,6 +165,7 @@ public class IsGraphAValidTree {
             for(int w: graph[v]) {
                 if(!visited[w]) {
                     visited[w] = true;
+                    queue.add(w);
                     parent[w] = v;
                 } else if(w != parent[v]) {
                     return true;

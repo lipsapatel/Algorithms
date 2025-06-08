@@ -84,28 +84,22 @@ public class CountIslands {
     }
 
     private static List<int[]> getNeighbors(int row, int col, int[][] grid) {
-        List<int[]> neighbors = new ArrayList<>();
+       List<int[]> result = new ArrayList<>();
+       int numRows = grid.length;
+       int numCols = grid[0].length;
 
-        if(row - 1 >= 0) {
-            int[] a = {row - 1, col};
-            neighbors.add(a);
-        }
+       int[][] neighbors = {{-1, 0}, {0, -1}, {0, 1}, {1, 0}};
 
-        if(col - 1 >= 0) {
-            int[] a = {row, col - 1};
-            neighbors.add(a);
-        }
+       for(int[] v: neighbors) {
+           int r = row + v[0];
+           int c = col + v[1];
 
-        if(row + 1 < grid.length) {
-            int[] a = {row + 1, col};
-            neighbors.add(a);
-        }
-
-        if(col + 1 < grid[0].length) {
-            int[] a = {row, col + 1};
-            neighbors.add(a);
-        }
-        return neighbors;
+           if(r >= 0 && r < numRows && c >= 0 && c < numCols) {
+               int[] a = {r, c};
+               result.add(a);
+           }
+       }
+       return result;
     }
 
     public static void main(String[] args) {

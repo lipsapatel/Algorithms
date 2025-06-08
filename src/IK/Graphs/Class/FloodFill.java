@@ -45,7 +45,8 @@ import java.util.Queue;
  * 1) We can do BFS or DFS and fill in the new color when marking visited.
  * 2) Here we should choose BFS approach because at any given point we will be storing vertices at two levels.
  * 3) If we choose DFS then it might go in depth and result in stack overflow.
- * 4) We need separate visited array because the old color might be same as new color and we might know which vertices are visited.
+ * 4) If oldColor == newColor then return. We can use the same image grid to maintain visited.
+ * We don't need separate visited
  * 5) We don't need to construct graph, getNeighbors() method will give the neighbors of vertex
  *
  * TC: O(V + E) where V = rows * cols and E = 4V 4 neighbors for each vertex
@@ -62,35 +63,35 @@ public class FloodFill {
 
         int oldColor = image[sr][sc];
 
-        boolean[][] visited = new boolean[numRows][numCols];
+        if(oldColor == color) {
+            return image;
+        }
 
-        //bfs(image, visited, sr, sc, color, oldColor);
-        dfs(image, visited, sr, sc, color, oldColor);
+        //bfs(image, sr, sc, color, oldColor);
+        dfs(image, sr, sc, color, oldColor);
         return image;
     }
 
-    private static void dfs(int[][] image, boolean[][] visited, int row, int col, int color, int oldColor) {
+    private static void dfs(int[][] image, int row, int col, int color, int oldColor) {
 
         //Mark as visited
-        visited[row][col] = true;
         image[row][col] = color;
 
         for(int[] w: getNeighbors(row, col, image)) {
             //If not visited and same color
-            if(!visited[w[0]][w[1]] && image[w[0]][w[1]] == oldColor) {
-                dfs(image, visited, w[0], w[1], color, oldColor);
+            if(image[w[0]][w[1]] == oldColor) {
+                dfs(image, w[0], w[1], color, oldColor);
             }
         }
     }
 
-    private static void bfs(int[][] image, boolean[][] visited, int row, int col, int color, int oldColor) {
+    private static void bfs(int[][] image, int row, int col, int color, int oldColor) {
         Queue<int[]> queue = new LinkedList<>();
         int[] a = {row, col};
 
         queue.add(a);
 
         //Mark as visited
-        visited[row][col] = true;
         image[row][col] = color;
 
         while(!queue.isEmpty()) {
@@ -98,10 +99,9 @@ public class FloodFill {
 
             for(int[] w: getNeighbors(v[0], v[1], image)) {
                 //If not visited and color is same
-                if(!visited[w[0]][w[1]] && image[w[0]][w[1]] == oldColor) {
+                if(image[w[0]][w[1]] == oldColor) {
 
                     //Mark as visited and add to queue
-                    visited[w[0]][w[1]] = true;
                     image[w[0]][w[1]] = color;
 
                     queue.add(w);
@@ -111,28 +111,23 @@ public class FloodFill {
     }
 
     private static List<int[]> getNeighbors(int row, int col, int[][] image) {
-        List<int[]> neighbors = new ArrayList<>();
+       List<int[]> result = new ArrayList<>();
 
-        if(row - 1 >= 0) {
-            int[] a = {row - 1, col};
-            neighbors.add(a);
-        }
+       int numRows = image.length;
+       int numCols = image[0].length;
 
-        if(col - 1 >= 0) {
-            int[] a = {row, col - 1};
-            neighbors.add(a);
-        }
+       int[][] neighbors = {{-1, 0}, {0, -1}, {0, 1}, {1, 0}};
 
-        if(row + 1 < image.length) {
-            int[] a = {row + 1, col};
-            neighbors.add(a);
-        }
+       for(int[] v: neighbors) {
+           int r = row + v[0];
+           int c = col + v[1];
 
-        if(col + 1 < image[0].length) {
-            int[] a = {row, col + 1};
-            neighbors.add(a);
-        }
-        return neighbors;
+           if(r >= 0 && r < numRows && c >= 0 && c < numCols) {
+               int[] a = {r, c};
+               result.add(a);
+           }
+       }
+       return result;
     }
 
     public static void main(String[] args) {

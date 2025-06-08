@@ -8,7 +8,8 @@ import java.util.Arrays;
  * Share
  * There are n people in a social group labeled from 0 to n - 1. You are given an array logs where logs[i] = [timestampi, xi, yi] indicates that xi and yi will be friends at the time timestampi.
  *
- * Friendship is symmetric. That means if a is friends with b, then b is friends with a. Also, person a is acquainted with a person b if a is friends with b, or a is a friend of someone acquainted with b.
+ * Friendship is symmetric. That means if a is friends with b, then b is friends with a. Also, person a is acquainted
+ * with a person b if a is friends with b, or a is a friend of someone acquainted with b.
  *
  * Return the earliest time for which every person became acquainted with every other person. If there is no such earliest time, return -1.
  *
@@ -57,7 +58,7 @@ import java.util.Arrays;
  * TC: Union operations = O(n - 1) and it takes O(1) time
  * Find - O(logn) for 2m edges = 2mlogn With Path compression O(1) for 2m edges  = 2m
  * If m = n, then nlogn with Path Compression n + 2m = n + m = n if the graph is sparse
- * So TC = O(n)
+ * So TC = O(n) + O(nlogn) for sorting
 
      SC = O(n) for parent and size array
  */

@@ -1,8 +1,10 @@
+package IK.DynamicProgramming.Class;
+
 import java.util.Arrays;
 
 /**
- * Given a rod of n inches and a table of prices. Write an algorithm to find maximum revenue
- * by cutting rod and selling pieces.
+ * Given a rod of n inches and a table of prices. Write an algorithm to find
+ * maximum revenue by cutting rod and selling pieces.
  *
  * Example:
  *
@@ -21,11 +23,15 @@ import java.util.Arrays;
  *
  * Naive Approach: Recursion
  *
- * 1) There can be n - 1 cuts made on the rod of length n.
- * 2) There are n^n - 1 ways to cut rod
+ * 1) There can be n  cuts made on the rod of length n.
+ * 2) There are n^n  ways to cut rod
  * 3) For every length we have 2 options whether to cut the rod or not.
+ * 4) for(int cutSize = 1 to rodSize)
+ * 5) maxProfit = Max(price[cutSize] + f(rodSize - cutSize), maxProfit)
+ * 6) Return maxProfit
+ * 7) Base case: if rodSize == 0, return 0
  *
- * Time Complexity: n^n-1 ~ O(n!)
+ * Time Complexity: O(2^n) - At every index we are deciding whether to cut the rod or not
  * Space Complexity: O(n)
  * But this complexity is very high since we are solving many subproblems repeatedly.
  *
@@ -36,7 +42,21 @@ import java.util.Arrays;
  *
  * Bottoms up
  *
- * 1) Instead of solving problem again and again we can store the result in the array and use it.
+ * 1) Instead of solving problem again and again we can store the result in the
+ * array and use it.
+ * 2) One changing parameter which is rod length so 1D array
+ * 3) Need to return max profit which is int so int array
+ * 4) Rod length from 0 to n so size = n + 1
+ * 5) Traverse from left to right
+ * 6) Initialize dp[0] = 0 and rest with Integer.MIN_VALUE
+ * 7) For rodLength = 1 to n
+ * 8) For cutSize = 1 to rodLength
+ * 9) dp[rodLength] = Max(prices[cutSize] + dp[rodLength - cutSize], dp[rodLength])
+ * 10) return dp[rodLength]
+ *
+ * TC: O(n^2)
+ * SC: O(n) - On the fly space optimization cannot be done because it depends
+ * on previous n - 1 subproblems
  *
  * resources/RodCuttingPrintPaths.jpg
  */
@@ -52,9 +72,9 @@ public class RodCuttingProblem_DP {
 
         int max = -1;
         //Either we will cut the rod or not
-        for (int i = 1; i <= rodLength; i++) {
+        for (int cutSize = 1; cutSize <= rodLength; cutSize++) {
 
-            max = Math.max(max, price[i] + rodCuttingProblemMaximumRevenue_UsingRecursion(price, rodLength - i));
+            max = Math.max(max, price[cutSize] + rodCuttingProblemMaximumRevenue_UsingRecursion(price, rodLength - cutSize));
         }
         return max;
     }
@@ -66,6 +86,7 @@ public class RodCuttingProblem_DP {
         return rodCuttingRecursionMemorizationHelper(price, rodLength, bestPrice);
     }
 
+    //TC: O(n^2) and SC: O(n) but here we have recursive call stack overhead.
     private static int rodCuttingRecursionMemorizationHelper(int[] price, int rodLength, int[] bestPrice) {
 
         //Base Case
@@ -79,12 +100,10 @@ public class RodCuttingProblem_DP {
         }
 
         //Recursive case
-        int max = -1;
-        for(int i = 1; i <= rodLength; i++) {
-            max = Math.max(max, price[i] + rodCuttingRecursionMemorizationHelper(price, rodLength - i, bestPrice));
+        for(int cutSize = 1; cutSize <= rodLength; cutSize++) {
+            bestPrice[rodLength] = Math.max(bestPrice[rodLength], price[cutSize] + rodCuttingRecursionMemorizationHelper(price, rodLength - cutSize, bestPrice));
         }
-        bestPrice[rodLength] = max;
-        return max;
+        return bestPrice[rodLength];
     }
 
     //TC = O(n^2)
@@ -92,15 +111,16 @@ public class RodCuttingProblem_DP {
     private static int rodCuttingProblemMaximumRevenue_DP(int[] price, int rodLength) {
 
         int[] dp = new int[rodLength + 1];
+
+        Arrays.fill(dp, Integer.MIN_VALUE);
+
         dp[0] = 0; //Base Case
 
-        for (int i = 1; i <= rodLength; i++) { //Length
-            int max = -1;
-            for (int j = 1; j <= i; j++) { //Cut length
+        for (int rodSize = 1; rodSize <= rodLength; rodSize++) { //Rod Length
+            for (int cutSize = 1; cutSize <= rodSize; cutSize++) { //Cut length
 
-                max = Math.max(max, price[j] + dp[i - j]);
+                dp[rodSize] = Math.max(dp[rodSize], price[cutSize] + dp[rodSize - cutSize]);
             }
-            dp[i] = max;
         }
 
         printPaths(dp, price, rodLength);
@@ -115,14 +135,14 @@ public class RodCuttingProblem_DP {
         int maxPrice = dp[length];
 
         //Cuts
-        for(int i = 1; i <= length; i++) {
-            int remPrice = maxPrice - price[i];
-            int remCut = length - i;
+        for(int cutSize = 1; cutSize <= length; cutSize++) {
+            int remPrice = maxPrice - price[cutSize];
+            int remCut = length - cutSize;
 
             //best price for rem cut == rem price
             if(dp[remCut] == remPrice) {
-                System.out.print(i + " ");
-                printPaths(dp, price, length - i);
+                System.out.print(cutSize + " ");
+                printPaths(dp, price, length - cutSize);
                 break; //print only one path
             }
         }

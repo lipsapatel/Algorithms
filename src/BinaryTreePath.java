@@ -35,28 +35,37 @@ public class BinaryTreePath {
             return result;
         }
 
-        binaryTreePathsHelper(root, result, new StringBuilder());
+        binaryTreePathsHelper(root, result, new ArrayList<String>());
         return result;
     }
 
-    public static void binaryTreePathsHelper(BinaryTreeNode root, List<String> path, StringBuilder singlePath) {
+    public static void binaryTreePathsHelper(BinaryTreeNode root, List<String> path, List<String> singlePath) {
 
         if (root.left == null && root.right == null) { //leaf node
-            singlePath.append(root.data);
-            path.add(singlePath.toString());
+            singlePath.add(root.data + "");
+
+            StringBuilder sb = new StringBuilder();
+            for(String s: singlePath) {
+                sb.append(s);
+            }
+            path.add(sb.toString());
+
+            singlePath.remove(singlePath.size() - 1);
+
             return;
         }
 
-        singlePath.append(root.data);
-        singlePath.append("->");
+        singlePath.add(root.data + "->");
 
         if (root.left != null) {
-            binaryTreePathsHelper(root.left, path, new StringBuilder(singlePath.toString()));
+            binaryTreePathsHelper(root.left, path, singlePath);
         }
 
         if (root.right != null) {
-            binaryTreePathsHelper(root.right, path, new StringBuilder(singlePath.toString()));
+            binaryTreePathsHelper(root.right, path, singlePath);
         }
+
+        singlePath.remove(singlePath.size() - 1);
 
     }
 

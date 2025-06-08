@@ -102,7 +102,7 @@ public class CourseScheduleTopologicalOrder {
 
     private static boolean dfs(int start, boolean[] visited, int[] arr, int[] dep, ArrayList<Integer> topoList) {
         visited[start] = true;
-        arr[start] = time++;
+        arr[start] = ++time;
 
         for(int w: graph[start]) {
             if(!visited[w]) {
@@ -116,7 +116,7 @@ public class CourseScheduleTopologicalOrder {
             }
         }
         topoList.add(start);
-        dep[start] = time++;
+        dep[start] = ++time;
         return false;
     }
 
