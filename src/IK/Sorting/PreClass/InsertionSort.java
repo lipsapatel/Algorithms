@@ -24,7 +24,8 @@ import java.util.Arrays;
  * Approach:
  *
  * 1) Assume that n - 1 elements are sorted, sort n - 1 elements in recursive call.
- * 2) Place nth element in its right position by scanning from right to left and right shifting elements greater than n.
+ * 2) Place nth element in its right position by scanning from right to left and right shifting elements
+ * greater than n.
  * 3) There are two approach
  *    - iterative
  *    - recursive
@@ -44,7 +45,7 @@ public class InsertionSort {
             //ahead of their current position
             while (j >= 0 && a[j] > n) {
 
-                a[j + 1] = a[j];
+                a[j + 1] = a[j]; //Right shift
                 j = j - 1;
             }
 
@@ -58,6 +59,7 @@ public class InsertionSort {
     //Place nth element to its right place
     private static void recursiveInsertionSort(int[] a, int nthIndex) {
 
+        //Base Case
         if (nthIndex == 0) {
             return;
         }
@@ -68,7 +70,7 @@ public class InsertionSort {
         int j = nthIndex - 1;
 
         while (j >= 0 && a[j] > n) {
-            a[j + 1] = a[j];
+            a[j + 1] = a[j]; //Right Shift
             j--;
         }
 
@@ -79,7 +81,6 @@ public class InsertionSort {
     public static void main(String[] args) {
 
         int[] array = {12, 11, 13, 5, 6};
-
         insertionSort(array);
 
         int[] array1 = {12, 11, 13, 5, 6};
