@@ -11,7 +11,7 @@ import java.util.HashMap;
  * If your final answer is negative it should include the word ""negative.""
  *
  */
-public class CalculateExpression {
+public class CalculateExpression  {
 
     public static void main(String[] args) {
 
